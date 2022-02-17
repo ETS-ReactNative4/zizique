@@ -1,22 +1,25 @@
 import React,{useRef} from 'react';
-import {View,StyleSheet,Image,} from 'react-native';
+import {View,StyleSheet,Image,Text} from 'react-native';
+import { backgroundColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
+import Logo from "../../ImgSvg/logo.svg";
 
 export const Header = () => {
    
     return(
         <View style={styles.container}>
-            <Image style={styles.image} source={require('../../assets/logo.svg')}/>
+            <Logo height={50} width={50}/> 
+            {/* <Text>J'ai envie de mourire</Text> */}
+
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex:0.2,
-        alignItems: 'center',
-    },
-    image: {
-        width: 70,
-        height: 70,
+        flex:1,
+        flexDirection:"row",
+        alignItems:"center",
+        justifyContent:"flex-start",
+        backgroundColor:"red"
     }
 })

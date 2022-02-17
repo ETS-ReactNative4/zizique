@@ -80,10 +80,14 @@ class SelectScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-
-                {
-                    this.state.genres && this.state.genres.length > 0 ? <SelectList genres={this.state.genres} /> : <Text>Pas de genres</Text>
-                }
+                <View style={styles.header_container}>
+                    <Header/>
+                </View>
+                <View style={styles.list_container}>
+                    {
+                        this.state.genres && this.state.genres.length > 0 ? <SelectList genres={this.state.genres} /> : <Text>Pas de genres</Text>
+                    }
+                </View>
             </View>
         )
     }
@@ -93,8 +97,16 @@ class SelectScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFB100'
+    backgroundColor: '#FFB100',
+    marginTop:40
   },
+  header_container:{
+      flex:0.1
+  },
+  list_container:{
+      flex:0.9,
+      marginTop:40
+  }
 });
 
 
