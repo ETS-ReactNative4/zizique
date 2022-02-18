@@ -5,7 +5,7 @@ import Logo from "../../ImgSvg/logo.svg";
 
 const Home = (props) => {
     const {navigation}=props; 
-    const [text, onChangeText] = React.useState("");
+    const [userAno, onChangeUserAno] = React.useState("");
     return(
         <View style={styles.container}>
           <View style={{flex:0.3,justifyContent:"center"}}>
@@ -51,13 +51,30 @@ const Home = (props) => {
             
          <TextInput
             style={styles.bottom}
-            onChangeText={onChangeText}
-            value={text}
+            onChangeText={(value)=>{
+              onChangeUserAno(value);
+            }}
+            value={userAno}
             placeholder="Anonyme"
             placeholderTextColor='white'
             
         />
-
+        <View style={styles.buttonHome}>
+          <TouchableOpacity
+              style={{ backgroundColor:"#5BC9D7",    
+              alignItems: "center",
+              borderRadius: 18,
+              height:40,
+              justifyContent:"center",
+              marginTop:20
+              }}
+              onPress={()=>{
+                  navigation.push("Login")
+              }}
+              >
+              <Text style={{ color:"white"}}>Jouer</Text>
+          </TouchableOpacity>
+          </View>
         </View>
         
     
