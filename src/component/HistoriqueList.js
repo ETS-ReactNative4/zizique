@@ -13,6 +13,7 @@ const HistoricList = (props) =>{
                 renderItem={({item}) => <HistoricItem item={item} />}
                 keyExtractor={item => item.id.toString()}
                 showsVerticalScrollIndicator={true}
+                style={{flex:1}}
             />
         </View>
     )  

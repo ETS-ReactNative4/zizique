@@ -1,8 +1,9 @@
 import React from 'react';
-import {View, StyleSheet,TextInput} from "react-native";
+import {View, StyleSheet,TextInput,Text} from "react-native";
 import { Header } from '../component/Header';
 import Progress from '../component/Progress';
 import HistoricList from '../component/HistoriqueList';
+import Victoire from "../../ImgSvg/victoire.svg";
 
 class RoomScreen extends React.Component {
     
@@ -60,8 +61,9 @@ class RoomScreen extends React.Component {
                     </View>
                     <View style={styles.room_body_container}>
                         <View style={styles.histo_container}>
-                            <View>
-
+                            <View style={styles.histo_header}>
+                                <Text style={styles.title}>Historique</Text>
+                                <Victoire height={20} width={20} />
                             </View>
                             <HistoricList historique={this.state.historique}/>
                         </View>
@@ -96,14 +98,27 @@ const styles = StyleSheet.create({
         backgroundColor:"white"
     },
     room_body_container:{
-        flexDirection:"row",
-        flex:1
+        flex:1,
+        flexDirection:"row"
     },
     histo_container:{
-        flex:0.5,
-        padding:5,
+        flex:0.45,
         marginTop:20,
-        backgroundColor:"rgba(0,0,0,.2)"
+        backgroundColor:"rgba(0,0,0,.2)",
+        borderTopLeftRadius:29,
+        borderTopRightRadius:29,
+        padding:5
+    },
+    histo_header:{
+        flexDirection:"row",
+        alignItems:"flex-end",
+        marginBottom:20,
+        padding:10,
+        justifyContent:"space-between"
+    },
+    title:{
+        color:"white",
+        fontSize:20
     }
 });
 
