@@ -1,11 +1,12 @@
 import React from 'react'
 import { StyleSheet, Text, View,TouchableOpacity ,TextInput } from 'react-native';
 import Logo from "../../ImgSvg/logo.svg";
-
+import LeftArrow from "../../ImgSvg/left-arrow.svg"
 
 const Login = (props) => {
     const {navigation}=props;
-    const [text, onChangeText] = React.useState("");
+    const [mail, setMail] = React.useState("");
+    const [password, setPassword] = React.useState("");
     return(
         <View style={styles.container}>
           <View style={{flex:0.3,justifyContent:"center"}}>
@@ -13,19 +14,46 @@ const Login = (props) => {
           </View>
 
 
-        <View style={{flex:0.2}}>
-            
-         <TextInput
+        <View style={{flex:0.2,alignItems: 'center',justifyContent: 'space-around'}}>
+        <TextInput
             style={styles.bottom}
-            onChangeText={onChangeText}
-            value={text}
-            placeholder="Anonyme"
+            onChangeText={(value)=>{
+                setMail(value);
+            }}
+            value={mail}
+            placeholder="Mail"
+            placeholderTextColor='white'
+            
+        />
+        <TextInput
+            style={styles.bottom}
+            onChangeText={(value)=>{
+                setPassword(value);
+            }}
+            value={password}
+            placeholder="UserName"
             placeholderTextColor='white'
             
         />
 
         </View>
-        
+        <View style={styles.buttonHome}>
+        <TouchableOpacity
+            style={{ backgroundColor:"#5BC9D7",    
+            alignItems: "center",
+            borderRadius: 18,
+            height:40,
+            justifyContent:"center",
+            marginBottom:10,
+            marginTop:10
+            }}
+            onPress={()=>{
+                navigation.push("Login")
+            }}
+            >
+            <Text style={{ color:"white"}}>Se connecter</Text>
+        </TouchableOpacity>
+        </View>
         <View style={styles.buttonHome}>
           <TouchableOpacity
             style={{ backgroundColor:"#E43F6F",    
@@ -40,7 +68,7 @@ const Login = (props) => {
                 navigation.pop();
             }}
             >
-            <Text style={{ color:"pink"}}>Retour</Text>
+            <LeftArrow  width={25} height={25}/>
         </TouchableOpacity>
 
         </View>
