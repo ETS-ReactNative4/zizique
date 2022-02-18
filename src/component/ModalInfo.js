@@ -3,8 +3,8 @@ import { Modal, StyleSheet,Text,TouchableOpacity, ScrollView,View,Image } from "
 
 const ModalInfo = (props) => {
     const {toggleVisibility,visibility} = props
-    const [genre,setGenre] = useState(null);
-    const [description,setDescription] = useState(null);
+    const [genre,setGenre] = useState({});
+    const [description,setDescription] = useState({});
 
     useEffect(() => {
         setGenre(
@@ -29,8 +29,11 @@ const ModalInfo = (props) => {
         <Modal animationType="slide" transparent={true} visible={visibility}>   
             <View style={styles.modalView}>
                 <View style={styles.modalHeader}>
-                    <Image source={{uri: `${genre.icons[0].url}`}} style={styles.images} />
-                    <Text style={styles.modalText}>{genre.name}</Text>
+                    {
+                        genre != {} && genre.icons ?
+                        <Image source={{uri: `${genre.icons[0].url}`}} style={styles.images} /> : null
+                    }
+                    <Text style={styles.txtHeader}>{genre.name}</Text>
                 </View>
                 <ScrollView style={styles.modalScroll}>
                     <Text style={styles.modalText}>
@@ -50,7 +53,13 @@ const ModalInfo = (props) => {
 const styles = StyleSheet.create({
     modalHeader:{
         flex:0.2,
-        flexDirection:"row"
+        flexDirection:"row",
+        alignItems:"center"
+    },
+    txtHeader:{
+        color:"white",
+        textAlign: "center",
+        marginLeft:20
     },
     images:{
         width:100,
@@ -85,11 +94,11 @@ const styles = StyleSheet.create({
         opacity:0.8,
         flex:1
     },
-    modalText: {
-        marginBottom: 15,
+    modalText:{
         color:"white",
-        textAlign: "center"
+        marginTop:30
     }
+    
 });
 
 export default ModalInfo;
