@@ -1,10 +1,10 @@
 import { View } from 'react-native';
 import Home from "./src/screen/Home"
-import SelectScreen from './src/screen/SelectScreen';
+import RoomScreen from './src/screen/RoomScreen';
 export default function App() {
   return (
     <View style={{ flex: 1}}>
-      <SelectScreen/>
+      <RoomScreen/>
     </View>  
   );
 }
