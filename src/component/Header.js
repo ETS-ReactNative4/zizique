@@ -7,9 +7,7 @@ export const Header = () => {
    
     return(
         <View style={styles.container}>
-            <Logo height={50} width={50}/> 
-            {/* <Text>J'ai envie de mourire</Text> */}
-
+            <Logo height={100} width={100}/> 
         </View>
     )
 }
@@ -20,6 +18,6 @@ const styles = StyleSheet.create({
         flexDirection:"row",
         alignItems:"center",
         justifyContent:"flex-start",
-        backgroundColor:"red"
+        paddingHorizontal:20,
     }
 })

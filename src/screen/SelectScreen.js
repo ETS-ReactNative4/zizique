@@ -101,11 +101,11 @@ const styles = StyleSheet.create({
     marginTop:40
   },
   header_container:{
-      flex:0.1
+      flex:0.2
   },
   list_container:{
-      flex:0.9,
-      marginTop:40
+      flex:0.8,
+      marginTop:10
   }
 });
 
