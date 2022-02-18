@@ -32,6 +32,58 @@ class RoomScreen extends React.Component {
                     },
                 ],
                 "preview_url": "https://p.scdn.co/mp3-preview/b371d287a282fd7df9a27ee27fce7a3a1a3f7275?cid=774b29d4f13844c495f206cafdad9c86",
+            },
+            {
+                "id":1,
+                "artist": "Asaf Avidan",
+                "song":"Reckoning Song - Live Session",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab67616d0000b273bd411201368a4b6b3d4db4a4",
+                        "width": 640
+                    },
+                ],
+                "preview_url": "https://p.scdn.co/mp3-preview/b371d287a282fd7df9a27ee27fce7a3a1a3f7275?cid=774b29d4f13844c495f206cafdad9c86",
+            },
+            {
+                "id":1,
+                "artist": "Asaf Avidan",
+                "song":"Reckoning Song - Live Session",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab67616d0000b273bd411201368a4b6b3d4db4a4",
+                        "width": 640
+                    },
+                ],
+                "preview_url": "https://p.scdn.co/mp3-preview/b371d287a282fd7df9a27ee27fce7a3a1a3f7275?cid=774b29d4f13844c495f206cafdad9c86",
+            },
+            {
+                "id":1,
+                "artist": "Asaf Avidan",
+                "song":"Reckoning Song - Live Session",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab67616d0000b273bd411201368a4b6b3d4db4a4",
+                        "width": 640
+                    },
+                ],
+                "preview_url": "https://p.scdn.co/mp3-preview/b371d287a282fd7df9a27ee27fce7a3a1a3f7275?cid=774b29d4f13844c495f206cafdad9c86",
+            },
+            {
+                "id":1,
+                "artist": "Asaf Avidan",
+                "song":"Reckoning Song - Live Session",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab67616d0000b273bd411201368a4b6b3d4db4a4",
+                        "width": 640
+                    },
+                ],
+                "preview_url": "https://p.scdn.co/mp3-preview/b371d287a282fd7df9a27ee27fce7a3a1a3f7275?cid=774b29d4f13844c495f206cafdad9c86",
             }
         ]})
     }
@@ -67,6 +119,9 @@ class RoomScreen extends React.Component {
                             </View>
                             <HistoricList historique={this.state.historique}/>
                         </View>
+                        <View>
+
+                        </View>
                     </View>
                 </View>
             </View>
@@ -83,11 +138,11 @@ const styles = StyleSheet.create({
         padding:10
     },
     header_container:{
-        flex:0.2
+        flex:0.1
     },
     room_container:{
-        flex:0.8,
-        marginTop:10,
+        flex:0.9,
+        marginTop:30,
     },
     progress_container:{
         flex:0.05
@@ -102,7 +157,7 @@ const styles = StyleSheet.create({
         flexDirection:"row"
     },
     histo_container:{
-        flex:0.45,
+        flex:0.55,
         marginTop:20,
         backgroundColor:"rgba(0,0,0,.2)",
         borderTopLeftRadius:29,
@@ -112,7 +167,7 @@ const styles = StyleSheet.create({
     histo_header:{
         flexDirection:"row",
         alignItems:"flex-end",
-        marginBottom:20,
+        marginBottom:5,
         padding:10,
         justifyContent:"space-between"
     },

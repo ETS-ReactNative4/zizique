@@ -11,11 +11,11 @@ const HistoricItem = (props) =>{
     }
 
     return (
-        <View style={{flex:1}}>
+        <View style={{flex:1,marginVertical:5}}>
             <TouchableOpacity onPress={()=>toggleModal()} style={styles.card}>
                 <View style={styles.card}>
                     <View style={styles.img_container}>
-                        <Image source={{uri: `${item.images[0].url}`}} style={styles.images} resizeMode="cover"/>
+                        <Image source={{uri: `${item.images[0].url}`}} style={styles.images} resizeMode="contain"/>
                     </View>
                     <View style={styles.txt_container}>
                         <Text style={styles.txt_song}>{item.song}</Text>
@@ -31,7 +31,7 @@ const HistoricItem = (props) =>{
 const styles = StyleSheet.create({
     images: {
         width:"100%",
-        height:100
+        height:70
     },
     card:{
         backgroundColor:"#FFB100",
@@ -40,10 +40,10 @@ const styles = StyleSheet.create({
     txt_container:{
         justifyContent:"center",
         padding:5,
-        width:"50%"
+        width:"60%"
     },
     img_container:{
-        width:"50%"
+        width:"40%"
     },
     txt_artist:{
         color:"white",
