@@ -1,14 +1,28 @@
-import React,{useState} from 'react';
-import {View,StyleSheet,Text} from 'react-native';
+import React,{useEffect,useRef} from 'react';
+import {View,StyleSheet,Animated,Easing,Text} from 'react-native';
 
 const Progress = (props) =>{
     
     const {percent} = props;
+    const progression = useRef(new Animated.Value(0)).current;
+
+    useEffect(() => {
+        Animated.timing(progression, {
+            toValue: percent,
+            duration: 1000,
+            easing:Easing.ease,
+            useNativeDriver:false
+        }).start();
+    },[])
 
     return (
         <View style={styles.progress_container}>
-            <View style={[styles.progress_bar,{width:`${percent}%`}]}>
-            </View>
+            <Animated.View style={[styles.progress_bar,{width:progression.interpolate(
+                {
+                    inputRange: [0, 100],
+                    outputRange: ['0%', '100%'],
+                }
+            )}]}></Animated.View>
         </View>
     )  
 }

@@ -2,7 +2,7 @@ import React,{useEffect,useState} from "react";
 import { Modal, StyleSheet,Text,TouchableOpacity, ScrollView,View,Image } from "react-native";
 
 const ModalInfo = (props) => {
-    const {toggleVisibility,visibility} = props
+    const {toggleVisibility,visibility,id} = props
     const [genre,setGenre] = useState({});
     const [description,setDescription] = useState({});
 
