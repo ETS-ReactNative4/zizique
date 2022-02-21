@@ -7,10 +7,10 @@ import RoomScreen from './src/screen/RoomScreen';
 export default function App() {
 
   return (
-      // <NavigationContainer>
-      //   <StackNavigation/>    
-      // </NavigationContainer>
-      <RoomScreen />
+       <NavigationContainer>
+         <StackNavigation/>    
+       </NavigationContainer>
+      
 
   );
 }
