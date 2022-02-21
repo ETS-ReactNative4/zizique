@@ -3,14 +3,16 @@ import {View, StyleSheet,TextInput,Text} from "react-native";
 import { Header } from '../component/Header';
 import Progress from '../component/Progress';
 import HistoricList from '../component/HistoriqueList';
+import ClassementList from '../component/ClassementList';
 import Victoire from "../../ImgSvg/victoire.svg";
 
 class RoomScreen extends React.Component {
     
     state = {
-        percent: 70,
+        percent: 0,
         response:"",
         historique:[],
+        classement:[]
     }
     
 
@@ -34,7 +36,7 @@ class RoomScreen extends React.Component {
                 "preview_url": "https://p.scdn.co/mp3-preview/b371d287a282fd7df9a27ee27fce7a3a1a3f7275?cid=774b29d4f13844c495f206cafdad9c86",
             },
             {
-                "id":1,
+                "id":2,
                 "artist": "Asaf Avidan",
                 "song":"Reckoning Song - Live Session",
                 "images": [
@@ -47,7 +49,7 @@ class RoomScreen extends React.Component {
                 "preview_url": "https://p.scdn.co/mp3-preview/b371d287a282fd7df9a27ee27fce7a3a1a3f7275?cid=774b29d4f13844c495f206cafdad9c86",
             },
             {
-                "id":1,
+                "id":3,
                 "artist": "Asaf Avidan",
                 "song":"Reckoning Song - Live Session",
                 "images": [
@@ -60,7 +62,7 @@ class RoomScreen extends React.Component {
                 "preview_url": "https://p.scdn.co/mp3-preview/b371d287a282fd7df9a27ee27fce7a3a1a3f7275?cid=774b29d4f13844c495f206cafdad9c86",
             },
             {
-                "id":1,
+                "id":4,
                 "artist": "Asaf Avidan",
                 "song":"Reckoning Song - Live Session",
                 "images": [
@@ -73,7 +75,7 @@ class RoomScreen extends React.Component {
                 "preview_url": "https://p.scdn.co/mp3-preview/b371d287a282fd7df9a27ee27fce7a3a1a3f7275?cid=774b29d4f13844c495f206cafdad9c86",
             },
             {
-                "id":1,
+                "id":5,
                 "artist": "Asaf Avidan",
                 "song":"Reckoning Song - Live Session",
                 "images": [
@@ -86,6 +88,35 @@ class RoomScreen extends React.Component {
                 "preview_url": "https://p.scdn.co/mp3-preview/b371d287a282fd7df9a27ee27fce7a3a1a3f7275?cid=774b29d4f13844c495f206cafdad9c86",
             }
         ]})
+
+        this.setState({
+            classement:[
+                {
+                    "id":1,
+                    "nom": "Nathanaël Allard",
+                    "image": 2,
+                    "point":31
+                },
+                {
+                    "id":2,
+                    "nom": "Nathanaël Allard",
+                    "image": 2,
+                    "point":56
+                },
+                {
+                    "id":3,
+                    "nom": "Nathanaël Allard",
+                    "image": 2,
+                    "point":6
+                },
+                {
+                    "id":4,
+                    "nom": "Nathanaël Allard",
+                    "image": 2,
+                    "point":60
+                },
+            ]
+        })
     }
 
     render() {
@@ -124,6 +155,7 @@ class RoomScreen extends React.Component {
                                 <Text style={styles.title}>Classement</Text>
                                 <Victoire height={30} width={30} />
                             </View>
+                            <ClassementList classement={this.state.classement} />
                         </View>
                     </View>
                 </View>
@@ -157,10 +189,11 @@ const styles = StyleSheet.create({
     },
     room_body_container:{
         flex:1,
-        flexDirection:"row"
+        flexDirection:"row",
+        justifyContent:"space-between"
     },
     histo_container:{
-        flex:0.55,
+        flex:.45,
         marginTop:20,
         backgroundColor:"rgba(0,0,0,.2)",
         borderTopLeftRadius:29,
@@ -168,9 +201,8 @@ const styles = StyleSheet.create({
         padding:5
     },
     classement_container:{
-        flex:0.45,
+        flex:.45,
         marginTop:20,
-        backgroundColor:"rgba(0,0,0,.2)",
         borderTopLeftRadius:29,
         borderTopRightRadius:29,
         padding:5
@@ -182,17 +214,17 @@ const styles = StyleSheet.create({
         padding:10,
         justifyContent:"space-between"
     },
-    title:{
-        color:"white",
-        fontSize:20
-    },
-    classement_container:{
+    classement_header:{
         flexDirection:"row",
         alignItems:"flex-end",
         marginBottom:5,
         padding:10,
         justifyContent:"space-between"
-    }
+    },
+    title:{
+        color:"white",
+        fontSize:20
+    },
 
 });
 
