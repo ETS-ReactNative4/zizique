@@ -2,9 +2,9 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import DrawerNavigation from './DrawerNavigation';
 //import {observer,inject} from 'mobx-react'
-import Home from '../screen/Home';
-import Login from '../screen/Login';
-import SignIn from '../screen/SignIn';
+import HomeScreen from '../screen/HomeScreen';
+import LoginScreen from '../screen/LoginScreen';
+import SignInScreen from '../screen/SignInScreen';
 const RootStack = createStackNavigator();
 const StackNavigation = (props) => {
   const{navigation,listStore}=props;
@@ -14,7 +14,7 @@ const StackNavigation = (props) => {
         <RootStack.Navigator >
           <RootStack.Screen
             name="Home"
-            component={Home}
+            component={HomeScreen}
             options={({ navigation }) => ({
               headerShown: false
               })}
@@ -22,14 +22,14 @@ const StackNavigation = (props) => {
             />
           <RootStack.Screen
             name="Login"
-            component={Login}
+            component={LoginScreen}
             options={({ navigation }) => ({
               headerShown: false
               })}
             />
            <RootStack.Screen
             name="SignIn"
-            component={SignIn}
+            component={SignInScreen}
             options={({ navigation }) => ({
               headerShown: false
               })}

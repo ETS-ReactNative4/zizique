@@ -8,7 +8,7 @@ import Avatar2 from '../../ImgSvg/avatar2.svg';
 import Avatar3 from '../../ImgSvg/avatar3.svg';
 import Avatar4 from '../../ImgSvg/avatar4.svg';
 
-const SignIn = (props) => {
+const SignInScreen = (props) => {
     const profilPicture=()=>{
         switch (IconIndex) {
             case 0:
@@ -182,4 +182,4 @@ const styles = StyleSheet.create({
 
   }
 });
-export default SignIn
+export default SignInScreen

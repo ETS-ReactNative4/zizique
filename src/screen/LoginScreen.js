@@ -3,7 +3,7 @@ import { StyleSheet, Text, View,TouchableOpacity ,TextInput } from 'react-native
 import Logo from "../../ImgSvg/logo.svg";
 import LeftArrow from "../../ImgSvg/left-arrow.svg"
 
-const Login = (props) => {
+const LoginScreen = (props) => {
     const {navigation}=props;
     const [mail, setMail] = React.useState("");
     const [password, setPassword] = React.useState("");
@@ -101,4 +101,4 @@ const styles = StyleSheet.create({
 
   }
 });
-export default Login
+export default LoginScreen

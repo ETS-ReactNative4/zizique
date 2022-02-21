@@ -3,7 +3,7 @@ import { StyleSheet, Text, View,TouchableOpacity ,TextInput } from 'react-native
 import Logo from "../../ImgSvg/logo.svg";
 
 
-const Home = (props) => {
+const HomeScreen = (props) => {
     const {navigation}=props; 
     const [userAno, onChangeUserAno] = React.useState("");
     return(
@@ -107,4 +107,4 @@ const styles = StyleSheet.create({
 
   }
 });
-export default Home
+export default HomeScreen
