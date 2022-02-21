@@ -6,9 +6,9 @@ import Home from '../screen/Home';
 import Login from '../screen/Login';
 import SignIn from '../screen/SignIn';
 const RootStack = createStackNavigator();
-const NavigationTab = (props) => {
+const StackNavigation = (props) => {
   const{navigation,listStore}=props;
-  const[connecter,SetConnecte]=React.useState(false);
+  const[connecter,SetConnecte]=React.useState(true);
   if (!connecter) {
     return (
         <RootStack.Navigator >
@@ -37,16 +37,21 @@ const NavigationTab = (props) => {
         </RootStack.Navigator>
       );
   } else {
-        <RootStack.Navigator >
-        <RootStack.Screen
-        name="DrawerNavigation"
-        component={DrawerNavigation}
-        options={({ navigation }) => ({
-            title: 'Bienvenue',
-            })}
-        />
-    </RootStack.Navigator>
+    return(            
+    <RootStack.Navigator >
+              
+      <RootStack.Screen
+      name="DrawerNavigation"
+      component={DrawerNavigation}
+      options={({ navigation }) => ({
+        headerShown: false
+        })}
+      />
+</RootStack.Navigator>);
+        
+
+        
   }
 
 }
-export default NavigationTab
+export default StackNavigation
