@@ -28,6 +28,8 @@ class RoomScreen extends React.Component {
     }
     
     componentDidMount(){
+        this.setState({percent:0})
+        
         this.setState({historique:[...this.state.historique,
             {
                 "id":1,
@@ -148,12 +150,16 @@ class RoomScreen extends React.Component {
     }
 
     componentWillUnmount(){
-        this.sound.stopAsync().then(()=>{})
+        this.setState({percent:0,historique:[],classement:[]})
+        this.sound.stopAsync().then(()=>{
+        })
+        console.log("pas monté")
     }
 
     onChangeResponse = (text) =>{
         this.setState({response:text});
     }
+   
 
     render() {
 
