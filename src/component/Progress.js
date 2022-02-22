@@ -13,7 +13,7 @@ const Progress = (props) =>{
             easing:Easing.ease,
             useNativeDriver:false
         }).start();
-    },[])
+    },[percent])
 
     return (
         <View style={styles.progress_container}>

@@ -5,21 +5,28 @@ import Progress from '../component/Progress';
 import HistoricList from '../component/HistoriqueList';
 import ClassementList from '../component/ClassementList';
 import Victoire from "../../ImgSvg/victoire.svg";
+import { Audio } from 'expo-av';
 
 class RoomScreen extends React.Component {
     
-    state = {
-        percent: 0,
-        response:"",
-        historique:[],
-        classement:[]
-    }
-    
-
+   
     constructor(props) {
         super(props);
+        this.sound = new Audio.Sound();
+        this.state = {
+            percent: 0,
+            response:"",
+            historique:[],
+            classement:[]
+        }
     }
 
+    onPlaybackStatusUpdate = (status) =>{
+        let percent = status.positionMillis*100/status.durationMillis
+        this.setState({percent:percent})
+        // console.log(this.state.response)
+    }
+    
     componentDidMount(){
         this.setState({historique:[...this.state.historique,
             {
@@ -117,13 +124,38 @@ class RoomScreen extends React.Component {
                 },
             ]
         })
+         
+        Audio.setAudioModeAsync({
+            allowsRecordingIOS:false,
+            interruptionModeIOS:Audio.INTERRUPTION_MODE_IOS_DUCK_OTHERS,
+            playsInSilentModeIOS:true,
+            interruptionModeAndroid:Audio.INTERRUPTION_MODE_ANDROID_DUCK_OTHERS,
+            shouldDuckAndroid:true,
+            staysActiveInBackground:true,
+            playThroughEarpieceAndroid:true
+        })
+
+        this.sound.setOnPlaybackStatusUpdate(this.onPlaybackStatusUpdate);
+
+        this.sound.loadAsync(require('../../assets/bigard.mp3')).then(()=>{
+            this.sound.playAsync();
+        });
+
+        // this.sound.loadAsync({uri:''}).then(()=>{
+        //     this.sound.playAsync();
+        // });
+            
+    }
+
+    componentWillUnmount(){
+        this.sound.stopAsync().then(()=>{})
+    }
+
+    onChangeResponse = (text) =>{
+        this.setState({response:text});
     }
 
     render() {
-
-        const onChangeResponse = (text) =>{
-            this.setState({response:text});
-        }
 
         return (
             <View style={styles.container}>
@@ -137,7 +169,7 @@ class RoomScreen extends React.Component {
                     <View style={styles.input_container}>
                         <TextInput
                             style={styles.input}
-                            onChangeText={text => onChangeResponse(text)}
+                            onChangeText={text => this.onChangeResponse(text)}
                             value={this.state.response}
                             placeholder="Entre ta réponse mon con"
                         />

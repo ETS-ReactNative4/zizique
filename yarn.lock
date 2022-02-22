@@ -2840,6 +2840,13 @@ expo-asset@~8.4.6:
     path-browserify "^1.0.0"
     url-parse "^1.4.4"
 
+expo-av@~10.2.0:
+  version "10.2.1"
+  resolved "https://registry.yarnpkg.com/expo-av/-/expo-av-10.2.1.tgz#c08bce464d673d0e90c68cac082bfb75a9437f25"
+  integrity sha512-thrkHVg4HVn8L+jHKVnXYd4TLkJQblFE8QXd3d1hwrYG63gehQT2nK4DM0Frl50EcdV8YN9XjhwHobtK5oMc9A==
+  dependencies:
+    "@expo/config-plugins" "^4.0.2"
+
 expo-constants@~13.0.2:
   version "13.0.2"
   resolved "https://registry.npmjs.org/expo-constants/-/expo-constants-13.0.2.tgz"
@@ -4962,11 +4969,6 @@ react-native-size-matters@^0.3.1:
   version "0.3.1"
   resolved "https://registry.npmjs.org/react-native-size-matters/-/react-native-size-matters-0.3.1.tgz"
   integrity sha512-mKOfBLIBFBcs9br1rlZDvxD5+mAl8Gfr5CounwJtxI6Z82rGrMO+Kgl9EIg3RMVf3G855a85YVqHJL2f5EDRlw==
-
-react-native-sound-player@^0.11.3:
-  version "0.11.3"
-  resolved "https://registry.yarnpkg.com/react-native-sound-player/-/react-native-sound-player-0.11.3.tgz#407aa76521a2203d29f40e081c4f89cb44ebdfd4"
-  integrity sha512-UROQGIPkb4vk5hk3cycup1YEgVmQtnT1VA+j3RMJmohBuFXIXauVob1sGsW9+rUOfRnMVXxv2FpDJU1Yet4IlA==
 
 react-native-svg-transformer@^1.0.0:
   version "1.0.0"
