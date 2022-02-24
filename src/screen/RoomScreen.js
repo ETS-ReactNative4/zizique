@@ -151,9 +151,8 @@ class RoomScreen extends React.Component {
 
     componentWillUnmount(){
         this.setState({percent:0,historique:[],classement:[]})
-        this.sound.stopAsync().then(()=>{
-        })
-        console.log("pas monté")
+        this.sound.unloadAsync().then(()=>{});
+        this.sound.stopAsync().then(()=>{})
     }
 
     onChangeResponse = (text) =>{
