@@ -8,10 +8,12 @@ const ClassementItem = (props) =>{
     return (
         <View style={styles.card}>
             <View style={styles.img_container}>
-                <Image source={require(`../../ImgSvg/avatar3.svg`)} style={styles.images} resizeMode="contain"/>
+                <Image source={require(`../../assets/avatar2.png`)} style={styles.images} resizeMode="contain"/>
             </View>
             <View style={styles.txt_container}>
-                <Text style={styles.txt_song}>{item.nom}</Text>
+                <Text style={styles.txt_nom}>{item.nom}</Text>
+                <Text style={styles.txt_pt}>{item.point} pt</Text>
+
             </View>
         </View>
     )  
@@ -24,23 +26,24 @@ const styles = StyleSheet.create({
     card:{
         backgroundColor:"#E43F6F",
         flexDirection:"row",
-        marginVertical:5
+        marginVertical:5,
+        alignItems:"center"
     },
     txt_container:{
         justifyContent:"center",
         padding:5,
-        width:"60%"
+        width:"80%"
     },
     img_container:{
-        width:"40%"
+        width:"20%"
     },
-    txt_artist:{
-        color:"white",
-        fontSize:9,
-    },
-    txt_song:{
+    txt_nom:{
         color:"white",
         fontSize:12,
+    },
+    txt_pt:{
+        color:"white",
+        fontSize:8,
     }
 });
 

@@ -150,6 +150,7 @@ class RoomScreen extends React.Component {
     }
 
     componentWillUnmount(){
+        console.log('unmount')
         this.setState({percent:0,historique:[],classement:[]})
         this.sound.unloadAsync().then(()=>{});
         this.sound.stopAsync().then(()=>{})
