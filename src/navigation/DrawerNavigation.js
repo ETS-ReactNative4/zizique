@@ -3,11 +3,12 @@ import CustomDrawerContent from './DrawerContent/DrawerContent';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import RoomScreen from '../screen/RoomScreen'
 import SelectScreen from '../screen/SelectScreen'
+import {observer,inject} from 'mobx-react'
 
 const Drawer=createDrawerNavigator();
 
 const DrawerNavigation = (props) => {
- 
+  const{navigation,storeConnexion}=props;
     return (
       <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props}/>}
       
@@ -28,4 +29,4 @@ const DrawerNavigation = (props) => {
    
   
 }
-export default DrawerNavigation
+export default inject('storeConnexion')(observer(DrawerNavigation))
