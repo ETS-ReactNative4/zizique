@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     padding:10
   },
   header_container:{
-      flex:0.2
+      flex:0.1
   },
   list_container:{
       flex:0.8,
