@@ -1,8 +1,8 @@
 const { io } = require("socket.io-client");
-let socket
 
 export function connectSocket() {
-    socket = io("ws://localhost:8080");
+    const socket = io("ws://localhost:8080");
+    return socket;
 }
 
 export function emitSocket(event,msg) {
@@ -10,8 +10,12 @@ export function emitSocket(event,msg) {
 }
 
 
-export function listenSocket(event) {
+export function listenSocket(event,callback) {
+    // socket.on(event,(msg) => {
+    //     return msg
+    // });
+
     socket.on(event,(msg) => {
-        return msg
+        callback(msg)
     });
 }

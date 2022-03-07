@@ -6,6 +6,7 @@ import HistoricList from '../component/HistoriqueList';
 import ClassementList from '../component/ClassementList';
 import Victoire from "../../ImgSvg/victoire.svg";
 import { MaterialIcons } from '@expo/vector-icons'; 
+import {emitSocket,listenSocket} from '../service/Socket'
 
 import { Audio } from 'expo-av';
 
@@ -19,7 +20,9 @@ class RoomScreen extends React.Component {
             percent: 0,
             response:"",
             historique:[],
-            classement:[]
+            classement:[],
+            asArtist:false,
+            asSong:false,
         }
     }
 
@@ -30,105 +33,9 @@ class RoomScreen extends React.Component {
     }
     
     componentDidMount(){
-        this.setState({percent:0})
         
-        this.setState({historique:[...this.state.historique,
-            {
-                "id":1,
-                "artist": "Asaf Avidan",
-                "song":"Reckoning Song - Live Session",
-                "images": [
-                    {
-                        "height": 640,
-                        "url": "https://i.scdn.co/image/ab67616d0000b273bd411201368a4b6b3d4db4a4",
-                        "width": 640
-                    },
-                ],
-                "preview_url": "https://p.scdn.co/mp3-preview/b371d287a282fd7df9a27ee27fce7a3a1a3f7275?cid=774b29d4f13844c495f206cafdad9c86",
-            },
-            {
-                "id":2,
-                "artist": "Asaf Avidan",
-                "song":"Reckoning Song - Live Session",
-                "images": [
-                    {
-                        "height": 640,
-                        "url": "https://i.scdn.co/image/ab67616d0000b273bd411201368a4b6b3d4db4a4",
-                        "width": 640
-                    },
-                ],
-                "preview_url": "https://p.scdn.co/mp3-preview/b371d287a282fd7df9a27ee27fce7a3a1a3f7275?cid=774b29d4f13844c495f206cafdad9c86",
-            },
-            {
-                "id":3,
-                "artist": "Asaf Avidan",
-                "song":"Reckoning Song - Live Session",
-                "images": [
-                    {
-                        "height": 640,
-                        "url": "https://i.scdn.co/image/ab67616d0000b273bd411201368a4b6b3d4db4a4",
-                        "width": 640
-                    },
-                ],
-                "preview_url": "https://p.scdn.co/mp3-preview/b371d287a282fd7df9a27ee27fce7a3a1a3f7275?cid=774b29d4f13844c495f206cafdad9c86",
-            },
-            {
-                "id":4,
-                "artist": "Asaf Avidan",
-                "song":"Reckoning Song - Live Session",
-                "images": [
-                    {
-                        "height": 640,
-                        "url": "https://i.scdn.co/image/ab67616d0000b273bd411201368a4b6b3d4db4a4",
-                        "width": 640
-                    },
-                ],
-                "preview_url": "https://p.scdn.co/mp3-preview/b371d287a282fd7df9a27ee27fce7a3a1a3f7275?cid=774b29d4f13844c495f206cafdad9c86",
-            },
-            {
-                "id":5,
-                "artist": "Asaf Avidan",
-                "song":"Reckoning Song - Live Session",
-                "images": [
-                    {
-                        "height": 640,
-                        "url": "https://i.scdn.co/image/ab67616d0000b273bd411201368a4b6b3d4db4a4",
-                        "width": 640
-                    },
-                ],
-                "preview_url": "https://p.scdn.co/mp3-preview/b371d287a282fd7df9a27ee27fce7a3a1a3f7275?cid=774b29d4f13844c495f206cafdad9c86",
-            }
-        ]})
+       
 
-        this.setState({
-            classement:[
-                {
-                    "id":1,
-                    "nom": "Nathanaël Allard",
-                    "image": 2,
-                    "point":31
-                },
-                {
-                    "id":2,
-                    "nom": "Nathanaël Allard",
-                    "image": 2,
-                    "point":56
-                },
-                {
-                    "id":3,
-                    "nom": "Nathanaël Allard",
-                    "image": 2,
-                    "point":6
-                },
-                {
-                    "id":4,
-                    "nom": "Nathanaël Allard",
-                    "image": 2,
-                    "point":60
-                },
-            ]
-        })
-         
         Audio.setAudioModeAsync({
             allowsRecordingIOS:false,
             interruptionModeIOS:Audio.INTERRUPTION_MODE_IOS_DUCK_OTHERS,
@@ -141,21 +48,18 @@ class RoomScreen extends React.Component {
 
         this.sound.setOnPlaybackStatusUpdate(this.onPlaybackStatusUpdate);
 
-        this.sound.loadAsync(require('../../assets/bigard.mp3')).then(()=>{
-            this.sound.playAsync();
-        });
+        listenSocket('song',(song)=>{
+            this.setState({percent:0})
+            this.sound.loadAsync({uri:song.url}).then(()=>{
+                this.sound.playAsync();
+            });
+            setTimeout(()=>{this.setState({historique:[...this.state.historique,song]})},30000)
+        })
 
-        // this.sound.loadAsync({uri:''}).then(()=>{
-        //     this.sound.playAsync();
-        // });
+        listenSocket("asArtist",(asArtist)=>{this.setState({'asArtist':asArtist})})
+        listenSocket("asSong",(asSong)=>{this.setState({'asArtist':asSong})})
+        listenSocket("joinRoom",(player)=>{this.setState({'classement':[...this.state.classement,player]})})
             
-    }
-
-    componentWillUnmount(){
-        console.log('unmount')
-        this.setState({percent:0,historique:[],classement:[]})
-        this.sound.unloadAsync().then(()=>{});
-        this.sound.stopAsync().then(()=>{})
     }
 
     onChangeResponse = (text) =>{
@@ -180,6 +84,7 @@ class RoomScreen extends React.Component {
                             onChangeText={text => this.onChangeResponse(text)}
                             value={this.state.response}
                             placeholder="Entre ta réponse mon con"
+                            onEndEditing={()=>{emitSocket('sendAnswer',text)}}
                         />
                     </View>
                     <View style={styles.room_body_container}>
