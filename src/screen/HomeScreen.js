@@ -1,11 +1,17 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { StyleSheet, Text, View,TouchableOpacity ,TextInput } from 'react-native';
 import Logo from "../../ImgSvg/Logo.svg";
+import {connectSocket} from "../service/Socket"
 
 
 const HomeScreen = (props) => {
     const {navigation}=props; 
     const [userAno, onChangeUserAno] = React.useState("");
+
+    useEffect(() => {
+      connectSocket()
+    },[]);
+
     return(
         <View style={styles.container}>
           <View style={{flex:0.3,justifyContent:"center"}}>

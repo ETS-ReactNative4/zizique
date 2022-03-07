@@ -2,9 +2,9 @@ import React from 'react';
 import {View, StyleSheet,Text} from "react-native";
 import SelectList from "../component/SelectList"
 import { Header } from '../component/Header';
-import {connectSocket} from "../service/Socket"
 import 'react-native-get-random-values'
 import { v4 as uuidv4 } from 'uuid';
+import {emitSocket} from '../service/Socket'
 
 class SelectScreen extends React.Component {
 
@@ -13,9 +13,7 @@ class SelectScreen extends React.Component {
     }
 
     constructor(props) {
-        super(props);
-        this.socket;
-        
+        super(props);        
     }
 
     componentDidMount(){
@@ -80,18 +78,16 @@ class SelectScreen extends React.Component {
 
         }catch(e){
             console.log(e)
-        }
-
-        try{
-          this.socket = connectSocket()
-        }catch(e){
-          console.log(e)
-        }
+        }        
     }
 
-    _joinRoom = () =>{
-      console.log(uuidv4())
-      this.props.navigation.navigate('Room')
+    _joinRoom = (genre) =>{
+      try{
+        emitSocket("joinRoom",{room:{id:uuidv4(),genre:genre},id:this.props.storeConnexion.getRefresh()})
+        this.props.navigation.navigate('Room')
+      }catch(e){
+        console.log(e)
+      }
     }
 
     render() {

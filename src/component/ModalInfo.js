@@ -52,7 +52,7 @@ const ModalInfo = (props) => {
                         <TouchableOpacity onPress={()=>{toggleVisibility()}} style={styles.btn}>
                             <Text style={styles.btnTxt}>Fermer</Text>
                         </TouchableOpacity> :
-                         <TouchableOpacity onPress={()=>{joinRoom()}} style={styles.btn}>
+                         <TouchableOpacity onPress={()=>{joinRoom(genre.name)}} style={styles.btn}>
                             <Text style={styles.btnTxt}>Rejoindre la partie</Text>
                         </TouchableOpacity>
                     }

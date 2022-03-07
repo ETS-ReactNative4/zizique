@@ -9,6 +9,7 @@ const Drawer=createDrawerNavigator();
 
 const DrawerNavigation = (props) => {
   const{navigation,storeConnexion}=props;
+  
     return (
       <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props}/>}
       
