@@ -23,7 +23,7 @@ const HistoricItem = (props) =>{
                     </View>
                 </View>
             </TouchableOpacity>
-            <ModalInfo toggleVisibility={toggleModal} visibility={modalVisible} id={item.id}/>
+            <ModalInfo toggleVisibility={toggleModal} visibility={modalVisible} id={item.id} text="Fermer"/>
         </View>
     )  
 }

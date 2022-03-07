@@ -3,7 +3,7 @@ import { Modal, StyleSheet,Text,TouchableOpacity, ScrollView,View,Image } from "
 import { AntDesign } from '@expo/vector-icons'; 
 
 const ModalInfo = (props) => {
-    const {toggleVisibility,visibility,id} = props
+    const {toggleVisibility,visibility,id,text} = props
     const [genre,setGenre] = useState({});
     const [description,setDescription] = useState({});
 
@@ -46,7 +46,7 @@ const ModalInfo = (props) => {
                 </ScrollView>
                 <View style={styles.modalFooter}>
                     <TouchableOpacity onPress={()=>{toggleVisibility()}} style={styles.btn}>
-                        <Text style={styles.btnTxt}>Rejoindre</Text>
+                        <Text style={styles.btnTxt}>{text}</Text>
                     </TouchableOpacity>
                 </View>
             </View>
