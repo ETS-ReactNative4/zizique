@@ -10,21 +10,19 @@ export const Header = () => {
 
     return(
         <View style={styles.container}>
+            <Logo  height={100} width={100}/> 
             <TouchableOpacity
-                  onPress={() => {
+                onPress={() => {
                     navigation.openDrawer();
                 }}
-                
-            style={{flex:1,alignItems:"flex-start"}}
+                style={{marginLeft:"auto"}}
             >
-            <Icon
-            name='menu'
-            color='#FFFFFF' 
-            style={{fontSize:100 }}
-            />            
+                <Icon
+                    name='menu'
+                    color='#FFFFFF' 
+                    style={{fontSize:100 }}
+                />            
             </TouchableOpacity>
-            <Logo style={{flex:0.5}} height={100} width={100}/> 
-
         </View>
     )
 }
@@ -34,6 +32,5 @@ const styles = StyleSheet.create({
         flex:1,
         flexDirection:"row",
         alignItems:"center",
-       
     }
 })
