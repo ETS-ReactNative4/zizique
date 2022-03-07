@@ -11,7 +11,8 @@ const RootStack = createStackNavigator();
 const StackNavigation = (props) => {
   const{navigation,storeConnexion}=props;
   const[connecter,SetConnecte]=React.useState(true);
-
+//Permet au démarrage du composant d'aller chercher la valeurs de l'access token.
+//SI cette valeurs est déinie on estime que l'utilisateur est connecté
   useEffect(() => {
       if(storeConnexion.getAccess()){
         SetConnecte(true);
@@ -20,7 +21,7 @@ const StackNavigation = (props) => {
 
       }
   }, [])
-
+  //Si il n'est pas connecter on estime que l'utilisateur doit être dirigé vers l'écran d'acceuil
   if (!connecter) {
     return (
         <RootStack.Navigator >
@@ -49,20 +50,17 @@ const StackNavigation = (props) => {
         </RootStack.Navigator>
       );
   } else {
+    //Si l'utilisateur est connecté alors je peux l'envoyer sur la navigation standart
     return(            
-    <RootStack.Navigator >
-              
-      <RootStack.Screen
-      name="DrawerNavigation"
-      component={DrawerNavigation}
-      options={({ navigation }) => ({
-        headerShown: false
-        })}
-      />
-</RootStack.Navigator>);
-        
-
-        
+    <RootStack.Navigator >            
+        <RootStack.Screen
+        name="DrawerNavigation"
+        component={DrawerNavigation}
+        options={({ navigation }) => ({
+          headerShown: false
+          })}
+        />
+    </RootStack.Navigator>);
   }
 
 }
