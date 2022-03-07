@@ -4,7 +4,7 @@ import { AntDesign } from '@expo/vector-icons';
 import {useNavigation } from '@react-navigation/native';
 
 const ModalInfo = (props) => {
-    const {toggleVisibility,visibility,id,text} = props
+    const {toggleVisibility,visibility,id,joinRoom} = props
     const [genre,setGenre] = useState({});
     const [description,setDescription] = useState({});
     const navigation = useNavigation();
@@ -48,12 +48,12 @@ const ModalInfo = (props) => {
                 </ScrollView>
                 <View style={styles.modalFooter}>
                     {
-                        text === "Fermer" ?
+                        !joinRoom ?
                         <TouchableOpacity onPress={()=>{toggleVisibility()}} style={styles.btn}>
-                            <Text style={styles.btnTxt}>{text}</Text>
+                            <Text style={styles.btnTxt}>Fermer</Text>
                         </TouchableOpacity> :
-                         <TouchableOpacity onPress={()=>{navigation.navigate('Room')}} style={styles.btn}>
-                            <Text style={styles.btnTxt}>{text}</Text>
+                         <TouchableOpacity onPress={()=>{joinRoom()}} style={styles.btn}>
+                            <Text style={styles.btnTxt}>Rejoindre la partie</Text>
                         </TouchableOpacity>
                     }
                 </View>

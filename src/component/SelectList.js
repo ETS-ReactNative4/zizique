@@ -4,14 +4,14 @@ import GenreItem from "./GenreItem"
 
 const SelectList = (props) =>{
     
-    const {genres} = props;
+    const {genres,joinRoom} = props;
 
     return (
         <View style={styles.container}>
             <FlatList
                 data={genres}
                 numColumns={2}
-                renderItem={({item}) => <GenreItem genre={item} />}
+                renderItem={({item}) => <GenreItem genre={item} joinRoom={joinRoom}/>}
                 keyExtractor={item => item.id.toString()}
                 onEndReachedThreshold={0.5}
                 showsVerticalScrollIndicator={false}

@@ -2,6 +2,9 @@ import React from 'react';
 import {View, StyleSheet,Text} from "react-native";
 import SelectList from "../component/SelectList"
 import { Header } from '../component/Header';
+import {connectSocket} from "../service/Socket"
+import 'react-native-get-random-values'
+import { v4 as uuidv4 } from 'uuid';
 
 class SelectScreen extends React.Component {
 
@@ -11,6 +14,8 @@ class SelectScreen extends React.Component {
 
     constructor(props) {
         super(props);
+        this.socket;
+        
     }
 
     componentDidMount(){
@@ -76,7 +81,19 @@ class SelectScreen extends React.Component {
         }catch(e){
             console.log(e)
         }
+
+        try{
+          this.socket = connectSocket()
+        }catch(e){
+          console.log(e)
+        }
     }
+
+    _joinRoom = () =>{
+      console.log(uuidv4())
+      this.props.navigation.navigate('Room')
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -85,7 +102,7 @@ class SelectScreen extends React.Component {
                 </View>
                 <View style={styles.list_container}>
                     {
-                        this.state.genres && this.state.genres.length > 0 ? <SelectList genres={this.state.genres} /> : <Text>Pas de genres</Text>
+                        this.state.genres && this.state.genres.length > 0 ? <SelectList genres={this.state.genres} joinRoom={this._joinRoom} /> : <Text>Pas de genres</Text>
                     }
                 </View>
             </View>

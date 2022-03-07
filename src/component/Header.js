@@ -13,7 +13,6 @@ export const Header = () => {
             <Logo  height={100} width={100}/> 
             <TouchableOpacity
                 onPress={() => {
-                    navigation.push("Room")           
                     navigation.openDrawer();
                 }}
                 style={{marginLeft:"auto"}}

@@ -1,9 +1,10 @@
 import React,{useState} from 'react';
 import {View,Image,TouchableOpacity,StyleSheet,Text} from 'react-native';
 import ModalInfo from './ModalInfo';
+
 const GenreItem = (props) =>{
     const [modalVisible, setModalVisible] = useState(false);
-    const {genre} = props;
+    const {genre,joinRoom} = props;
 
     const toggleModal = () => {
         setModalVisible(!modalVisible);
@@ -14,7 +15,7 @@ const GenreItem = (props) =>{
             <TouchableOpacity onPress={()=>toggleModal()}>
                 <Image source={{uri: `${genre.icons[0].url}`}} style={styles.images} />
             </TouchableOpacity>
-            <ModalInfo toggleVisibility={toggleModal} visibility={modalVisible} genreID={genre.id} text="Rejoindre"/>
+            <ModalInfo toggleVisibility={toggleModal} visibility={modalVisible} genreID={genre.id} text="Rejoindre" joinRoom={joinRoom}/>
         </View>
     )  
 }
