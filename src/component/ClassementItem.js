@@ -12,15 +12,15 @@ const ClassementItem = (props) =>{
         <View style={styles.card}>
             <View style={styles.img_container}>
                 {
-                    item.picture===1?<Avatar1 />
+                    item.picture===1?<Avatar1 height={30} width={30}/>
                     :null
                 }
                 {
-                    item.picture===2?<Avatar2 />
+                    item.picture===2?<Avatar2 height={30} width={30}/>
                     :null
                 }
                 {
-                    item.picture===3?<Avatar3 />
+                    item.picture===3?<Avatar3 height={30} width={30}/>
                     :null
                 }
             </View>

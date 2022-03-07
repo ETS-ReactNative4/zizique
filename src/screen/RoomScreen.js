@@ -23,6 +23,9 @@ class RoomScreen extends React.Component {
             classement:[],
             asArtist:false,
             asSong:false,
+            modalVisibility:true,
+            isGameFinish:false,
+            isGameLoading:true,
         }
     }
 
@@ -50,6 +53,7 @@ class RoomScreen extends React.Component {
 
         listenSocket('song',(song)=>{
             this.setState({percent:0})
+            this.setState({modalVisibility:false,isLoading:false})
             this.sound.loadAsync({uri:song.url}).then(()=>{
                 this.sound.playAsync();
             });
@@ -59,13 +63,15 @@ class RoomScreen extends React.Component {
         listenSocket("asArtist",(asArtist)=>{this.setState({'asArtist':asArtist})})
         listenSocket("asSong",(asSong)=>{this.setState({'asArtist':asSong})})
         listenSocket("joinRoom",(player)=>{this.setState({'classement':[...this.state.classement,player]})})
-            
+        listenSocket("finish",(isFinish)=>{this.setState({modalVisibility:true,isFinish:true})})
+   
     }
 
     onChangeResponse = (text) =>{
         this.setState({response:text});
     }
    
+
 
     render() {
 
@@ -104,7 +110,7 @@ class RoomScreen extends React.Component {
                         </View>
                     </View>
                 </View>
-                <ModalRoom />
+                <ModalRoom isLoading={false} isFinish={true} visibility={this.state.modalVisibility}/>
             </View>
         )
     }
