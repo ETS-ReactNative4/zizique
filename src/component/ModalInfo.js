@@ -1,11 +1,13 @@
 import React,{useEffect,useState} from "react";
 import { Modal, StyleSheet,Text,TouchableOpacity, ScrollView,View,Image } from "react-native";
 import { AntDesign } from '@expo/vector-icons'; 
+import {useNavigation } from '@react-navigation/native';
 
 const ModalInfo = (props) => {
     const {toggleVisibility,visibility,id,text} = props
     const [genre,setGenre] = useState({});
     const [description,setDescription] = useState({});
+    const navigation = useNavigation();
 
     useEffect(() => {
         setGenre(
@@ -45,9 +47,15 @@ const ModalInfo = (props) => {
                     </Text>
                 </ScrollView>
                 <View style={styles.modalFooter}>
-                    <TouchableOpacity onPress={()=>{toggleVisibility()}} style={styles.btn}>
-                        <Text style={styles.btnTxt}>{text}</Text>
-                    </TouchableOpacity>
+                    {
+                        text === "Fermer" ?
+                        <TouchableOpacity onPress={()=>{toggleVisibility()}} style={styles.btn}>
+                            <Text style={styles.btnTxt}>{text}</Text>
+                        </TouchableOpacity> :
+                         <TouchableOpacity onPress={()=>{navigation.navigate('Room')}} style={styles.btn}>
+                            <Text style={styles.btnTxt}>{text}</Text>
+                        </TouchableOpacity>
+                    }
                 </View>
             </View>
         </Modal>
