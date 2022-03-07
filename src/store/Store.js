@@ -1,4 +1,5 @@
 import {observable,action, makeObservable} from 'mobx'
+
 class StoreConnexion {
     login='';
     password='';
@@ -35,6 +36,7 @@ class StoreConnexion {
         this.accessToken=accessToken;
 
     }
+
      /*storeData = async (login,password,idSession) => {
         try {
             this.setLogin(identifiant);
