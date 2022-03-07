@@ -7,7 +7,7 @@ import ClassementList from '../component/ClassementList';
 import Victoire from "../../ImgSvg/victoire.svg";
 import { MaterialIcons } from '@expo/vector-icons'; 
 import {emitSocket,listenSocket} from '../service/Socket'
-
+import ModalRoom from "../component/ModalRoom"
 import { Audio } from 'expo-av';
 
 class RoomScreen extends React.Component {
@@ -104,6 +104,7 @@ class RoomScreen extends React.Component {
                         </View>
                     </View>
                 </View>
+                <ModalRoom />
             </View>
         )
     }

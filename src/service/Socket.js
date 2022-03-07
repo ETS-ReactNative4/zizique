@@ -11,10 +11,6 @@ export function emitSocket(event,msg) {
 
 
 export function listenSocket(event,callback) {
-    // socket.on(event,(msg) => {
-    //     return msg
-    // });
-
     socket.on(event,(msg) => {
         callback(msg)
     });

@@ -1,5 +1,8 @@
 import React,{useState} from 'react';
 import {View,Image,StyleSheet,Text} from 'react-native';
+import Avatar1 from '../../ImgSvg/avatar1.svg'
+import Avatar2 from '../../ImgSvg/avatar2.svg'
+import Avatar3 from '../../ImgSvg/avatar3.svg'
 
 const ClassementItem = (props) =>{
     
@@ -8,12 +11,22 @@ const ClassementItem = (props) =>{
     return (
         <View style={styles.card}>
             <View style={styles.img_container}>
-                <Image source={require(`../../assets/avatar2.png`)} style={styles.images} resizeMode="contain"/>
+                {
+                    item.picture===1?<Avatar1 />
+                    :null
+                }
+                {
+                    item.picture===2?<Avatar2 />
+                    :null
+                }
+                {
+                    item.picture===3?<Avatar3 />
+                    :null
+                }
             </View>
             <View style={styles.txt_container}>
                 <Text style={styles.txt_nom}>{item.nom}</Text>
                 <Text style={styles.txt_pt}>{item.point} pt</Text>
-
             </View>
         </View>
     )  
