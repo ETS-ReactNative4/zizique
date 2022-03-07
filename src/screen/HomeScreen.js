@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View,TouchableOpacity ,TextInput } from 'react-native';
-import Logo from "../../ImgSvg/logo.svg";
+import Logo from "../../ImgSvg/Logo.svg";
 
 
 const HomeScreen = (props) => {

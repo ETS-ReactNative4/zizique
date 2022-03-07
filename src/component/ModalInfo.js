@@ -1,5 +1,6 @@
 import React,{useEffect,useState} from "react";
 import { Modal, StyleSheet,Text,TouchableOpacity, ScrollView,View,Image } from "react-native";
+import { AntDesign } from '@expo/vector-icons'; 
 
 const ModalInfo = (props) => {
     const {toggleVisibility,visibility,id} = props
@@ -34,6 +35,9 @@ const ModalInfo = (props) => {
                         <Image source={{uri: `${genre.icons[0].url}`}} style={styles.images} /> : null
                     }
                     <Text style={styles.txtHeader}>{genre.name}</Text>
+                    <TouchableOpacity onPress={()=>{toggleVisibility()}} style={{marginLeft:"auto"}}>
+                        <AntDesign name="close" size={30} color="white"  />
+                    </TouchableOpacity>
                 </View>
                 <ScrollView style={styles.modalScroll}>
                     <Text style={styles.modalText}>

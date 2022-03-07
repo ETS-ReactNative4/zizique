@@ -5,6 +5,8 @@ import Progress from '../component/Progress';
 import HistoricList from '../component/HistoriqueList';
 import ClassementList from '../component/ClassementList';
 import Victoire from "../../ImgSvg/victoire.svg";
+import { MaterialIcons } from '@expo/vector-icons'; 
+
 import { Audio } from 'expo-av';
 
 class RoomScreen extends React.Component {
@@ -184,9 +186,9 @@ class RoomScreen extends React.Component {
                         <View style={styles.histo_container}>
                             <View style={styles.histo_header}>
                                 <Text style={styles.title}>Historique</Text>
-                                <Victoire height={30} width={30} />
+                                <MaterialIcons name="history" size={30} color="white" />  
                             </View>
-                            <HistoricList historique={this.state.historique}/>
+                                <HistoricList historique={this.state.historique}/>
                         </View>
                         <View style={styles.classement_container}>
                             <View style={styles.classement_header}>

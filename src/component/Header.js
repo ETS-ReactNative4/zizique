@@ -1,7 +1,7 @@
 import React,{useRef} from 'react';
 import {View,StyleSheet,Image,Text,TouchableOpacity} from 'react-native';
 import { backgroundColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
-import Logo from "../../ImgSvg/logo.svg";
+import Logo from "../../ImgSvg/Logo.svg";
 import { useNavigation } from '@react-navigation/native';
 import { Icon } from 'react-native-elements';
 
