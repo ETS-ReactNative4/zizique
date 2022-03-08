@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useEffect} from 'react';
 import {View,Image,StyleSheet,Text} from 'react-native';
 import Avatar1 from '../../ImgSvg/avatar1.svg'
 import Avatar2 from '../../ImgSvg/avatar2.svg'
@@ -7,9 +7,17 @@ import Avatar3 from '../../ImgSvg/avatar3.svg'
 const ClassementItem = (props) =>{
     
     const {item} = props;
+    let Color;
+    let step = 0;
+    
+    useEffect(() => {
+        step = item.asArtist ? step++ : step;
+        step = item.asSong ? step++ : step;
+        Color = item == 1 ? "#FFA900": step == 2 ? "#E43F6F" : "#5BC9D7";
+    },[item]);
 
     return (
-        <View style={styles.card}>
+        <View style={[styles.card,{backgroundColor:Color}]}>
             <View style={styles.img_container}>
                 {
                     item.picture===1?<Avatar1 height={30} width={30}/>
@@ -37,7 +45,6 @@ const styles = StyleSheet.create({
         width:"100%",
     },
     card:{
-        backgroundColor:"#E43F6F",
         flexDirection:"row",
         marginVertical:5,
         alignItems:"center"

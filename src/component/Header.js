@@ -10,12 +10,11 @@ export const Header = () => {
 
     return(
         <View style={styles.container}>
-            <Logo  height={100} width={100}/> 
             <TouchableOpacity
                 onPress={() => {
                     navigation.openDrawer();
                 }}
-                style={{marginLeft:"auto"}}
+                style={{marginRight:"auto"}}
             >
                 <Icon
                     name='menu'
@@ -23,6 +22,7 @@ export const Header = () => {
                     style={{fontSize:100 }}
                 />            
             </TouchableOpacity>
+            <Logo  height={100} width={100}/> 
         </View>
     )
 }
