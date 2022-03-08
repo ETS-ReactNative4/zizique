@@ -9,6 +9,7 @@ import Avatar3 from '../../ImgSvg/avatar3.svg';
 import Avatar4 from '../../ImgSvg/avatar4.svg';
 import {observer,inject} from 'mobx-react'
 import ApiContext,{Api} from '../service/Axios'
+import { FancyAlert } from 'react-native-expo-fancy-alerts';
 
 const SignInScreen = (props) => {
     const profilPicture=()=>{
@@ -43,8 +44,9 @@ const SignInScreen = (props) => {
     const [mail, setMail] = React.useState("");
     const [username, setUserName] = React.useState("");
     const [password, setPassword] = React.useState("");
-    const [modalVisible, setModalVisible] = React.useState(false);
     const [IconIndex,setIconIndex]=React.useState(0);
+    const [visible, setVisible] = React.useState(false);
+
     const context = React.useContext(ApiContext);
     const updateCarroussel=(value)=>{
         
@@ -66,6 +68,42 @@ const SignInScreen = (props) => {
           <View style={{flex:0.3,justifyContent:"center"}}>
             <Logo height={170}width={200} />    
           </View>
+          <FancyAlert
+                visible={visible}
+                icon={<View style={{
+                flex: 1,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: 'red',
+                borderRadius: 50,
+                width: '100%',
+                }}><Text>🤓</Text></View>}
+                
+                style={{ backgroundColor: '#FFB100' }}
+            >
+                
+
+        <View style={styles.buttonHome}>
+        <Text>Vous vous êtes bien enregistrer</Text>
+            <TouchableOpacity
+              style={{ backgroundColor:"#5BC9D7",    
+              alignItems: "center",
+              borderRadius: 18,
+              height:40,
+              justifyContent:"center",
+              marginBottom:10,
+              marginTop:10
+              }}
+              onPress={()=>{
+                  navigation.pop();
+              }}
+              >
+              <LeftArrow  width={25} height={25}/>
+          </TouchableOpacity>
+  
+          </View>
+            </FancyAlert>
           <View  style={{flex:0.15,flexDirection:"row",alignItems:"center",justifyContent:"space-around" }} >
           <TouchableOpacity
           onPress={ ()=>{updateCarroussel(IconIndex-1)}}
@@ -140,8 +178,7 @@ const SignInScreen = (props) => {
                     ).then((res)=>{
                         console.log(res)
                         if(res){
-                            setModalVisible(true)
-                            //navigation.pop();
+                            setVisible(true);  
                         }
                     }).catch((err)=>{
                         console.log("err");
@@ -182,15 +219,7 @@ const SignInScreen = (props) => {
         </TouchableOpacity>
 
         </View>
-        <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
-        }}
-      />
+
       </View>
     )
 }
