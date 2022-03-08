@@ -10,9 +10,7 @@ const GenreItem = (props) =>{
         setModalVisible(!modalVisible);
     }
     
-    useEffect(() => {
-       
-    },[genre]);
+   
 
     return (
         <View style={styles.card}>

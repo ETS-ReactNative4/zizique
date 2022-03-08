@@ -1,14 +1,21 @@
-import React,{useEffect,useState} from "react";
+import React,{useEffect,useState,useContext} from "react";
 import { Modal, StyleSheet,Text,TouchableOpacity,View,Image } from "react-native";
 import { AntDesign } from '@expo/vector-icons'; 
 import PlaylistList from "./PlaylistList";
 import Loading from "./Loading";
+import ApiContext,{Api} from '../service/Axios'
+
 const ModalInfo = (props) => {
     const {toggleVisibility,visibility,genre,joinRoom} = props
     const [isLoading,setIsLoading] = useState(true)
-    const [playlists,setPlaylistes] = useState()
+    const [playlists,setPlaylists] = useState([]);
+    const context = useContext(ApiContext);
+
     useEffect(() => {
-       
+        context.GetGenrePlaylist(genre.id).then((response)=>{
+            setIsLoading(!isLoading)
+            setPlaylists(response.data.data.items)
+        })
     },[]);
     
 
@@ -17,10 +24,14 @@ const ModalInfo = (props) => {
             <View style={styles.modalView}>
                 <View style={styles.modalHeader}>
                     <Image source={{uri: `${genre.icons[0].url}`}} style={styles.images} />
+                    <Text style={{color:"white",marginLeft:10}}>{genre.name}</Text>
                     <TouchableOpacity onPress={()=>{toggleVisibility()}} style={{marginLeft:"auto"}}>
                         <AntDesign name="close" size={30} color="white"  />
                     </TouchableOpacity>
                 </View>
+                {
+                    !isLoading?<Text style={{color:"white"}}>Le Blind test sera composé des playlistes suivantes</Text>:null
+                }
                 {
                     isLoading?<Loading />:<PlaylistList playlists={playlists} />
                 }
@@ -29,18 +40,22 @@ const ModalInfo = (props) => {
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc faucibus nibh eu mauris dapibus, facilisis egestas ligula posuere. Morbi bibendum mollis ultricies. Vestibulum et justo pellentesque, feugiat lacus nec, rhoncus massa. Proin leo libero, aliquet dictum est ac, tristique feugiat enim. Donec elementum arcu id velit placerat interdum.
                     </Text>
                 </ScrollView> */}
-
-                <View style={styles.modalFooter}>
-                    {
-                        !joinRoom ?
-                        <TouchableOpacity onPress={()=>{toggleVisibility()}} style={styles.btn}>
-                            <Text style={styles.btnTxt}>Fermer</Text>
-                        </TouchableOpacity> :
-                         <TouchableOpacity onPress={()=>{joinRoom(genre.id)}} style={styles.btn}>
-                            <Text style={styles.btnTxt}>Rejoindre la partie</Text>
-                        </TouchableOpacity>
-                    }
-                </View>
+                {
+                    !isLoading?
+                    <View style={styles.modalFooter}>
+                        {
+                            !joinRoom ?
+                            <TouchableOpacity onPress={()=>{toggleVisibility()}} style={styles.btn}>
+                                <Text style={styles.btnTxt}>Fermer</Text>
+                            </TouchableOpacity> :
+                            <TouchableOpacity onPress={()=>{joinRoom(genre.id)}} style={styles.btn}>
+                                <Text style={styles.btnTxt}>Rejoindre la partie</Text>
+                            </TouchableOpacity>
+                        }
+                    </View>:null
+                    
+                }
+                
             </View>
         </Modal>
     );
@@ -58,8 +73,8 @@ const styles = StyleSheet.create({
         marginLeft:20
     },
     images:{
-        width:100,
-        height:100,
+        width:70,
+        height:70,
         borderRadius:50
     },
     modalScroll:{

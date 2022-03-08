@@ -65,6 +65,15 @@ import React from 'react';
             } catch (error) {
                 return error
             }
+        },
+        GetGenrePlaylist: async (genreID) =>{
+            try {
+                const response = await AxiosAuth.get(`/music/genres/${genreID}/playlists`)
+                return response;
+            } catch (error) {
+                return error
+            }
+
         }
     };
     const ApiContext= React.createContext(Api);

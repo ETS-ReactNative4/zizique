@@ -49,11 +49,10 @@ class SelectScreen extends React.Component {
                     <Header/>
                 </View>
                 <View style={styles.list_container}>
-                    {/* {
+                    {
                         this.state.genres && this.state.genres.length > 0 ? <SelectList genres={this.state.genres} joinRoom={this._joinRoom} /> : 
                         <Loading />
-                    } */}
-                     <Loading />
+                    }
                 </View>
             </View>
         )
