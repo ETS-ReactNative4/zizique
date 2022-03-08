@@ -38,6 +38,7 @@ class RoomScreen extends React.Component {
     
     componentDidMount(){
         
+        listenSocket("socketID",)
         Audio.setAudioModeAsync({
             allowsRecordingIOS:false,
             interruptionModeIOS:Audio.INTERRUPTION_MODE_IOS_DUCK_OTHERS,
@@ -65,14 +66,18 @@ class RoomScreen extends React.Component {
 
         listenSocket("asArtist",(asArtist)=>{this.setState({'asArtist':asArtist})})
         listenSocket("asSong",(asSong)=>{this.setState({'asArtist':asSong})})
-        listenSocket("joinRoom",(player)=>{this.setState({'classement':[...this.state.classement,player]})})
         listenSocket("finish",()=>{this.setState({modalVisibility:true,isFinish:true})})
-   
+        listenSocket("someoneLeaved",(player)=>{
+            this.setState({'classement':[...this.state.classement,player]})
+        })
+        listenSocket("someoneJoined",(player)=>{
+            this.setState({'classement':[...this.state.classement,player]})
+        })
+
     }
 
     onChangeResponse = (text) =>{
         this.setState({response:text});
-        // 
     }
    
 

@@ -8,12 +8,12 @@ import {emitSocket} from '../service/Socket'
 
 class SelectScreen extends React.Component {
 
-    state = {
-        genres: [],
-    }
-
+ 
     constructor(props) {
-        super(props);        
+        super(props);  
+        this.state = {
+            genres :[]
+        }      
     }
 
     componentDidMount(){
@@ -23,60 +23,6 @@ class SelectScreen extends React.Component {
             // .then(data=>{
             //     this.setState({genre:data.genres});
             //     console.log(data.genres)
-            // })
-
-
-            // this.setState({
-            //     genres:[
-            //         {
-            //             "href": "https://api.spotify.com/v1/browse/categories/toplists",
-            //             "icons": [
-            //               {
-            //                 "height": 275,
-            //                 "url": "https://t.scdn.co/media/derived/toplists_11160599e6a04ac5d6f2757f5511778f_0_0_275_275.jpg",
-            //                 "width": 275
-            //               }
-            //             ],
-            //             "id": "toplists",
-            //             "name": "Les Tops"
-            //         },
-            //         {
-            //             "href": "https://api.spotify.com/v1/browse/categories/hiphop",
-            //             "icons": [
-            //               {
-            //                 "height": 274,
-            //                 "url": "https://t.scdn.co/media/original/hip-274_0a661854d61e29eace5fe63f73495e68_274x274.jpg",
-            //                 "width": 274
-            //               }
-            //             ],
-            //             "id": "hiphop",
-            //             "name": "Hip-Hop"
-            //         },
-            //         {
-            //             "href": "https://api.spotify.com/v1/browse/categories/pop",
-            //             "icons": [
-            //               {
-            //                 "height": 274,
-            //                 "url": "https://t.scdn.co/media/derived/pop-274x274_447148649685019f5e2a03a39e78ba52_0_0_274_274.jpg",
-            //                 "width": 274
-            //               }
-            //             ],
-            //             "id": "pop",
-            //             "name": "Pop"
-            //         },
-            //         {
-            //             "href": "https://api.spotify.com/v1/browse/categories/pop",
-            //             "icons": [
-            //               {
-            //                 "height": 274,
-            //                 "url": "https://t.scdn.co/media/derived/pop-274x274_447148649685019f5e2a03a39e78ba52_0_0_274_274.jpg",
-            //                 "width": 274
-            //               }
-            //             ],
-            //             "id": "pop",
-            //             "name": "Pop"
-            //         }
-            //     ]
             // })
 
         }catch(e){
