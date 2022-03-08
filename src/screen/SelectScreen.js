@@ -6,8 +6,11 @@ import 'react-native-get-random-values'
 import { v4 as uuidv4 } from 'uuid';
 import {emitSocket} from '../service/Socket'
 import {observer,inject} from 'mobx-react'
+import ApiContext,{Api} from '../service/Axios'
 
 class SelectScreen extends React.Component {
+
+    static contextType = ApiContext
 
  
     constructor(props) {
@@ -15,16 +18,16 @@ class SelectScreen extends React.Component {
         this.state = {
             genres :[]
         }      
+        
+
+
     }
 
     componentDidMount(){
         try{
-            // getGenres()
-            // .then(data=>{
-            //     this.setState({genre:data.genres});
-            //     console.log(data.genres)
-            // })
-
+            this.context.GetGenre().then((res)=>{
+                this.setState({genres:res.data})
+            })
         }catch(e){
             console.log(e)
         }        

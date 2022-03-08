@@ -16,10 +16,10 @@ const ProfilScreen = (props) => {
     const [user,setUser] = useState({});
     const [isediting,setIsEditing] = useState(false);
     const [n_username,setN_username] = useState("")
-    // const context = useContext(ApiContext)
+    const context = useContext(ApiContext)
 
     useEffect(() => {
-        // setUser(context.GetProfil())
+        setUser(context.GetProfil())
     },[]);
 
     return(

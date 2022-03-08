@@ -40,6 +40,13 @@ const StackNavigation = (props) => {
               headerShown: false
               })}
             />
+          <RootStack.Screen
+            name="Select"
+            component={SelectScreen}
+            options={({ navigation }) => ({
+              headerShown: false
+              })}
+          />
         </RootStack.Navigator>
       );
   } else {
