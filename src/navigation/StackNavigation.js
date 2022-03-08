@@ -11,19 +11,11 @@ import SelectScreen from '../screen/SelectScreen';
 const RootStack = createStackNavigator();
 const StackNavigation = (props) => {
   const{navigation,storeConnexion}=props;
-  const[connecter,SetConnecte]=React.useState(true);
 //Permet au démarrage du composant d'aller chercher la valeurs de l'access token.
 //SI cette valeurs est déinie on estime que l'utilisateur est connecté
-  useEffect(() => {
-      if(storeConnexion.getAccess()){
-        SetConnecte(true);
-      }else{
-        SetConnecte(false);
 
-      }
-  }, [])
   //Si il n'est pas connecter on estime que l'utilisateur doit être dirigé vers l'écran d'acceuil
-  if (!connecter) {
+  if (!storeConnexion.isConnected) {
     return (
         <RootStack.Navigator >
           <RootStack.Screen
@@ -46,20 +38,6 @@ const StackNavigation = (props) => {
             component={SignInScreen}
             options={({ navigation }) => ({
               headerShown: false
-              })}
-            />
-            <RootStack.Screen
-              name="Room"
-              component={RoomScreen}
-              options={({ navigation }) => ({
-                headerShown: false
-              })}
-            />
-            <RootStack.Screen
-              name="Select"
-              component={SelectScreen}
-              options={({ navigation }) => ({
-                headerShown: false
               })}
             />
         </RootStack.Navigator>

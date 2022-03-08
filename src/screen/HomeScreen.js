@@ -2,6 +2,7 @@ import React,{useEffect} from 'react'
 import { StyleSheet, Text, View,TouchableOpacity ,TextInput } from 'react-native';
 import Logo from "../../ImgSvg/Logo.svg";
 import {connectSocket} from "../service/Socket"
+import {observer,inject} from 'mobx-react'
 
 
 const HomeScreen = (props) => {
@@ -68,13 +69,15 @@ const HomeScreen = (props) => {
         />
         <View style={styles.buttonHome}>
           <TouchableOpacity
-              style={{ backgroundColor: userAno!=""?"#5BC9D7":"#888485",
+              style={{ backgroundColor: userAno!=""?"#5BC9D7":"#888485",    
               alignItems: "center",
               borderRadius: 18,
               height:40,
               justifyContent:"center",
               marginTop:20
               }}
+              disabled={userAno!=""?false:true}
+
               onPress={()=>{
                   navigation.push("Select")
               }}
@@ -115,4 +118,4 @@ const styles = StyleSheet.create({
 
   }
 });
-export default HomeScreen
+export default inject('storeConnexion')(observer(HomeScreen))

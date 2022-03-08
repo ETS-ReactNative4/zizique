@@ -14,7 +14,7 @@ import React from 'react';
                 {
                     username:user.username,
                     password:user.password,
-                    email:user.mail,
+                    email:user.email,
                     profil_pic:user.IconIndex
                 })
                 if(response.status==201 ){
@@ -35,8 +35,28 @@ import React from 'react';
                 return error
             }
         },
-        SignIn:async (user)=>{
+        SignIn:async (user,type)=>{
+            try{
+                if (type=="password") {
+                    const response=await AxiosAuth.post("auth/login",
+                    {
+                        email:user.email,
+                        password:user.password,
+                        grant_type:"password"
+                    })
+                }else{
+                    const response=await AxiosAuth.post("auth/login",
+                    {
+                        email:user.email,
+                        refresh:user.refresh,
+                        grant_type:"refresh_token"
+                    })
+                }
+                return response.data;
 
+            }catch(err){
+
+            }
         },
         GetProfil:async ()=>{
             try {
