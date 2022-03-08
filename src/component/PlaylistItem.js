@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import {View,Image,TouchableOpacity,StyleSheet,Text} from 'react-native';
-import * as Linking from 'expo-linking';
+import * as WebBrowser from 'expo-web-browser';
 
 const PlaylistItem = (props) =>{
     const {item} = props;
@@ -8,7 +8,7 @@ const PlaylistItem = (props) =>{
     return (
         <View style={{flex:1,marginVertical:5}}>
             <TouchableOpacity onPress={()=>{
-                Linking.openURL(item.url);
+                WebBrowser.openBrowserAsync(item.url);
             }}>
                 <View style={styles.card}>
                     <View style={styles.img_container}>
