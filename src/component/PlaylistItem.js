@@ -16,7 +16,7 @@ const PlaylistItem = (props) =>{
                     </View>
                     <View style={styles.txt_container}>
                         <Text style={styles.txt_title}>{item.name}</Text>                        
-                        <Text style={styles.txt_song}>{item.tracks.total} zizique</Text>
+                        <Text style={styles.txt_song}>{item.tracks.total} ziziques</Text>
                     </View>
                 </View>
             </TouchableOpacity>

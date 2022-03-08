@@ -2,7 +2,7 @@ const { io } = require("socket.io-client");
 let socket;
 
 export function connectSocket() {
-    socket = io("ws://localhost:8080");
+    socket = io("https://cucuque.herokuapp.com");
 }
 
 export function emitSocket(event,msg) {

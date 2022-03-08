@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius:29,
         borderTopRightRadius:29,
         justifyContent:"center",
-        opacity:0.8,
+        opacity:0.9,
         flex:1
     }, 
     modalHeader:{

@@ -38,7 +38,11 @@ class RoomScreen extends React.Component {
     }
     
     componentDidMount(){
-        
+        emitSocket("zizi",{})
+        listenSocket("cucu",(msg)=>{
+            console.log("msg")
+        })
+
         Audio.setAudioModeAsync({
             allowsRecordingIOS:false,
             interruptionModeIOS:Audio.INTERRUPTION_MODE_IOS_DUCK_OTHERS,
