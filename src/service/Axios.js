@@ -1,9 +1,6 @@
 import axios from 'axios';
 import React from 'react';
 
-/*const AxiosAuth= axios.create({
-    baseURL:'http://10.0.0.2:8082/'
-  });*/
 
   const AxiosAuth= axios.create({
     baseURL: 'https://cucuque.herokuapp.com/',
@@ -13,7 +10,13 @@ import React from 'react';
         Signup:async (user)=>{
             try 
             {
-            const response=await AxiosAuth.post("auth/register",{user})
+             const response=await AxiosAuth.post("auth/register",
+            {
+                username:user.username,
+                password:user.password,
+                email:user.mail,
+                profil_pic:user.IconIndex
+            })
             if(response.status==201 ){
                 return true;
             }else{
