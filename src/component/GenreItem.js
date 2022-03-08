@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {View,Image,TouchableOpacity,StyleSheet,Text} from 'react-native';
 import ModalInfo from './ModalInfo';
 
@@ -9,13 +9,19 @@ const GenreItem = (props) =>{
     const toggleModal = () => {
         setModalVisible(!modalVisible);
     }
+    
+    useEffect(() => {
+       
+    },[genre]);
 
     return (
         <View style={styles.card}>
             <TouchableOpacity onPress={()=>toggleModal()}>
-                <Image source={{uri: `${genre.icons[0].url}`}} style={styles.images} />
+                {
+                    genre.icons[0].url ? <Image source={{uri: `${genre.icons[0].url}`}} style={styles.images} />:null
+                }
             </TouchableOpacity>
-            <ModalInfo toggleVisibility={toggleModal} visibility={modalVisible} genreID={genre.id} text="Rejoindre" joinRoom={joinRoom}/>
+            <ModalInfo toggleVisibility={toggleModal} visibility={modalVisible} genre={genre} text="Rejoindre" joinRoom={joinRoom}/>
         </View>
     )  
 }

@@ -1,30 +1,14 @@
 import React,{useEffect,useState} from "react";
-import { Modal, StyleSheet,Text,TouchableOpacity, ScrollView,View,Image } from "react-native";
+import { Modal, StyleSheet,Text,TouchableOpacity,View,Image } from "react-native";
 import { AntDesign } from '@expo/vector-icons'; 
-import {useNavigation } from '@react-navigation/native';
+import PlaylistList from "./PlaylistList";
 
 const ModalInfo = (props) => {
-    const {toggleVisibility,visibility,id,joinRoom} = props
-    const [genre,setGenre] = useState({});
-    const [description,setDescription] = useState({});
-    const navigation = useNavigation();
-
+    const {toggleVisibility,visibility,genre,joinRoom} = props
+    const [isLoading,setIsLoading] = useState(true)
+    const [playlists,setPlaylistes] = useState()
     useEffect(() => {
-        setGenre(
-            {
-                "href": "https://api.spotify.com/v1/browse/categories/pop",
-                "icons": [
-                  {
-                    "height": 274,
-                    "url": "https://t.scdn.co/media/derived/pop-274x274_447148649685019f5e2a03a39e78ba52_0_0_274_274.jpg",
-                    "width": 274
-                  }
-                ],
-                "id": "pop",
-                "name": "Pop",
-            }
-        )   
-        setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc faucibus nibh eu mauris dapibus, facilisis egestas ligula posuere. Morbi bibendum mollis ultricies. Vestibulum et justo pellentesque, feugiat lacus nec, rhoncus massa. Proin leo libero, aliquet dictum est ac, tristique feugiat enim. Donec elementum arcu id velit placerat interdum.")
+       
     },[]);
     
 
@@ -32,20 +16,23 @@ const ModalInfo = (props) => {
         <Modal animationType="slide" transparent={true} visible={visibility}>   
             <View style={styles.modalView}>
                 <View style={styles.modalHeader}>
-                    {
-                        genre != {} && genre.icons ?
-                        <Image source={{uri: `${genre.icons[0].url}`}} style={styles.images} /> : null
-                    }
-                    <Text style={styles.txtHeader}>{genre.name}</Text>
+                    <Image source={{uri: `${genre.icons[0].url}`}} style={styles.images} />
                     <TouchableOpacity onPress={()=>{toggleVisibility()}} style={{marginLeft:"auto"}}>
                         <AntDesign name="close" size={30} color="white"  />
                     </TouchableOpacity>
                 </View>
-                <ScrollView style={styles.modalScroll}>
+                {
+                    isLoading?
+                    <View style={{alignItems:"center",justifyContent:"center",flex:1}}>
+                        <ActivityIndicator size="large" color="#FFFF" />
+                    </View>:<PlaylistList playlists={playlists} />
+                }
+                {/* <ScrollView style={styles.modalScroll}>
                     <Text style={styles.modalText}>
-                        {description}
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc faucibus nibh eu mauris dapibus, facilisis egestas ligula posuere. Morbi bibendum mollis ultricies. Vestibulum et justo pellentesque, feugiat lacus nec, rhoncus massa. Proin leo libero, aliquet dictum est ac, tristique feugiat enim. Donec elementum arcu id velit placerat interdum.
                     </Text>
-                </ScrollView>
+                </ScrollView> */}
+
                 <View style={styles.modalFooter}>
                     {
                         !joinRoom ?

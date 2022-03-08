@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet,Text} from "react-native";
+import {View, StyleSheet,ActivityIndicator} from "react-native";
 import SelectList from "../component/SelectList"
 import { Header } from '../component/Header';
 import 'react-native-get-random-values'
@@ -50,7 +50,10 @@ class SelectScreen extends React.Component {
                 </View>
                 <View style={styles.list_container}>
                     {
-                        this.state.genres && this.state.genres.length > 0 ? <SelectList genres={this.state.genres} joinRoom={this._joinRoom} /> : <Text>Pas de genres</Text>
+                        this.state.genres && this.state.genres.length > 0 ? <SelectList genres={this.state.genres} joinRoom={this._joinRoom} /> : 
+                        <View style={{alignItems:"center",justifyContent:"center",flex:1}}>
+                            <ActivityIndicator size="large" color="#FFFF" />
+                        </View>
                     }
                 </View>
             </View>

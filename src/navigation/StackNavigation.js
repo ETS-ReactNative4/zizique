@@ -47,6 +47,13 @@ const StackNavigation = (props) => {
               headerShown: false
               })}
           />
+          <RootStack.Screen
+            name="Room"
+            component={RoomScreen}
+            options={({ navigation }) => ({
+              headerShown: false
+            })}
+          />
         </RootStack.Navigator>
       );
   } else {
