@@ -5,6 +5,7 @@ import StackNavigation from './src/navigation/StackNavigation'
 import { Provider } from 'mobx-react';
 import {storeConnexion} from './src/store/Store';
 import {configure} from 'mobx';
+import ApiContext,{Api} from './src/service/Axios'
 
 export default function App() {
   configure({
@@ -14,7 +15,9 @@ export default function App() {
   return (
     <Provider {...stores}>
         <NavigationContainer>
+        <ApiContext.Provider value={Api}>
           <StackNavigation/>           
+        </ApiContext.Provider>
        </NavigationContainer>
     </Provider>
 
