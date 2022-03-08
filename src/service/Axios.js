@@ -10,20 +10,19 @@ import React from 'react';
         Signup:async (user)=>{
             try 
             {
-             const response=await AxiosAuth.post("auth/register",
-            {
-                username:user.username,
-                password:user.password,
-                email:user.mail,
-                profil_pic:user.IconIndex
-            })
-            if(response.status==201 ){
-                return true;
-            }else{
-                console.log("un problème est survenue status code : ",response.status);
-                return false;
-            }
-            return response;
+                const response=await AxiosAuth.post("auth/register",
+                {
+                    username:user.username,
+                    password:user.password,
+                    email:user.mail,
+                    profil_pic:user.IconIndex
+                })
+                if(response.status==201 ){
+                    return true;
+                }else{
+                    console.log("un problème est survenue status code : ",response.status);
+                    return false;
+                }
             }catch(err){
                 return err;
             }
@@ -31,16 +30,14 @@ import React from 'react';
         GetGenre:async ()=>{
             try {
                 const response=await AxiosAuth.post("auth/register",{user})
-                if(response.status==201 ){
-                    return true;
-                }else{
-                    console.log("un problème est survenue status code : ",response.status);
-                    return false;
-                }
-                return response;
+
+                return response.data;
             } catch (error) {
-                
+                return error
             }
+        },
+        SignIn:async (user)=>{
+
         }
     };
     const ApiContext= React.createContext(Api);
