@@ -26,19 +26,17 @@ class RoomScreen extends React.Component {
             modalVisibility:false,
             isGameFinish:false,
             isGameLoading:true,
+            isPlaying:false,
         }
     }
 
     onPlaybackStatusUpdate = (status) =>{
         let percent = status.positionMillis*100/status.durationMillis
         this.setState({percent:percent})
-        // console.log(this.state.response)
     }
     
     componentDidMount(){
         
-       
-
         Audio.setAudioModeAsync({
             allowsRecordingIOS:false,
             interruptionModeIOS:Audio.INTERRUPTION_MODE_IOS_DUCK_OTHERS,
@@ -52,10 +50,14 @@ class RoomScreen extends React.Component {
         this.sound.setOnPlaybackStatusUpdate(this.onPlaybackStatusUpdate);
 
         listenSocket('song',(song)=>{
+            if(this.state.isPlaying){
+                this.sound.unloadAsync()
+            }
             this.setState({percent:0})
             this.setState({modalVisibility:false,isLoading:false})
             this.sound.loadAsync({uri:song.url}).then(()=>{
                 this.sound.playAsync();
+                this.setState({isPlaying:true})
             });
             setTimeout(()=>{this.setState({historique:[...this.state.historique,song]})},30000)
         })
@@ -92,6 +94,16 @@ class RoomScreen extends React.Component {
                             placeholder="Entre ta réponse mon con"
                             onEndEditing={()=>{emitSocket('sendAnswer',text)}}
                         />
+                    </View>
+                    <View style={styles.answer_container}>
+                        {
+                            this.state.asArtist ?
+                            <Text style={{color:"white",padding:10,backgroundColor:"#E43F6F",marginHorizontal:10}}>Artiste</Text>:null
+                        }
+                        {
+                            this.state.asSong ?
+                            <Text style={{color:"white",padding:10,backgroundColor:"#5BC9D7",marginHorizontal:10}}>Musique</Text>:null
+                        }
                     </View>
                     <View style={styles.room_body_container}>
                         <View style={styles.histo_container}>
@@ -177,6 +189,9 @@ const styles = StyleSheet.create({
         color:"white",
         fontSize:20
     },
+    answer_container:{
+        flexDirection:"row",
+    }
 
 });
 
