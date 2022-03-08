@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet,TextInput,Text} from "react-native";
+import {View, StyleSheet,TextInput,Text,TouchableOpacity} from "react-native";
 import { Header } from '../component/Header';
 import Progress from '../component/Progress';
 import HistoricList from '../component/HistoriqueList';
@@ -9,6 +9,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import {emitSocket,listenSocket} from '../service/Socket'
 import ModalRoom from "../component/ModalRoom"
 import { Audio } from 'expo-av';
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 
 class RoomScreen extends React.Component {
     
@@ -71,6 +72,7 @@ class RoomScreen extends React.Component {
 
     onChangeResponse = (text) =>{
         this.setState({response:text});
+        // 
     }
    
 
@@ -92,8 +94,13 @@ class RoomScreen extends React.Component {
                             onChangeText={text => this.onChangeResponse(text)}
                             value={this.state.response}
                             placeholder="Entre ta réponse mon con"
-                            onEndEditing={()=>{emitSocket('sendAnswer',text)}}
                         />
+                        <TouchableOpacity
+                            style={styles.send}
+                            onPress={()=>{emitSocket('sendAnswer',this.state.response)}}
+                        >
+                            <MaterialCommunityIcons name="send" size={20} color="white" />
+                        </TouchableOpacity>
                     </View>
                     <View style={styles.answer_container}>
                         {
@@ -111,7 +118,7 @@ class RoomScreen extends React.Component {
                                 <Text style={styles.title}>Historique</Text>
                                 <MaterialIcons name="history" size={30} color="white" />  
                             </View>
-                                <HistoricList historique={this.state.historique}/>
+                            <HistoricList historique={this.state.historique}/>
                         </View>
                         <View style={styles.classement_container}>
                             <View style={styles.classement_header}>
@@ -137,7 +144,7 @@ const styles = StyleSheet.create({
         padding:10
     },
     header_container:{
-        flex:0.1
+        flex:0.1,
     },
     room_container:{
         flex:0.9,
@@ -154,7 +161,8 @@ const styles = StyleSheet.create({
     room_body_container:{
         flex:1,
         flexDirection:"row",
-        justifyContent:"space-between"
+        justifyContent:"space-between",
+        marginTop:30
     },
     histo_container:{
         flex:.45,
@@ -191,6 +199,20 @@ const styles = StyleSheet.create({
     },
     answer_container:{
         flexDirection:"row",
+    },
+    send:{
+        backgroundColor:"#E43F6F",
+        borderRadius:50,
+        alignItems:"center",
+        justifyContent:"center",
+        width:40,
+        height:40,
+        position:"absolute",
+        right:0,
+        bottom:"-75%"
+    },
+    input_container:{
+        position:"relative"
     }
 
 });
