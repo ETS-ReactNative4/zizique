@@ -32,12 +32,25 @@ import React from 'react';
             try {
                 const response=await AxiosAuth.post("auth/register",{user})
                 if(response.status==201 ){
-                    return true;
+                    return response;
                 }else{
                     console.log("un problème est survenue status code : ",response.status);
                     return false;
                 }
-                return response;
+                //return response;
+            } catch (error) {
+                
+            }
+        },
+        GetProfil: async () =>{
+            try {
+                const response = await AxiosAuth.get("profil")
+                if(response.status==201 ){
+                    return response;
+                }else{
+                    console.log("un problème est survenue status code : ",response.status);
+                    return false;
+                }
             } catch (error) {
                 
             }

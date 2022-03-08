@@ -7,7 +7,8 @@ class StoreConnexion {
     refreshToken='';
     id_socket='';
     profilPicture=0;
-    //login
+    
+    //login username
     getLogin=()=>{
         return this.login;
     }
@@ -32,11 +33,17 @@ class StoreConnexion {
     //Access
     getAccess=()=>{
         return this.accessToken;
-
     }
     setAccess=(accessToken)=>{
         this.accessToken=accessToken;
+    }
 
+    //ProfilPicture
+    getProfilPicture=()=>{
+        return this.accessToken;
+    }
+    setProfilPicture=(accessToken)=>{
+        this.accessToken=accessToken;
     }
 
      /*storeData = async (login,password,idSession) => {

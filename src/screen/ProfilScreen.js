@@ -1,18 +1,35 @@
-import React,{useEffect} from 'react'
+import React,{useState} from 'react'
 import { StyleSheet, Text, View,TouchableOpacity ,TextInput } from 'react-native';
-import Logo from "../../ImgSvg/Logo.svg";
-
+import Avatar1 from '../../ImgSvg/avatar1.svg'
+import Avatar2 from '../../ImgSvg/avatar2.svg'
+import Avatar3 from '../../ImgSvg/avatar3.svg'
+import Header from "../component/Header"
 
 const ProfilScreen = (props) => {
-    const {navigation} = props; 
+    const {storeConnexion} = props; 
+    const [user,setUser] = useState({})
 
     useEffect(() => {
-      connectSocket()
+      
     },[]);
 
     return(
         <View style={styles.container}>
-          
+            <Header />
+            <View style={styles.header}>
+                {
+                    item.picture===1?<Avatar1 height={30} width={30}/>
+                    :null
+                }
+                {
+                    item.picture===2?<Avatar2 height={30} width={30}/>
+                    :null
+                }
+                {
+                    item.picture===3?<Avatar3 height={30} width={30}/>
+                    :null
+                }
+          </View>
         
     
         </View>
@@ -26,22 +43,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFB100',
     alignItems: 'center',
-    justifyContent: 'space-around',
   },
-  bottom: {
-    borderBottomColor: 'white',
-    borderBottomWidth: 2,
-    height:50,
-    width:250,
-    flex:0.3,
-    color:"white",
-
-  },
-  buttonHome:{
-    width:250,
-    flex:0.3,
-    justifyContent: 'center',
+  header:{
 
   }
+  
 });
 export default ProfilScreen
