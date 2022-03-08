@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
     card:{
         flexDirection:"row",
         borderBottomColor:"white",
-        borderBottomWidth:"100%",
     },
     txt_container:{
         justifyContent:"center",

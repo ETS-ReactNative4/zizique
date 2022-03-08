@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import {emitSocket} from '../service/Socket'
 import {observer,inject} from 'mobx-react'
 import ApiContext,{Api} from '../service/Axios'
-
+import Loading from '../component/Loading';
 class SelectScreen extends React.Component {
 
     static contextType = ApiContext
@@ -49,12 +49,11 @@ class SelectScreen extends React.Component {
                     <Header/>
                 </View>
                 <View style={styles.list_container}>
-                    {
+                    {/* {
                         this.state.genres && this.state.genres.length > 0 ? <SelectList genres={this.state.genres} joinRoom={this._joinRoom} /> : 
-                        <View style={{alignItems:"center",justifyContent:"center",flex:1}}>
-                            <ActivityIndicator size="large" color="#FFFF" />
-                        </View>
-                    }
+                        <Loading />
+                    } */}
+                     <Loading />
                 </View>
             </View>
         )

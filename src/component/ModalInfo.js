@@ -2,7 +2,7 @@ import React,{useEffect,useState} from "react";
 import { Modal, StyleSheet,Text,TouchableOpacity,View,Image } from "react-native";
 import { AntDesign } from '@expo/vector-icons'; 
 import PlaylistList from "./PlaylistList";
-
+import Loading from "./Loading";
 const ModalInfo = (props) => {
     const {toggleVisibility,visibility,genre,joinRoom} = props
     const [isLoading,setIsLoading] = useState(true)
@@ -22,10 +22,7 @@ const ModalInfo = (props) => {
                     </TouchableOpacity>
                 </View>
                 {
-                    isLoading?
-                    <View style={{alignItems:"center",justifyContent:"center",flex:1}}>
-                        <ActivityIndicator size="large" color="#FFFF" />
-                    </View>:<PlaylistList playlists={playlists} />
+                    isLoading?<Loading />:<PlaylistList playlists={playlists} />
                 }
                 {/* <ScrollView style={styles.modalScroll}>
                     <Text style={styles.modalText}>
