@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View,TouchableOpacity ,TextInput,ScrollView } from 'react-native';
+import { StyleSheet, Text, View,TouchableOpacity ,TextInput,Modal,Alert } from 'react-native';
 import Logo from "../../ImgSvg/Logo.svg";
 import LeftArrow from "../../ImgSvg/left-arrow.svg";
 import RightArrow from "../../ImgSvg/right-arrow.svg";
@@ -43,7 +43,7 @@ const SignInScreen = (props) => {
     const [mail, setMail] = React.useState("");
     const [username, setUserName] = React.useState("");
     const [password, setPassword] = React.useState("");
-
+    const [modalVisible, setModalVisible] = React.useState(false);
     const [IconIndex,setIconIndex]=React.useState(0);
     const context = React.useContext(ApiContext);
     const updateCarroussel=(value)=>{
@@ -138,7 +138,11 @@ const SignInScreen = (props) => {
                         profil_pic:IconIndex
                         }
                     ).then((res)=>{
-                        console.log(res);
+                        console.log(res)
+                        if(res){
+                            setModalVisible(true)
+                            //navigation.pop();
+                        }
                     }).catch((err)=>{
                         console.log("err");
                     })
@@ -178,6 +182,15 @@ const SignInScreen = (props) => {
         </TouchableOpacity>
 
         </View>
+        <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      />
       </View>
     )
 }
