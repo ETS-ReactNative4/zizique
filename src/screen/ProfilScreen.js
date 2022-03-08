@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect,useContext} from 'react'
 import { StyleSheet,Text,View,TouchableOpacity ,TextInput } from 'react-native';
 import Avatar1 from '../../ImgSvg/avatar1.svg'
 import Avatar2 from '../../ImgSvg/avatar2.svg'
@@ -8,16 +8,18 @@ import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons'; 
 import ApiContext,{Api} from '../service/Axios'
 import { FancyAlert } from 'react-native-expo-fancy-alerts';
+import {observer,inject} from 'mobx-react'
 
 const ProfilScreen = (props) => {
+    
     const {storeConnexion} = props; 
-    const [user,setUser] = useState({})
+    const [user,setUser] = useState({});
     const [isediting,setIsEditing] = useState(false);
     const [n_username,setN_username] = useState("")
-    const context = React.useContext(ApiContext);
+    // const context = useContext(ApiContext)
 
     useEffect(() => {
-        setUser(context.GetProfil())
+        // setUser(context.GetProfil())
     },[]);
 
     return(
@@ -80,4 +82,4 @@ const styles = StyleSheet.create({
   }
   
 });
-export default ProfilScreen
+export default inject('storeConnexion')(observer(ProfilScreen))

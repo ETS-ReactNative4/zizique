@@ -5,6 +5,7 @@ import { Header } from '../component/Header';
 import 'react-native-get-random-values'
 import { v4 as uuidv4 } from 'uuid';
 import {emitSocket} from '../service/Socket'
+import {observer,inject} from 'mobx-react'
 
 class SelectScreen extends React.Component {
 
@@ -72,4 +73,5 @@ const styles = StyleSheet.create({
 });
 
 
-export default SelectScreen;
+// export default SelectScreen;
+export default inject('storeConnexion')(observer(SelectScreen))

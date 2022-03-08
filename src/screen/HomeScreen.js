@@ -76,7 +76,7 @@ const HomeScreen = (props) => {
               marginTop:20
               }}
               onPress={()=>{
-                  navigation.push("Room")
+                  navigation.push("Select")
               }}
               disabled={userAno!=""?false:true}
               >

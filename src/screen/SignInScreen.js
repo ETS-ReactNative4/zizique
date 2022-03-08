@@ -46,7 +46,6 @@ const SignInScreen = (props) => {
     const [password, setPassword] = React.useState("");
     const [IconIndex,setIconIndex]=React.useState(0);
     const [visible, setVisible] = React.useState(false);
-
     const context = React.useContext(ApiContext);
     const updateCarroussel=(value)=>{
         
