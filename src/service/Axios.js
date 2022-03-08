@@ -29,7 +29,7 @@ import React from 'react';
         },
         GetGenre:async ()=>{
             try {
-                const response = await AxiosAuth.get("auth/register",)
+                const response = await AxiosAuth.get("music/genres",)
                 return response.data;
             } catch (error) {
                 return error
@@ -37,6 +37,14 @@ import React from 'react';
         },
         SignIn:async (user)=>{
 
+        },
+        GetProfil:async ()=>{
+            try {
+                const response = await AxiosAuth.get("profil")
+                return response;
+            } catch (error) {
+                return error
+            }
         }
     };
     const ApiContext= React.createContext(Api);

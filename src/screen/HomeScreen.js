@@ -7,6 +7,7 @@ import {connectSocket} from "../service/Socket"
 const HomeScreen = (props) => {
     const {navigation}=props; 
     const [userAno, onChangeUserAno] = React.useState("");
+    
 
     useEffect(() => {
       connectSocket()
@@ -67,7 +68,7 @@ const HomeScreen = (props) => {
         />
         <View style={styles.buttonHome}>
           <TouchableOpacity
-              style={{ backgroundColor:"#5BC9D7",    
+              style={{ backgroundColor: userAno!=""?"#5BC9D7":"#888485",
               alignItems: "center",
               borderRadius: 18,
               height:40,
@@ -75,8 +76,9 @@ const HomeScreen = (props) => {
               marginTop:20
               }}
               onPress={()=>{
-                  navigation.push("Login")
+                  navigation.push("Room")
               }}
+              disabled={userAno!=""?false:true}
               >
               <Text style={{ color:"white"}}>Jouer</Text>
           </TouchableOpacity>

@@ -1,10 +1,10 @@
 import React from 'react';
 import CustomDrawerContent from './DrawerContent/DrawerContent';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import RoomScreen from '../screen/RoomScreen'
+// import RoomScreen from '../screen/RoomScreen'
 import SelectScreen from '../screen/SelectScreen'
 import {observer,inject} from 'mobx-react'
-
+import ProfilScreen from '../screen/ProfilScreen';
 const Drawer=createDrawerNavigator();
 
 const DrawerNavigation = (props) => {
@@ -12,7 +12,12 @@ const DrawerNavigation = (props) => {
   
     return (
       <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props}/>}>
-        <Drawer.Screen name="Room" component={RoomScreen}       
+        {/* <Drawer.Screen name="Room" component={RoomScreen}       
+          options={({ navigation }) => ({
+            headerShown: false,
+          })}
+        /> */}
+        <Drawer.Screen name="Profil" component={ProfilScreen}       
           options={({ navigation }) => ({
             headerShown: false,
           })}

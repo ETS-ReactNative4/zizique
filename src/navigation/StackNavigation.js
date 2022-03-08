@@ -6,7 +6,7 @@ import HomeScreen from '../screen/HomeScreen';
 import LoginScreen from '../screen/LoginScreen';
 import SignInScreen from '../screen/SignInScreen';
 import {observer,inject} from 'mobx-react'
-
+import RoomScreen from "../screen/RoomScreen"
 const RootStack = createStackNavigator();
 const StackNavigation = (props) => {
   const{navigation,storeConnexion}=props;
@@ -45,6 +45,13 @@ const StackNavigation = (props) => {
             component={SignInScreen}
             options={({ navigation }) => ({
               headerShown: false
+              })}
+            />
+            <RootStack.Screen
+              name="Room"
+              component={RoomScreen}
+              options={({ navigation }) => ({
+                headerShown: false
               })}
             />
         </RootStack.Navigator>
