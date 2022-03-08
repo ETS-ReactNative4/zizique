@@ -28,6 +28,7 @@ class RoomScreen extends React.Component {
             isGameFinish:false,
             isGameLoading:true,
             isPlaying:false,
+            isReady: false
         }
     }
 
@@ -38,7 +39,6 @@ class RoomScreen extends React.Component {
     
     componentDidMount(){
         
-        listenSocket("socketID",)
         Audio.setAudioModeAsync({
             allowsRecordingIOS:false,
             interruptionModeIOS:Audio.INTERRUPTION_MODE_IOS_DUCK_OTHERS,
@@ -67,9 +67,14 @@ class RoomScreen extends React.Component {
         listenSocket("asArtist",(asArtist)=>{this.setState({'asArtist':asArtist})})
         listenSocket("asSong",(asSong)=>{this.setState({'asArtist':asSong})})
         listenSocket("finish",()=>{this.setState({modalVisibility:true,isFinish:true})})
-        listenSocket("someoneLeaved",(player)=>{
-            this.setState({'classement':[...this.state.classement,player]})
+        
+        listenSocket("someoneLeaved",(id)=>{
+            let newClassement = this.state.classement.filter((user) => {
+                user.id != id
+            })
+            this.setState({classement:newClassement})
         })
+        
         listenSocket("someoneJoined",(player)=>{
             this.setState({'classement':[...this.state.classement,player]})
         })
@@ -80,7 +85,7 @@ class RoomScreen extends React.Component {
         this.setState({response:text});
     }
    
-
+  
 
     render() {
 
@@ -134,6 +139,19 @@ class RoomScreen extends React.Component {
                         </View>
                     </View>
                 </View>
+                <TouchableOpacity
+                    style={[styles.ready,{backgroundColor:this.state.isReady?"#E43F6F":"#5BC9D7"}]}
+                    onPress={()=>{
+                        this.setState({isReady:!this.state.isReady})
+                        emitSocket("ready",this.state.isReady);
+                    }}
+                >
+                    <Text style={{color:"white",marginLeft:10,fontSize:20}}>
+                       {
+                           this.state.isReady?"Pret !":"Pret ?"
+                       }
+                    </Text>               
+                </TouchableOpacity>
                 <ModalRoom isLoading={this.state.isGameLoading} isFinish={this.state.isGameFinish} visibility={this.state.modalVisibility}/>
             </View>
         )
@@ -218,6 +236,16 @@ const styles = StyleSheet.create({
     },
     input_container:{
         position:"relative"
+    },
+    ready:{
+        width:"80%",
+        paddingVertical:10,
+        alignSelf:"center",
+        flexDirection:"row",
+        alignItems:"center",
+        marginTop:20,
+        borderRadius:50,
+        justifyContent:"center"
     }
 
 });

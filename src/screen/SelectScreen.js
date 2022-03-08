@@ -18,7 +18,6 @@ class SelectScreen extends React.Component {
 
     componentDidMount(){
         try{
-            
             // getGenres()
             // .then(data=>{
             //     this.setState({genre:data.genres});
