@@ -7,6 +7,8 @@ import Avatar1 from '../../ImgSvg/avatar1.svg';
 import Avatar2 from '../../ImgSvg/avatar2.svg';
 import Avatar3 from '../../ImgSvg/avatar3.svg';
 import Avatar4 from '../../ImgSvg/avatar4.svg';
+import {observer,inject} from 'mobx-react'
+import ApiContext,{Api} from '../service/Axios'
 
 const SignInScreen = (props) => {
     const profilPicture=()=>{
@@ -43,7 +45,7 @@ const SignInScreen = (props) => {
     const [password, setPassword] = React.useState("");
 
     const [IconIndex,setIconIndex]=React.useState(0);
-    
+    const context = React.useContext(ApiContext);
     const updateCarroussel=(value)=>{
         
         if (value!=IconIndex) {
@@ -70,7 +72,6 @@ const SignInScreen = (props) => {
           >
             <LeftArrow  width={25} height={25}/>
           </TouchableOpacity>
-
             {
               profilPicture()
             }
@@ -128,9 +129,33 @@ const SignInScreen = (props) => {
             marginBottom:10,
             marginTop:10
             }}
+            onPress={()=>{
+                context.Signup(                        
+                        {
+                        username:username,
+                        password:password,
+                        mail:mail,
+                        profil_pic:IconIndex
+                        }
+                    ).then((res)=>{
+                        console.log(res);
+                    }).catch((err)=>{
+                        console.log("err");
+                    })
+                /*console.log(
+                    Api.
+                    Signup(
+                    {
+                        username:username,
+                        password:password,
+                        mail:mail,
+                        profil_pic:IconIndex
+                    }
+                ));*/
 
+            }}
             >
-            <Text style={{ color:"white"}}>Se connecter</Text>
+            <Text style={{ color:"white"}}>S'inscrire</Text>
         </TouchableOpacity>
 
         </View>
@@ -182,4 +207,4 @@ const styles = StyleSheet.create({
 
   }
 });
-export default SignInScreen
+export default inject('storeConnexion')(observer(SignInScreen))

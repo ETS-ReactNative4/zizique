@@ -3,8 +3,10 @@ import {observable,action, makeObservable} from 'mobx'
 class StoreConnexion {
     login='';
     password='';
-    accessToken='79867898698689';
+    accessToken='';
     refreshToken='';
+    id_socket='';
+    profilPicture=0;
     //login
     getLogin=()=>{
         return this.login;
@@ -57,6 +59,8 @@ class StoreConnexion {
             password:observable,
             accessToken:observable,
             refreshToken:observable,
+            id_socket:observable,
+            profilPicture:observable,
             getLogin:action,
             getPassword:action,
             getRefresh:action,
