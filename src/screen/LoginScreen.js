@@ -2,9 +2,10 @@ import React from 'react'
 import { StyleSheet, Text, View,TouchableOpacity ,TextInput } from 'react-native';
 import Logo from "../../ImgSvg/Logo.svg";
 import LeftArrow from "../../ImgSvg/left-arrow.svg"
+import {observer,inject} from 'mobx-react'
 
 const LoginScreen = (props) => {
-    const {navigation}=props;
+    const {navigation,storeConnexion}=props;
     const [mail, setMail] = React.useState("");
     const [password, setPassword] = React.useState("");
     return(
@@ -48,7 +49,7 @@ const LoginScreen = (props) => {
             marginTop:10
             }}
             onPress={()=>{
-                navigation.push("Login")
+              storeConnexion.setRefresh("toto")
             }}
             >
             <Text style={{ color:"white"}}>Se connecter</Text>
@@ -101,4 +102,4 @@ const styles = StyleSheet.create({
 
   }
 });
-export default LoginScreen
+export default inject('storeConnexion')(observer(LoginScreen))

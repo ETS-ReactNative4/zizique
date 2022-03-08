@@ -1,4 +1,4 @@
-import {observable,action, makeObservable} from 'mobx'
+import {observable,action, makeObservable,computed} from 'mobx'
 
 class StoreConnexion {
     login='';
@@ -38,7 +38,12 @@ class StoreConnexion {
         this.accessToken=accessToken;
 
     }
-
+    getProfilPicture=()=>{
+        return this.profilPicture;
+    }
+    setProfilPicture=(accessToken)=>{
+        this.profilPicture=profilPicture;
+    }
      /*storeData = async (login,password,idSession) => {
         try {
             this.setLogin(identifiant);
@@ -52,7 +57,15 @@ class StoreConnexion {
           // saving error
         }
       }*/
-   
+      get isConnected() {
+          if (this.refreshToken) {
+            return true;
+
+          } else {
+            return false;
+
+          }
+    }
     constructor(){
         makeObservable(this,{
             login:observable,//Listes des tâches en cours
@@ -61,6 +74,9 @@ class StoreConnexion {
             refreshToken:observable,
             id_socket:observable,
             profilPicture:observable,
+            isConnected:computed,
+            getProfilPicture:action,
+            setProfilPicture:action,
             getLogin:action,
             getPassword:action,
             getRefresh:action,

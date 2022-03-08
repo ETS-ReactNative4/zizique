@@ -179,6 +179,8 @@ const SignInScreen = (props) => {
                         console.log(res)
                         if(res){
                             setVisible(true);  
+                 
+                            //navigation.pop();
                         }
                     }).catch((err)=>{
                         console.log("err");

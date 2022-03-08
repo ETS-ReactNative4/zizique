@@ -12,16 +12,17 @@ const DrawerNavigation = (props) => {
   
     return (
       <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props}/>}>
-        <Drawer.Screen name="Room" component={RoomScreen}       
-          options={({ navigation }) => ({
-            headerShown: false,
-          })}
-        />
         <Drawer.Screen name="Selection" component={SelectScreen}       
           options={({ navigation }) => ({
             headerShown: false,
           })} 
         />
+        <Drawer.Screen name="Room" component={RoomScreen}       
+          options={({ navigation }) => ({
+            headerShown: false,
+          })}
+        />
+
 
       </Drawer.Navigator>
     );
