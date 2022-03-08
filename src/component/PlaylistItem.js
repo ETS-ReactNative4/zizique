@@ -7,15 +7,19 @@ const PlaylistItem = (props) =>{
     
     return (
         <View style={{flex:1,marginVertical:5}}>
-             <View style={styles.card}>
-                <View style={styles.img_container}>
-                    <Image source={{uri: `${item.images[0].url}`}} style={styles.images} resizeMode="contain"/>
+            <TouchableOpacity onPress={()=>{
+                Linking.openURL(item.url);
+            }}>
+                <View style={styles.card}>
+                    <View style={styles.img_container}>
+                        <Image source={{uri: `${item.images[0].url}`}} style={styles.images} resizeMode="contain"/>
+                    </View>
+                    <View style={styles.txt_container}>
+                        <Text style={styles.txt_title}>{item.title}</Text>                        
+                        <Text style={styles.txt_song}>{item.song}</Text>
+                    </View>
                 </View>
-                <View style={styles.txt_container}>
-                    <Text style={styles.txt_song}>{item.song}</Text>                        
-                    <Text style={styles.txt_artist}>{item.artist}</Text>
-                </View>
-            </View>
+            </TouchableOpacity>
         </View>
     )  
 }
@@ -38,9 +42,9 @@ const styles = StyleSheet.create({
     img_container:{
         width:"40%"
     },
-    txt_artist:{
+    txt_title:{
         color:"white",
-        fontSize:9,
+        fontSize:12,
     },
     txt_song:{
         color:"white",
