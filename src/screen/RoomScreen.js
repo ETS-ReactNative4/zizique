@@ -53,13 +53,13 @@ class RoomScreen extends React.Component {
 
         listenSocket('song',(song)=>{
             if(this.state.isPlaying){
-                this.sound.unloadAsync()
+                this.sound.unloadAsync();
             }
             this.setState({percent:0})
             this.setState({modalVisibility:false,isLoading:false})
             this.sound.loadAsync({uri:song.url}).then(()=>{
                 this.sound.playAsync();
-                this.setState({isPlaying:true})
+                this.setState({isPlaying:true});
             });
             setTimeout(()=>{this.setState({historique:[...this.state.historique,song]})},30000)
         })
