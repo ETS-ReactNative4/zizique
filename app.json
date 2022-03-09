@@ -20,9 +20,10 @@
       "supportsTablet": true
     },
     "android": {
+      "softwareKeyboardLayoutMode": "adjustpan",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF",
+        "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
