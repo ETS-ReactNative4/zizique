@@ -10,11 +10,11 @@ const ClassementItem = (props) =>{
     let Color;
     let step = 0;
     
-    useEffect(() => {
-        step = item.asArtist ? step++ : step;
-        step = item.asSong ? step++ : step;
-        Color = item == 1 ? "#FFA900": step == 2 ? "#E43F6F" : "#5BC9D7";
-    },[item]);
+    // useEffect(() => {
+    //     step = item.asArtist ? step++ : step;
+    //     step = item.asSong ? step++ : step;
+    //     Color = item == 1 ? "#FFA900": step == 2 ? "#E43F6F" : "#5BC9D7";
+    // },[item]);
 
     return (
         <View style={[styles.card,{backgroundColor:Color}]}>
@@ -33,8 +33,8 @@ const ClassementItem = (props) =>{
                 }
             </View>
             <View style={styles.txt_container}>
-                <Text style={styles.txt_nom}>{item.nom}</Text>
-                <Text style={styles.txt_pt}>{item.point} pt</Text>
+                <Text style={styles.txt_nom}>{item.username}</Text>
+                <Text style={styles.txt_pt}>{item.score} pt</Text>
             </View>
         </View>
     )  

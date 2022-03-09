@@ -9,7 +9,7 @@ const ClassementList = (props) =>{
     
     useEffect(() => {
         classement.sort((a, b) => {
-            return b.point - a.point;
+            return b.score - a.score;
         });
 
     },[]);

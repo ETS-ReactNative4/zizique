@@ -35,7 +35,7 @@ class SelectScreen extends React.Component {
 
     _joinRoom = (genre) =>{
       try{
-        emitSocket("joinRoom",{room:genre,user:{username:this.props.storeConnexion.getLogin(),profilPic:this.props.storeConnexion.getProfilPicture()}})
+        emitSocket("joinRoom",{genre:genre,user:{username:this.props.storeConnexion.getLogin(),profilPic:this.props.storeConnexion.getProfilPicture()}})
         this.props.navigation.navigate('Room')
       }catch(e){
         console.log(e)

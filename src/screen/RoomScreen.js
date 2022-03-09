@@ -36,13 +36,10 @@ class RoomScreen extends React.Component {
         let percent = status.positionMillis*100/status.durationMillis
         this.setState({percent:percent})
     }
-    
+    componentWillUnmount(){
+        emitSocket('leaveRoom')
+    }
     componentDidMount(){
-        emitSocket("zizi",{})
-        listenSocket("cucu",(msg)=>{
-            console.log("msg")
-        })
-
         Audio.setAudioModeAsync({
             allowsRecordingIOS:false,
             interruptionModeIOS:Audio.INTERRUPTION_MODE_IOS_DUCK_OTHERS,
@@ -55,13 +52,13 @@ class RoomScreen extends React.Component {
 
         this.sound.setOnPlaybackStatusUpdate(this.onPlaybackStatusUpdate);
 
-        listenSocket('song',(song)=>{
+        listenSocket('blindTrack',(song)=>{
             if(this.state.isPlaying){
                 this.sound.unloadAsync();
             }
             this.setState({percent:0})
             this.setState({modalVisibility:false,isLoading:false})
-            this.sound.loadAsync({uri:song.url}).then(()=>{
+            this.sound.loadAsync({uri:song.track.preview_url}).then(()=>{
                 this.sound.playAsync();
                 this.setState({isPlaying:true});
             });
@@ -80,6 +77,7 @@ class RoomScreen extends React.Component {
         })
         
         listenSocket("someoneJoined",(player)=>{
+            //console.log(player)
             this.setState({'classement':[...this.state.classement,player]})
         })
 
@@ -89,6 +87,9 @@ class RoomScreen extends React.Component {
         this.setState({response:text});
     }
    
+    componentWillUnmount(){
+        emitSocket("leaveRoom")
+    }
   
 
     render() {
@@ -147,7 +148,7 @@ class RoomScreen extends React.Component {
                     style={[styles.ready,{backgroundColor:this.state.isReady?"#E43F6F":"#5BC9D7"}]}
                     onPress={()=>{
                         this.setState({isReady:!this.state.isReady})
-                        emitSocket("ready",this.state.isReady);
+                        emitSocket("ready",!this.state.isReady);
                     }}
                 >
                     <Text style={{color:"white",marginLeft:10,fontSize:20}}>
