@@ -96,9 +96,7 @@ class RoomScreen extends React.Component {
 
         return (
             <View style={styles.container}>
-                <View style={styles.header_container}>
-                    <Header/>
-                </View>
+
                 <View style={styles.room_container}>
                     <View style={styles.progress_container}>
                         <Progress percent={this.state.percent}/>
@@ -153,7 +151,7 @@ class RoomScreen extends React.Component {
                 >
                     <Text style={{color:"white",marginLeft:10,fontSize:20}}>
                        {
-                           this.state.isReady?"Pret !":"Pret ?"
+                           this.state.isReady?"Pret V !":"Pret X?"
                        }
                     </Text>               
                 </TouchableOpacity>
@@ -168,7 +166,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#FFB100',
-        marginTop:40,
         padding:10
     },
     header_container:{

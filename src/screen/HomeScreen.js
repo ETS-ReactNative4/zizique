@@ -6,7 +6,7 @@ import {observer,inject} from 'mobx-react'
 
 
 const HomeScreen = (props) => {
-    const {navigation}=props; 
+    const {navigation,storeConnexion}=props; 
     const [userAno, onChangeUserAno] = React.useState("");
     
 
@@ -79,7 +79,7 @@ const HomeScreen = (props) => {
               disabled={userAno!=""?false:true}
 
               onPress={()=>{
-                  navigation.push("Select")
+                storeConnexion.setLogin(userAno)
               }}
               disabled={userAno!=""?false:true}
               >

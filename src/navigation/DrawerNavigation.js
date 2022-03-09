@@ -17,11 +17,7 @@ const DrawerNavigation = (props) => {
             headerShown: false,
           })} 
         />
-        <Drawer.Screen name="Room" component={RoomScreen}       
-          options={({ navigation }) => ({
-            headerShown: false,
-          })}
-        />
+
         <Drawer.Screen name="Profil" component={ProfilScreen}       
           options={({ navigation }) => ({
             headerShown: false,

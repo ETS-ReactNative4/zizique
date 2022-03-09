@@ -65,7 +65,7 @@ class StoreConnexion {
         }
       }*/
       get isConnected() {
-          if (this.refreshToken) {
+          if (this.login) {
             return true;
 
           } else {
