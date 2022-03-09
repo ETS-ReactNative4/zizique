@@ -81,7 +81,6 @@ const HomeScreen = (props) => {
               onPress={()=>{
                 storeConnexion.setLogin(userAno)
               }}
-              disabled={userAno!=""?false:true}
               >
               <Text style={{ color:"white"}}>Jouer</Text>
           </TouchableOpacity>

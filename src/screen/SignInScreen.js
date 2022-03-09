@@ -16,29 +16,27 @@ const SignInScreen = (props) => {
         switch (IconIndex) {
             case 0:
                 return (
-                    <Avatar1 width={100} height={100} />
+                  <Image source={require('../../assets/avatar1.png')} style={{width:100,resizeMode:"contain"}}/>
                 );    
             case 1:
                 return (
-                    <Avatar2 width={100} height={100} />
+                  <Image source={require('../../assets/avatar2.png')} style={{width:100,resizeMode:"contain"}}/>
                 ); 
             case 2:
                 return (
-                    <Avatar3 width={100} height={100} />
+                  <Image source={require('../../assets/avatar3.png')} style={{width:100,resizeMode:"contain"}}/>
                 ); 
             case 3:
                 return (
-                    <Avatar4 width={100} height={100} />
+                  <Image source={require('../../assets/avatar4.png')} style={{width:100,resizeMode:"contain"}}/>
                 ); 
             default:
                 return (
-                    <Avatar1 width={100} height={100} />
+                  <Image source={require('../../assets/avatar1.png')} style={{width:100,resizeMode:"contain"}}/>
                 );
                    
         }
-
-     
-    }
+      }
 
     const {navigation}=props;
     const [mail, setMail] = React.useState("");
