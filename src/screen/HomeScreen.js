@@ -51,9 +51,8 @@ const HomeScreen = (props) => {
             <Text style={{ color:"white"}}>Créer un compte</Text>
         </TouchableOpacity>
         </View>
-        <View style={{flex:0.05,justifyContent:"center"}}>
+        <View style={{justifyContent:"center"}}>
             <Text style={{ color:"white",fontSize:25}}>Ou</Text>
-
         </View>
         <View style={{flex:0.2}}>
             
