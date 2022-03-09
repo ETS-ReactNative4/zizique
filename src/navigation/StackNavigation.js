@@ -8,6 +8,9 @@ import SignInScreen from '../screen/SignInScreen';
 import {observer,inject} from 'mobx-react'
 import RoomScreen from "../screen/RoomScreen"
 import SelectScreen from '../screen/SelectScreen';
+import {TouchableOpacity } from 'react-native';
+import LeftArrow from "../../ImgSvg/left-arrow.svg";
+import Logo from "../../ImgSvg/Logo.svg";
 
 const RootStack = createStackNavigator();
 const StackNavigation = (props) => {
@@ -71,8 +74,26 @@ const StackNavigation = (props) => {
         <RootStack.Screen name="Room" component={RoomScreen}       
           options={({ navigation }) => ({
             headerShown: true,
-            title:"Partie"
+            title:"Partie",
+            headerStyle: {
+              backgroundColor: '#FFB100',
+            },
+            headerTitleStyle: {
+              color: 'white'
+            },
+            headerLeft: () =>(
+              <TouchableOpacity onPress={() => navigation.pop()} style={{margin:10}}>
+                  <LeftArrow  width={25} height={25} />
+              </TouchableOpacity>
+            ),
+            headerRight:() =>(
+              <Logo height={50}width={150} style={{margin:10}} />    
+
+            ),
+            
           })}
+
+
         />
     </RootStack.Navigator>);
   }
