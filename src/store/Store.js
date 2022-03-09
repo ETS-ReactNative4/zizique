@@ -48,7 +48,7 @@ class StoreConnexion {
     getProfilPicture=()=>{
         return this.profilPicture;
     }
-    setProfilPicture=(accessToken)=>{
+    setProfilPicture=(profilPicture)=>{
         this.profilPicture=profilPicture;
     }
      /*storeData = async (login,password,idSession) => {
