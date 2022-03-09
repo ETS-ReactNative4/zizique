@@ -82,7 +82,10 @@ const StackNavigation = (props) => {
               color: 'white'
             },
             headerLeft: () =>(
-              <TouchableOpacity onPress={() => navigation.pop()} style={{margin:10}}>
+              <TouchableOpacity onPress={() => 
+              // tu met la fonction que tu veux avant la fermeture de la page room
+              
+              navigation.pop()} style={{margin:10}}>
                   <LeftArrow  width={25} height={25} />
               </TouchableOpacity>
             ),

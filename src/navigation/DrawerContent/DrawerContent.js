@@ -5,8 +5,10 @@ import {
     DrawerItemList,
     DrawerItem,
 } from '@react-navigation/drawer';
+import {observer,inject} from 'mobx-react'
+
 const CustomDrawerContent = (props) => {
-    const{navigation}=props;    
+    const{navigation,storeConnexion}=props;    
 return (
     <DrawerContentScrollView {...props}
     style={{backgroundColor:"#FFB100"}}
@@ -15,8 +17,14 @@ return (
       <DrawerItemList {...props} />
       <DrawerItem
         label="Déconnexion"
+        onPress={()=>{
+            storeConnexion.setLogin('');
+            storeConnexion.setRefresh('');
+            storeConnexion.setAccess('');
+            storeConnexion.setProfilPicture(1);
+        }}
       />
     </DrawerContentScrollView>
   );
 }
-  export default CustomDrawerContent
+export default inject('storeConnexion')(observer(CustomDrawerContent))
