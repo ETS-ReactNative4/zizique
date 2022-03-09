@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, StyleSheet,TextInput,Text,TouchableOpacity} from "react-native";
-import { Header } from '../component/Header';
 import Progress from '../component/Progress';
 import HistoricList from '../component/HistoriqueList';
 import ClassementList from '../component/ClassementList';
@@ -10,6 +9,7 @@ import {emitSocket,listenSocket} from '../service/Socket'
 import ModalRoom from "../component/ModalRoom"
 import { Audio } from 'expo-av';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import { AntDesign } from '@expo/vector-icons'; 
 
 class RoomScreen extends React.Component {
     
@@ -53,6 +53,7 @@ class RoomScreen extends React.Component {
         this.sound.setOnPlaybackStatusUpdate(this.onPlaybackStatusUpdate);
 
         listenSocket('blindTrack',(song)=>{
+            console.log("song")
             if(this.state.isPlaying){
                 this.sound.unloadAsync();
             }
@@ -77,7 +78,6 @@ class RoomScreen extends React.Component {
         })
         
         listenSocket("someoneJoined",(player)=>{
-            //console.log(player)
             this.setState({'classement':[...this.state.classement,player]})
         })
 
@@ -149,11 +149,14 @@ class RoomScreen extends React.Component {
                         emitSocket("ready",!this.state.isReady);
                     }}
                 >
-                    <Text style={{color:"white",marginLeft:10,fontSize:20}}>
+                    <Text style={{color:"white",marginRight:10,fontSize:20}}>
                        {
-                           this.state.isReady?"Pret V !":"Pret X?"
+                           this.state.isReady?"Je ne suis plus pret !":"Je me met pret"
                        }
-                    </Text>               
+                    </Text>  
+                    {
+                        this.state.isReady? <AntDesign name="dislike2" size={24} color="white" />:<AntDesign name="like2" size={24} color="white" />
+                    }
                 </TouchableOpacity>
                 <ModalRoom isLoading={this.state.isGameLoading} isFinish={this.state.isGameFinish} visibility={this.state.modalVisibility}/>
             </View>

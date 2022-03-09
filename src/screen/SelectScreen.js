@@ -18,9 +18,6 @@ class SelectScreen extends React.Component {
         this.state = {
             genres :[]
         }      
-        
-
-
     }
 
     componentDidMount(){
