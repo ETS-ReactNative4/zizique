@@ -106,7 +106,6 @@ const HomeScreen = (props) => {
 
             onPress={() => {
               setModalVisibility(!modalVisibility)
-              //storeConnexion.setLogin(userAno)
             }}
           >
             <Text style={{ color: "white" }}>Jouer</Text>
@@ -124,6 +123,7 @@ const HomeScreen = (props) => {
           borderRadius: 50,
           width: '100%',
         }}><TouchableOpacity
+        style={{flex:1,alignItems:"center",justifyContent:"center"}}
           onPress={() => {
             setModalVisibility(!modalVisibility)
           }}
@@ -136,18 +136,18 @@ const HomeScreen = (props) => {
         <View style={{ height: 200, alignItems: "center", justifyContent: "center" }}>
           <Text>Veuillez choisir une image</Text>
           <Carrousel style={{ flex: 1 }} slides={slides} setIcon={setIconIndex} />
-          <View style={styles.buttonHome}>
+          <View style={[styles.buttonHome,{marginBottom:20}]}>
             <TouchableOpacity
               style={{
-                backgroundColor: userAno != "" ? "#5BC9D7" : "#888485",
+                backgroundColor:"#5BC9D7",
                 alignItems: "center",
                 borderRadius: 18,
                 height: 40,
                 justifyContent: "center",
-                marginTop: 20
               }}
 
               onPress={() => {
+                console.log("crotte")
                 storeConnexion.setLogin(userAno)
               }}
             >
