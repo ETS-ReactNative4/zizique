@@ -30,7 +30,7 @@ const ModalInfo = (props) => {
                     </TouchableOpacity>
                 </View>
                 {
-                    !isLoading?<Text style={{color:"white"}}>Le Blind test sera composé des playlistes suivantes</Text>:null
+                    !isLoading?<Text style={{color:"white"}}>Le Blind test sera composé de 10 chanson provennant d'une de ces playlistes</Text>:null
                 }
                 {
                     isLoading?<Loading />:<PlaylistList playlists={playlists} />
