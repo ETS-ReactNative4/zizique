@@ -80,8 +80,8 @@ class RoomScreen extends React.Component {
             this.setState({classement:newClassement})
         })
         
-        listenSocket("someoneJoined",(player)=>{
-            this.setState({'classement':[...this.state.classement,player]})
+        listenSocket("someoneJoined",(players)=>{
+            this.setState({'classement':players})
         })
 
     }

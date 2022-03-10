@@ -2,7 +2,10 @@ const { io } = require("socket.io-client");
 let socket;
 
 export function connectSocket() {
-    socket = io("https://cucuque.herokuapp.com");
+    if(!socket){
+        socket = io("https://cucuque.herokuapp.com");
+        
+    }
 }
 
 export function emitSocket(event,msg) {
