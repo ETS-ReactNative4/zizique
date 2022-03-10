@@ -57,7 +57,6 @@ export default class App extends React.Component {
     _renderItem({ item, index }) {
         return (
             <View style={{
-                borderRadius: 6,
                 padding: 10,
                 flexDirection: 'row', justifyContent: 'center'
 
@@ -68,7 +67,7 @@ export default class App extends React.Component {
     }
     render() {
         return (
-            <SafeAreaView style={{flex:0.35}}>
+            <SafeAreaView>
                 <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: "center" }}>
                     <TouchableOpacity onPress={() => { this._slideLeft() }} >
                         <AntDesign name="caretleft" size={24} color="black" />

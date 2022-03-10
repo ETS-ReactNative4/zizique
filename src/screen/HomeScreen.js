@@ -9,7 +9,7 @@ import { FancyAlert } from 'react-native-expo-fancy-alerts';
 
 const HomeScreen = (props) => {
   const { navigation, storeConnexion } = props;
-  const [userAno, onChangeUserAno] = React.useState("sefsef");
+  const [userAno, onChangeUserAno] = React.useState();
   const [slides, setSlides] = React.useState();
   const [IconIndex, setIconIndex] = React.useState(0);
   const [modalVisibility, setModalVisibility] = React.useState(false);
@@ -133,9 +133,11 @@ const HomeScreen = (props) => {
         </View>}
         style={{ backgroundColor: 'white' }}
       >
-        <View style={{ height: 200, alignItems: "center", justifyContent: "space-between" ,borderWidth:1}}>
+        <View style={{marginTop: -16, alignItems: "center", justifyContent: "space-between"}}>
           <Text>Veuillez choisir une image</Text>
-          <Carrousel  slides={slides} setIcon={setIconIndex} />
+          <View style={{height:200}}>
+            <Carrousel  slides={slides} setIcon={setIconIndex} />
+          </View>
           <View style={[styles.buttonHome]}>
             <TouchableOpacity
               style={{
