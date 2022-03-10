@@ -24,9 +24,9 @@ class RoomScreen extends React.Component {
             classement:[],
             asArtist:false,
             asSong:false,
-            modalVisibility:true,
+            modalVisibility:false,
             isGameFinish:false,
-            isGameLoading:true,
+            isGameLoading:false,
             isPlaying:false,
             isReady: false,
             isGameStarted:false
@@ -39,6 +39,7 @@ class RoomScreen extends React.Component {
     }
     componentWillUnmount(){
         console.log("Leave")
+        this.sound.unloadAsync()
         emitSocket('leaveRoom')
     }
     componentDidMount(){
@@ -78,6 +79,17 @@ class RoomScreen extends React.Component {
                 user.id != id
             })
             this.setState({classement:newClassement})
+        })
+
+        listenSocket("scores",(player)=>{
+            let userId = this.state.classement.findIndex((user) => { return user.id === player.id})
+            const newArray = Object.assign([...this.state.classement], {
+                [userId]: {
+                    ...myArray[index],
+                    prop: myNewValue
+                }
+            });
+            this.setState({classement: newArray });            
         })
         
         listenSocket("someoneJoined",(players)=>{

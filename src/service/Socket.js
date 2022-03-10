@@ -4,7 +4,6 @@ let socket;
 export function connectSocket() {
     if(!socket){
         socket = io("https://cucuque.herokuapp.com");
-        
     }
 }
 
