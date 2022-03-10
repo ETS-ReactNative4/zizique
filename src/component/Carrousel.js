@@ -1,83 +1,90 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { FlatList, View, StyleSheet, TouchableOpacity } from "react-native";
-import CarrouselItem from './CarrouselItem';
+import * as React from 'react'; import {
+    Text, View,
+    SafeAreaView,
+    Image,
+    TouchableOpacity
+} from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
-const Carrousel = (props) => {
+import Carousel from 'react-native-snap-carousel';
+export default class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            activeIndex: 0, carouselItems: [
+                {
+                    id: 1,
+                    image: require('../../assets/avatar1.png'),
+                },
+                {
+                    id: 2,
+                    image: require('../../assets/avatar2.png'),
+                }, {
+                    id: 3,
+                    image: require('../../assets/avatar3.png'),
+                }, {
+                    id: 4,
+                    image: require('../../assets/avatar4.png'),
+                },
 
-    const { slides, setIcon } = props
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const flatlistRef = useRef();
+            ]
+        }
+    }
+    _slideLeft = () => {
+        console.log(this.state.activeIndex)
+        if (this.state.activeIndex === 0) {
 
-
-
-    const onViewableItemsChanged = ({ viewableItems, changed }) => {
-        const current = viewableItems.filter((slide) => {
-            return slide.isViewable == true
-        })
-        setCurrentIndex(current[0].index);
-        setIcon(current[0].index);
-    };
-    const viewabilityConfigCallbackPairs = useRef([{ onViewableItemsChanged }]);
-
-    const slideLeft = () => {
-        if (currentIndex == 0) {
-            flatlistRef.current.scrollToIndex({ index: slides.length - 1 });
+            this.setState({ activeIndex: this.state.carouselItems.length - 1 })
+            this.carousel.snapToItem(this.state.carouselItems.length - 1)
 
         } else {
-            flatlistRef.current.scrollToIndex({ index: currentIndex - 1 });
+            this.setState({ activeIndex: this.state.activeIndex - 1 })
+            this.carousel.snapToItem(this.state.activeIndex - 1)
 
         }
     };
 
-    const slideRight = () => {
-        if (currentIndex === slides.length - 1) {
-            flatlistRef.current.scrollToIndex({ index: 0 });
+    _slideRight = () => {
 
+        if (this.state.activeIndex === this.state.carouselItems.length - 1) {
+            this.setState({ activeIndex: 0 })
+            this.carousel.snapToItem(0)
         } else {
-            flatlistRef.current.scrollToIndex({ index: currentIndex + 1 });
-
+            this.setState({ activeIndex: this.state.activeIndex + 1 });
+            this.carousel.snapToItem(this.state.activeIndex + 1)
         }
     };
+    _renderItem({ item, index }) {
+        return (
+            <View style={{
+                borderRadius: 6,
+                padding: 10,
+                flexDirection: 'row', justifyContent: 'center'
 
-    return (
-        <View style={styles.container}>
-            {
-                slides && slides.length != 0 ?
-                    <View style={styles.container}>
-                        <TouchableOpacity onPress={slideLeft} >
-                            <AntDesign name="caretleft" size={24} color="black" />
-                        </TouchableOpacity>
-                        <FlatList
-                            data={slides}
-                            renderItem={({ item, index }) => <CarrouselItem item={item} index={index} />}
-                            keyExtractor={item => item.id.toString()}
-                            showsVerticalScrollIndicator={false}
-                            style={{ flex: 1 }}
-                            horizontal={true}
-                            pagingEnabled={true}
-                            viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
-                            ref={flatlistRef}
+            }}>
+                <Image source={item.image} style={{ width: 100, height: 100 }} />
+            </View>
+        )
+    }
+    render() {
+        return (
+            <SafeAreaView >
+                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: "center" }}>
+                    <TouchableOpacity onPress={() => { this._slideLeft() }} >
+                        <AntDesign name="caretleft" size={24} color="black" />
+                    </TouchableOpacity>
+                    <Carousel
 
-                        />
-                        <TouchableOpacity onPress={slideRight} >
-                            <AntDesign name="caretright" size={24} color="black" />
-                        </TouchableOpacity>
-                    </View> : null
-            }
+                        ref={ref => this.carousel = ref} data={this.state.carouselItems} sliderWidth={100} itemWidth={100} renderItem={this._renderItem}
+                        onSnapToItem={index => this.setState({ activeIndex: index })}
 
-        </View>
-    )
+                    />
+                    <TouchableOpacity onPress={() => { this._slideRight() }} >
+                        <AntDesign name="caretright" size={24} color="black" />
+                    </TouchableOpacity>
+                </View>
+
+            </SafeAreaView>
+        );
+    }
 }
-
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: "row",
-    },
-});
-
-export default Carrousel
