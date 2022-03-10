@@ -149,23 +149,27 @@ class RoomScreen extends React.Component {
                         </View>
                     </View>
                 </View>
-                <TouchableOpacity
-                    style={[styles.ready,{backgroundColor:this.state.isReady?"#E43F6F":"#5BC9D7"}]}
-                    onPress={()=>{
-                        this.setState({isReady:!this.state.isReady})
-                        emitSocket("ready",!this.state.isReady);
-                    }}
-                    disabled={this.state.isGameStarted?true:false}
-                >
+                {
+                    !this.state.isGameStarted ?
+                    <TouchableOpacity
+                        style={[styles.ready,{backgroundColor:this.state.isReady?"#E43F6F":"#5BC9D7"}]}
+                        onPress={()=>{
+                            this.setState({isReady:!this.state.isReady})
+                            emitSocket("ready",!this.state.isReady);
+                        }}
+                        disabled={this.state.isGameStarted?true:false}
+                    >
                     <Text style={{color:"white",marginRight:10,fontSize:20}}>
                        {
                            this.state.isReady?"Je ne suis plus pret !":"Je me met pret"
                        }
                     </Text>  
-                    {
-                        this.state.isReady? <AntDesign name="dislike2" size={24} color="white" />:<AntDesign name="like2" size={24} color="white" />
-                    }
-                </TouchableOpacity>
+                        {
+                            this.state.isReady? <AntDesign name="dislike2" size={24} color="white" />:<AntDesign name="like2" size={24} color="white" />
+                        }
+                    </TouchableOpacity>:null
+                }
+                
                 <ModalRoom isLoading={this.state.isGameLoading} isFinish={this.state.isGameFinish} visibility={this.state.modalVisibility}/>
             </View>
         )
