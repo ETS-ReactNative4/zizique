@@ -133,7 +133,7 @@ const HomeScreen = (props) => {
         </View>}
         style={{ backgroundColor: 'white' }}
       >
-        <View style={{ height: 200, width: "100%", alignItems: "center", justifyContent: "center" }}>
+        <View style={{ height: 200, alignItems: "center", justifyContent: "center" }}>
           <Text>Veuillez choisir une image</Text>
           <Carrousel style={{ flex: 1 }} slides={slides} setIcon={setIconIndex} />
           <View style={styles.buttonHome}>

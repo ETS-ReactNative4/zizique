@@ -2,10 +2,9 @@ import React from 'react';
 import { StyleSheet, View, Image, useWindowDimensions } from 'react-native';
 
 const CarrouselItem = (props) => {
-    const { width } = useWindowDimensions();
     const { item } = props
     return (
-        <View style={{ width: width, alignItems: "center", justifyContent: "center" }}>
+        <View style={{ justifyContent: "space-around", borderWidth: 1 }}>
             <Image source={item.image} style={styles.image} />
         </View>
     );
