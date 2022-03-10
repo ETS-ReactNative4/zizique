@@ -18,10 +18,11 @@ return (
       <DrawerItem
         label="Déconnexion"
         onPress={()=>{
-            storeConnexion.setLogin('');
             storeConnexion.setRefresh('');
             storeConnexion.setAccess('');
             storeConnexion.setProfilPicture(1);
+            storeConnexion.setLogin('');
+
         }}
       />
     </DrawerContentScrollView>

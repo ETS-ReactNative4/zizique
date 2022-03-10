@@ -24,7 +24,6 @@ const ProfilScreen = (props) => {
 
     return(
         <View style={styles.container}>
-            <Header />
             <View style={styles.header}>
                 <Avatar1 height={50} width={50}/>
                 {/* {

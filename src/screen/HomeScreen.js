@@ -9,7 +9,7 @@ import { FancyAlert } from 'react-native-expo-fancy-alerts';
 
 const HomeScreen = (props) => {
   const { navigation, storeConnexion } = props;
-  const [userAno, onChangeUserAno] = React.useState("");
+  const [userAno, onChangeUserAno] = React.useState("sefsef");
   const [slides, setSlides] = React.useState();
   const [IconIndex, setIconIndex] = React.useState(0);
   const [modalVisibility, setModalVisibility] = React.useState(false);
@@ -133,10 +133,10 @@ const HomeScreen = (props) => {
         </View>}
         style={{ backgroundColor: 'white' }}
       >
-        <View style={{ height: 200, alignItems: "center", justifyContent: "center" }}>
+        <View style={{ height: 200, alignItems: "center", justifyContent: "space-between" ,borderWidth:1}}>
           <Text>Veuillez choisir une image</Text>
-          <Carrousel style={{ flex: 1 }} slides={slides} setIcon={setIconIndex} />
-          <View style={[styles.buttonHome,{marginBottom:20}]}>
+          <Carrousel  slides={slides} setIcon={setIconIndex} />
+          <View style={[styles.buttonHome]}>
             <TouchableOpacity
               style={{
                 backgroundColor:"#5BC9D7",
@@ -144,10 +144,10 @@ const HomeScreen = (props) => {
                 borderRadius: 18,
                 height: 40,
                 justifyContent: "center",
+                
               }}
 
               onPress={() => {
-                console.log("crotte")
                 storeConnexion.setLogin(userAno)
               }}
             >
