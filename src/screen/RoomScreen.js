@@ -40,6 +40,7 @@ class RoomScreen extends React.Component {
         emitSocket('leaveRoom')
     }
     componentDidMount(){
+        console.log("OUI")
         Audio.setAudioModeAsync({
             allowsRecordingIOS:false,
             interruptionModeIOS:Audio.INTERRUPTION_MODE_IOS_DUCK_OTHERS,
@@ -52,18 +53,19 @@ class RoomScreen extends React.Component {
 
         this.sound.setOnPlaybackStatusUpdate(this.onPlaybackStatusUpdate);
 
-        listenSocket('blindTrack',(song)=>{
-            console.log("song")
+        listenSocket('blindTrack',(data)=>{
+
+            console.log(data.track.preview_url)
             if(this.state.isPlaying){
                 this.sound.unloadAsync();
             }
             this.setState({percent:0})
             this.setState({modalVisibility:false,isLoading:false})
-            this.sound.loadAsync({uri:song.track.preview_url}).then(()=>{
+            this.sound.loadAsync({uri:data.track.preview_url}).then(()=>{
                 this.sound.playAsync();
                 this.setState({isPlaying:true});
             });
-            setTimeout(()=>{this.setState({historique:[...this.state.historique,song]})},30000)
+            //setTimeout(()=>{this.setState({historique:[...this.state.historique,song]})},30000)
         })
 
         listenSocket("asArtist",(asArtist)=>{this.setState({'asArtist':asArtist})})
