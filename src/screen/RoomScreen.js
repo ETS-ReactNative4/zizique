@@ -82,14 +82,9 @@ class RoomScreen extends React.Component {
         })
 
         listenSocket("scores",(player)=>{
-            let userId = this.state.classement.findIndex((user) => { return user.id === player.id})
-            const newArray = Object.assign([...this.state.classement], {
-                [userId]: {
-                    ...myArray[index],
-                    prop: myNewValue
-                }
-            });
-            this.setState({classement: newArray });            
+            let userIndex = this.state.classement.findIndex((user) => { return user.id === player.id})
+            let newArray = this.state.classement.splice(userIndex,1)
+            this.setState({classement: newArray });
         })
         
         listenSocket("someoneJoined",(players)=>{
@@ -167,6 +162,7 @@ class RoomScreen extends React.Component {
                         style={[styles.ready,{backgroundColor:this.state.isReady?"#E43F6F":"#5BC9D7"}]}
                         onPress={()=>{
                             this.setState({isReady:!this.state.isReady})
+                            
                             emitSocket("ready",!this.state.isReady);
                         }}
                         disabled={this.state.isGameStarted?true:false}

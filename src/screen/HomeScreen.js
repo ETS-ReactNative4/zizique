@@ -12,7 +12,7 @@ const HomeScreen = (props) => {
   const [userAno, onChangeUserAno] = React.useState("");
   const [slides, setSlides] = React.useState();
   const [IconIndex, setIconIndex] = React.useState(0);
-  const [modalVisibility, setModalVisibility] = React.useState(0);
+  const [modalVisibility, setModalVisibility] = React.useState(false);
 
 
   useEffect(() => {

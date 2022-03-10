@@ -20,9 +20,12 @@ const ModalRoom = (props) => {
         <Modal animationType="slide" transparent={true} visible={visibility}>   
             <View style={styles.modalView}>
                 <View style={styles.modalHeader}>
-                    {
-                        isLoading? <Loading />:null
-                    }
+                    <View style={{flex:.3}}>
+                        {
+                            isLoading? <Loading />:null
+                        }
+                    </View>
+                    
                     {
                         isFinish?
                         <View style={{flex:1,width:"100%",alignItems:"center"}}>
@@ -50,10 +53,7 @@ const ModalRoom = (props) => {
                         :null
                     }
                 </View>
-                <View style={styles.modalBody}>
-                    <ActivityIndicator size="large" color="#FFFF" />
-                    <Text style={styles.modalTxt}>La musique arrive bientôt connio</Text>
-                </View>
+                <Text style={styles.modalTxt}>La musique arrive bientôt connio</Text>
             </View>
         </Modal>
     );

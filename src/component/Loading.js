@@ -17,7 +17,7 @@ const Loading = (props) =>{
 
     return (
         <View style={{flex:1,alignItems:"center",justifyContent:"center",}}>
-            <Waiting height={300} width={"100%"} />
+            <Waiting height={"100%"} width={"100%"} />
             <ActivityIndicator size="large" color="#FFFF" />
             <Text style={{color:"white",fontSize:50}}>Loading ....</Text>
         </View>
