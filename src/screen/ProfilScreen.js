@@ -1,9 +1,5 @@
 import React,{useState,useEffect,useContext} from 'react'
-import { StyleSheet,Text,View,TouchableOpacity ,TextInput } from 'react-native';
-import Avatar1 from '../../ImgSvg/avatar1.svg'
-import Avatar2 from '../../ImgSvg/avatar2.svg'
-import Avatar3 from '../../ImgSvg/avatar3.svg'
-import Header from "../component/Header"
+import { StyleSheet,Text,View,TouchableOpacity,TextInput,Image} from 'react-native';
 import { Feather } from '@expo/vector-icons'; 
 import { AntDesign } from '@expo/vector-icons'; 
 import ApiContext,{Api} from '../service/Axios'
@@ -24,9 +20,8 @@ const ProfilScreen = (props) => {
 
     return(
         <View style={styles.container}>
-            <Header />
             <View style={styles.header}>
-                <Avatar1 height={50} width={50}/>
+                <Image style={styles.avatar} source={require('../../assets/avatar1.png')} />
                 {/* {
                     user.picture===1?<Avatar1 height={50} width={50}/>
                     :null
@@ -71,6 +66,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFB100',
     alignItems: 'center',
+    justifyContent:"center"
+  },
+  avatar:{
+    height:50,
+    width:50
   },
   header:{
     flex:.4
@@ -82,4 +82,5 @@ const styles = StyleSheet.create({
   }
   
 });
+
 export default inject('storeConnexion')(observer(ProfilScreen))
