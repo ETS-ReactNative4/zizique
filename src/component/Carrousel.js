@@ -31,7 +31,7 @@ const Carrousel = (props) => {
     };
 
     const slideRight = () => {
-        if (currentIndex == slides.length - 1) {
+        if (currentIndex === slides.length - 1) {
             flatlistRef.current.scrollToIndex({ index: 0 });
 
         } else {
