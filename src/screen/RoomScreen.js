@@ -54,8 +54,7 @@ class RoomScreen extends React.Component {
         this.sound.setOnPlaybackStatusUpdate(this.onPlaybackStatusUpdate);
 
         listenSocket('blindTrack',(data)=>{
-
-            console.log(data.track.preview_url)
+            console.log(data)
             if(this.state.isPlaying){
                 this.sound.unloadAsync();
             }
@@ -65,7 +64,7 @@ class RoomScreen extends React.Component {
                 this.sound.playAsync();
                 this.setState({isPlaying:true});
             });
-            //setTimeout(()=>{this.setState({historique:[...this.state.historique,song]})},30000)
+            setTimeout(()=>{this.setState({historique:[...this.state.historique,data].reverse()})},5000)
         })
 
         listenSocket("asArtist",(asArtist)=>{this.setState({'asArtist':asArtist})})
@@ -90,6 +89,7 @@ class RoomScreen extends React.Component {
     }
    
     componentWillUnmount(){
+        this.sound.unloadAsync();
         emitSocket("leaveRoom")
     }
   

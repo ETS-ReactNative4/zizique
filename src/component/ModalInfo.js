@@ -35,11 +35,6 @@ const ModalInfo = (props) => {
                 {
                     isLoading?<Loading />:<PlaylistList playlists={playlists} />
                 }
-                {/* <ScrollView style={styles.modalScroll}>
-                    <Text style={styles.modalText}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc faucibus nibh eu mauris dapibus, facilisis egestas ligula posuere. Morbi bibendum mollis ultricies. Vestibulum et justo pellentesque, feugiat lacus nec, rhoncus massa. Proin leo libero, aliquet dictum est ac, tristique feugiat enim. Donec elementum arcu id velit placerat interdum.
-                    </Text>
-                </ScrollView> */}
                 {
                     !isLoading?
                     <View style={styles.modalFooter}>
