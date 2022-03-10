@@ -4,12 +4,15 @@ import Logo from "../../ImgSvg/Logo.svg";
 import {connectSocket} from "../service/Socket"
 import {observer,inject} from 'mobx-react'
 import Carrousel from "../component/Carrousel"
+import { FancyAlert } from 'react-native-expo-fancy-alerts';
 
 
 const HomeScreen = (props) => {
     const {navigation,storeConnexion}=props; 
     const [userAno, onChangeUserAno] = React.useState("");
     const [slides, setSlides] = React.useState();
+    const [IconIndex,setIconIndex]=React.useState(0);
+    const [modalVisibility,setModalVisibility]=React.useState(0);
 
 
     useEffect(() => {
@@ -99,13 +102,31 @@ const HomeScreen = (props) => {
               disabled={userAno!=""?false:true}
 
               onPress={()=>{
-                storeConnexion.setLogin(userAno)
+                setModalVisibility(!modalVisibility)
+                //storeConnexion.setLogin(userAno)
               }}
               >
               <Text style={{ color:"white"}}>Jouer</Text>
           </TouchableOpacity>
           </View>
         </View>
+        <FancyAlert
+          visible={modalVisibility}
+          icon={<View style={{
+            flex: 1,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: 'white',
+            borderRadius: 50,
+            width: '100%',
+          }}><Text>🤓</Text></View>}
+          style={{ backgroundColor: 'white' }}
+        >
+        <View style={{height:200,width:"100%",alignItems:"center",justifyContent:"center"}}>
+          <Carrousel slides={slides} setIcon={setIconIndex}/>
+        </View>
+      </FancyAlert>
       </View>
     )
 }
