@@ -9,13 +9,16 @@ import {observer,inject} from 'mobx-react'
 const ProfilScreen = (props) => {
     
     const {storeConnexion} = props; 
-    const [user,setUser] = useState({});
+    const [user,setUser] = useState("");
+    const [profilPic,setProfilPic] = useState(0);
     const [isediting,setIsEditing] = useState(false);
     const [n_username,setN_username] = useState("")
-    const context = useContext(ApiContext)
+    // const context = useContext(ApiContext)
 
     useEffect(() => {
-        setUser(context.GetProfil())
+        setUser(storeConnexion.getLogin())
+        setProfilPic(storeConnexion.setProfilPicture())
+        // setUser(context.GetProfil())
     },[]);
 
     return(
@@ -35,26 +38,26 @@ const ProfilScreen = (props) => {
                     :null
                 } */}
                 <View style={{flexDirection:"row"}}>
-                    <Text style={styles.username}>{user.username}</Text>
+                    <Text style={styles.username}>{user}</Text>
                     <TouchableOpacity onPress={()=>{setIsEditing(!isediting)}}>
                         <Feather name="edit" size={24} color="white" />
                     </TouchableOpacity>
-                    <FancyAlert
-                        visible={isediting}
-                        icon={<Feather name="edit" size={24} color="white" />}
-                        style={{ backgroundColor: 'white' }}
-                    >
-                        <TextInput
-                            style={styles.input}
-                            onChangeText={(text)=>{setN_username(text)}}
-                            value={n_username}
-                        />
-                        <TouchableOpacity onPress={()=>{setIsEditing(!isediting)}} style={{padding:14,backgroundColor:"#E43F6F",width:"100%"}}>
-                            <AntDesign name="checkcircleo" size={24} color="white" />
-                        </TouchableOpacity>
-                    </FancyAlert>
                 </View>
-            </View>    
+            </View>
+            <FancyAlert
+                visible={isediting}
+                icon={<Feather name="edit" size={24} color="white" />}
+                style={{ backgroundColor: 'white' }}
+            >
+                 <TextInput
+                    style={styles.input}
+                    onChangeText={(text)=>{setN_username(text)}}
+                    value={n_username}
+                />
+                <TouchableOpacity onPress={()=>{setIsEditing(!isediting)}} style={{padding:14,backgroundColor:"#E43F6F",width:"100%"}}>
+                    <AntDesign name="checkcircleo" size={24} color="white" />
+                </TouchableOpacity>
+            </FancyAlert>
         </View>
     )
 }
@@ -69,8 +72,9 @@ const styles = StyleSheet.create({
     justifyContent:"center"
   },
   avatar:{
-    height:50,
-    width:50
+    height:"100%",
+    width:100,
+    resizeMode:'contain'
   },
   header:{
     flex:.4
