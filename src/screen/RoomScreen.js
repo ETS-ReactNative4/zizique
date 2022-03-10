@@ -10,6 +10,8 @@ import ModalRoom from "../component/ModalRoom"
 import { Audio } from 'expo-av';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { AntDesign } from '@expo/vector-icons'; 
+import {observer,inject} from 'mobx-react'
+
 
 class RoomScreen extends React.Component {
     
@@ -29,7 +31,8 @@ class RoomScreen extends React.Component {
             isGameLoading:false,
             isPlaying:false,
             isReady: false,
-            isGameStarted:false
+            isGameStarted:false,
+            place:0
         }
     }
 
@@ -73,9 +76,9 @@ class RoomScreen extends React.Component {
         listenSocket("asArtist",(asArtist)=>{this.setState({'asArtist':asArtist})})
         listenSocket("asSong",(asSong)=>{this.setState({'asArtist':asSong})})
         listenSocket("endGame",(player)=>{
-            let me = this.state.classement.filter((user) => { return user.id === player.id})
-            
-            this.setState({modalVisibility:true,isFinish:true,classement:player})
+            const meId = this.props.getIdSocket()
+            let place = this.state.classement.reverse().findIndex((user) => { return user.id === meId})
+            this.setState({modalVisibility:true,isFinish:true,classement:player,place})
         })
         
         listenSocket("someoneLeaved",(id)=>{
@@ -182,7 +185,7 @@ class RoomScreen extends React.Component {
                     </TouchableOpacity>:null
                 }
                 
-                <ModalRoom isLoading={this.state.isGameLoading} isFinish={this.state.isGameFinish} visibility={this.state.modalVisibility}/>
+                <ModalRoom isLoading={this.state.isGameLoading} isFinish={this.state.isGameFinish} visibility={this.state.modalVisibility} place={this.state.place}/>
             </View>
         )
     }
@@ -279,5 +282,4 @@ const styles = StyleSheet.create({
 
 });
 
-
-export default RoomScreen;
+export default inject('storeConnexion')(observer(RoomScreen));
