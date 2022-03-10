@@ -9,9 +9,7 @@ const Carrousel = (props) =>{
     const [currentIndex, setCurrentIndex] = useState(0);
     const flatlistRef = useRef();
 
-    useEffect(()=>{
-        console.log(slides)
-    },[])
+
 
     const onViewableItemsChanged = ({ viewableItems, changed }) => {
         const current =  viewableItems.filter((slide)=>{
@@ -32,24 +30,30 @@ const Carrousel = (props) =>{
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={slideLeft} disabled={currentIndex!=0?false:true}>
-                <AntDesign name="caretleft" size={24} color="black" />
-            </TouchableOpacity>
-            <FlatList
-                data={slides}
-                renderItem={({item,index}) => <CarrouselItem item={item} index={index} />}
-                keyExtractor={item => item.id.toString()}
-                showsVerticalScrollIndicator={false}
-                style={{flex:1}}
-                horizontal={true}
-                pagingEnabled={true}
-                viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
-                ref={flatlistRef}
+            {
+                slides && slides.length != 0?
+                <View style={styles.container}>
+                    <TouchableOpacity onPress={slideLeft} disabled={currentIndex!=0?false:true}>
+                        <AntDesign name="caretleft" size={24} color="black" />
+                    </TouchableOpacity>
+                    <FlatList
+                        data={slides}
+                        renderItem={({item,index}) => <CarrouselItem item={item} index={index} />}
+                        keyExtractor={item => item.id.toString()}
+                        showsVerticalScrollIndicator={false}
+                        style={{flex:1}}
+                        horizontal={true}
+                        pagingEnabled={true}
+                        viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
+                        ref={flatlistRef}
 
-            />
-            <TouchableOpacity onPress={slideRight} disabled={currentIndex!=slides.length-1?false:true}>
-                <AntDesign name="caretright" size={24} color="black" />
-            </TouchableOpacity>
+                    />
+                    <TouchableOpacity onPress={slideRight} disabled={currentIndex!=slides.length-1?false:true}>
+                        <AntDesign name="caretright" size={24} color="black" />
+                    </TouchableOpacity>
+                </View>:null
+            }
+            
         </View>
     )  
 }
