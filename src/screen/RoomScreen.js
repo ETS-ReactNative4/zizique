@@ -28,19 +28,20 @@ class RoomScreen extends React.Component {
             isGameFinish:false,
             isGameLoading:true,
             isPlaying:false,
-            isReady: false
+            isReady: false,
+            isGameStarted:false
         }
     }
 
     onPlaybackStatusUpdate = (status) =>{
         let percent = status.positionMillis*100/status.durationMillis
-        this.setState({percent:percent})
+        this.setState({percent})
     }
     componentWillUnmount(){
+        console.log("Leave")
         emitSocket('leaveRoom')
     }
     componentDidMount(){
-        console.log("OUI")
         Audio.setAudioModeAsync({
             allowsRecordingIOS:false,
             interruptionModeIOS:Audio.INTERRUPTION_MODE_IOS_DUCK_OTHERS,
@@ -54,17 +55,18 @@ class RoomScreen extends React.Component {
         this.sound.setOnPlaybackStatusUpdate(this.onPlaybackStatusUpdate);
 
         listenSocket('blindTrack',(data)=>{
-            console.log(data)
+            if(!this.state.isGameStarted){
+                this.setState({isGameStarted:true})
+            }
             if(this.state.isPlaying){
                 this.sound.unloadAsync();
             }
-            this.setState({percent:0})
             this.setState({modalVisibility:false,isLoading:false})
             this.sound.loadAsync({uri:data.track.preview_url}).then(()=>{
                 this.sound.playAsync();
                 this.setState({isPlaying:true});
             });
-            setTimeout(()=>{this.setState({historique:[...this.state.historique,data].reverse()})},5000)
+            setTimeout(()=>{this.setState({historique:[...this.state.historique,data].reverse()})},30000)
         })
 
         listenSocket("asArtist",(asArtist)=>{this.setState({'asArtist':asArtist})})
@@ -112,7 +114,10 @@ class RoomScreen extends React.Component {
                         />
                         <TouchableOpacity
                             style={styles.send}
-                            onPress={()=>{emitSocket('sendAnswer',this.state.response)}}
+                            onPress={()=>{
+                                emitSocket('sendAnswer',this.state.response)
+                                this.setState({response:""})
+                            }}
                         >
                             <MaterialCommunityIcons name="send" size={20} color="white" />
                         </TouchableOpacity>
@@ -150,6 +155,7 @@ class RoomScreen extends React.Component {
                         this.setState({isReady:!this.state.isReady})
                         emitSocket("ready",!this.state.isReady);
                     }}
+                    disabled={this.state.isGameStarted?true:false}
                 >
                     <Text style={{color:"white",marginRight:10,fontSize:20}}>
                        {

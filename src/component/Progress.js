@@ -1,14 +1,18 @@
-import React,{useEffect,useRef} from 'react';
+import React,{useEffect,useRef,useState} from 'react';
 import {View,StyleSheet,Animated,Easing,Text} from 'react-native';
 
 const Progress = (props) =>{
     
     const {percent} = props;
+    const [currentPercent,setCurrentPercent] = useState(0)
     const progression = useRef(new Animated.Value(0)).current;
 
     useEffect(() => {
+        if(!isNaN(percent)){
+            setCurrentPercent(percent)
+        }
         Animated.timing(progression, {
-            toValue: percent,
+            toValue: currentPercent,
             duration: 1000,
             easing:Easing.ease,
             useNativeDriver:false
