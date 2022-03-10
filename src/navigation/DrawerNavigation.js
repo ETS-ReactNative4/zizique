@@ -1,10 +1,9 @@
 import React from 'react';
 import CustomDrawerContent from './DrawerContent/DrawerContent';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-// import RoomScreen from '../screen/RoomScreen'
 import SelectScreen from '../screen/SelectScreen'
 import {observer,inject} from 'mobx-react'
-import ProfilScreen from '../screen/ProfilScreen';
+import ProfileScreen from '../screen/ProfilScreen'
 const Drawer=createDrawerNavigator();
 
 const DrawerNavigation = (props) => {
@@ -18,7 +17,7 @@ const DrawerNavigation = (props) => {
           })} 
         />
 
-        <Drawer.Screen name="Profil" component={ProfilScreen}       
+        <Drawer.Screen name="Profil" component={ProfileScreen}       
           options={({ navigation }) => ({
             headerShown: false,
           })}
