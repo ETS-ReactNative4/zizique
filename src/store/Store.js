@@ -54,6 +54,12 @@ class StoreConnexion {
     setProfilPicture = (profilPicture) => {
         this.profilPicture = profilPicture;
     }
+    setIdSocket =(id_socket)=>{
+        this.id_socket=id_socket;
+    }
+    getIdSocket=()=>{
+        return this.id_socket;
+    }
     /*storeData = async (login,password,idSession) => {
        try {
            this.setLogin(identifiant);
@@ -96,6 +102,9 @@ class StoreConnexion {
             setLogin: action,
             setRefresh: action,
             setAccess: action,
+            setIdSocket:action,
+            getIdSocket:action
+
         });
     }
 }
