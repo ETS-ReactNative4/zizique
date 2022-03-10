@@ -75,7 +75,7 @@ class RoomScreen extends React.Component {
         })
 
         listenSocket("asArtist",(asArtist)=>{this.setState({'asArtist':asArtist})})
-        listenSocket("asSong",(asSong)=>{this.setState({'asArtist':asSong})})
+        listenSocket("asSong",(asSong)=>{this.setState({'asSong':asSong})})
         listenSocket("endGame",(player)=>{
             const meId = this.props.getIdSocket()
             let place = this.state.classement.reverse().findIndex((user) => { return user.id === meId})
@@ -90,8 +90,18 @@ class RoomScreen extends React.Component {
         })
 
         listenSocket("scores",(player)=>{
+            console.log("scores");
+            console.log(player);
+            
             let newArray = this.state.classement.filter((user) => { return user.id !== player.id})
+            
+            console.log("newArray");
+            console.log(newArray);
+
+            console.log("newArray w");
             newArray.push(player)
+            console.log(newArray);
+
             this.setState({classement:newArray});
         })
         
