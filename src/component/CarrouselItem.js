@@ -5,20 +5,20 @@ const CarrouselItem = (props)  => {
     const { width } = useWindowDimensions();
     const {item} = props
     return (
-        <View style={[styles.container, { width}]}>
-            <Image source={item.image} style={[ styles.image, { width} ]} />
+        <View style={{width:width-50}}>
+            <Image source={item.image} style={styles.image} />
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
     },
     image: {
-        padding:100,
+        width:"100%",
+        height:"100%",
         resizeMode: 'contain',
     },
 });

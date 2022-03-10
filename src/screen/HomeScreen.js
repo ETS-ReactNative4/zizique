@@ -3,15 +3,36 @@ import { StyleSheet, Text, View,TouchableOpacity ,TextInput } from 'react-native
 import Logo from "../../ImgSvg/Logo.svg";
 import {connectSocket} from "../service/Socket"
 import {observer,inject} from 'mobx-react'
+import Carrousel from "../component/Carrousel"
 
 
 const HomeScreen = (props) => {
     const {navigation,storeConnexion}=props; 
     const [userAno, onChangeUserAno] = React.useState("");
-    
+    const [slides, setSlides] = React.useState();
+
 
     useEffect(() => {
-      connectSocket()
+      connectSocket();
+      setSlides([
+        {
+          id:1,
+          image:require('../../assets/avatar1.png')
+        },
+        {
+          id:2,
+          image:require('../../assets/avatar2.png')
+        },
+        {
+          id:3,
+          image:require('../../assets/avatar3.png')
+        },
+        {
+          id:4,
+          image:require('../../assets/avatar4.png')
+        }
+      ])
+
     },[]);
 
     return(
@@ -19,7 +40,7 @@ const HomeScreen = (props) => {
           <View style={{flex:0.3,justifyContent:"center"}}>
             <Logo height={170}width={200} />    
           </View>
-        <View style={styles.buttonHome}>
+          <View style={styles.buttonHome}>
           <TouchableOpacity
             style={{ backgroundColor:"#5BC9D7",    
             alignItems: "center",
@@ -32,8 +53,8 @@ const HomeScreen = (props) => {
             onPress={()=>{
                 navigation.push("Login")
             }}
-            >
-            <Text style={{ color:"white"}}>Se connecter</Text>
+          >
+          <Text style={{ color:"white"}}>Se connecter</Text>
         </TouchableOpacity>
         <TouchableOpacity
             style={{ backgroundColor:"#E43F6F",    
@@ -85,8 +106,6 @@ const HomeScreen = (props) => {
           </TouchableOpacity>
           </View>
         </View>
-        
-    
       </View>
     )
 }
