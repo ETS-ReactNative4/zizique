@@ -90,9 +90,9 @@ class RoomScreen extends React.Component {
         })
 
         listenSocket("scores",(player)=>{
-            let userIndex = this.state.classement.findIndex((user) => { return user.id === player.id})
-            let newArray = this.state.classement.splice(userIndex,1)
-            this.setState({classement: newArray });
+            let newArray = this.state.classement.filter((user) => { return user.id !== player.id})
+            newArray.push(player)
+            this.setState({classement:newArray});
         })
         
         listenSocket("someoneJoined",(players)=>{

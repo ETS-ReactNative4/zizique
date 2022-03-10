@@ -12,7 +12,7 @@ const ClassementList = (props) =>{
             return b.score - a.score;
         });
 
-    },[]);
+    },[classement]);
     
 
     return (
