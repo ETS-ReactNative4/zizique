@@ -24,7 +24,7 @@ class RoomScreen extends React.Component {
             classement:[],
             asArtist:false,
             asSong:false,
-            modalVisibility:false,
+            modalVisibility:true,
             isGameFinish:false,
             isGameLoading:true,
             isPlaying:false,
@@ -57,11 +57,11 @@ class RoomScreen extends React.Component {
         listenSocket('blindTrack',(data)=>{
             if(!this.state.isGameStarted){
                 this.setState({isGameStarted:true})
+                this.setState({modalVisibility:false})
             }
             if(this.state.isPlaying){
                 this.sound.unloadAsync();
             }
-            this.setState({modalVisibility:false,isLoading:false})
             this.sound.loadAsync({uri:data.track.preview_url}).then(()=>{
                 this.sound.playAsync();
                 this.setState({isPlaying:true});
