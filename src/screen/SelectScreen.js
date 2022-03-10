@@ -4,14 +4,14 @@ import SelectList from "../component/SelectList"
 import { Header } from '../component/Header';
 import 'react-native-get-random-values'
 import { v4 as uuidv4 } from 'uuid';
-import {emitSocket} from '../service/Socket'
+import {emitSocket, listenSocket} from '../service/Socket'
 import {observer,inject} from 'mobx-react'
 import ApiContext,{Api} from '../service/Axios'
 import Loading from '../component/Loading';
 class SelectScreen extends React.Component {
 
     static contextType = ApiContext
-
+    
  
     constructor(props) {
         super(props);  
@@ -33,6 +33,9 @@ class SelectScreen extends React.Component {
     _joinRoom = (genre) =>{
       try{
         emitSocket("joinRoom",{genre:genre,user:{username:this.props.storeConnexion.getLogin(),profilPic:this.props.storeConnexion.getProfilPicture()}})
+        listenSocket("myLittleSocket",(socket)=>{
+            // this.props.
+        })
         this.props.navigation.navigate('Room')
       }catch(e){
         console.log(e)
