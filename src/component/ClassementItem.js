@@ -24,15 +24,15 @@ const ClassementItem = (props) =>{
         <View style={[styles.card,{backgroundColor:`${color}`}]}>
             <View style={styles.img_container}>
                 {
-                    item.profile_pic===0?<Image source={require('../../assets/avatar1.png')} height={30} width={30}/>
+                    item.profile_pic===0?<Image source={require('../../assets/avatar1.png')} style={{height:30,width:30}}/>
                     :null
                 }
                 {
-                    item.profile_pic===1?<Image source={require('../../assets/avatar2.png')} height={30} width={30}/>
+                    item.profile_pic===1?<Image source={require('../../assets/avatar2.png')} style={{height:30,width:30}}/>
                     :null
                 }
                 {
-                    item.profile_pic===2?<Image source={require('../../assets/avatar3.png')} height={30} width={30}/>
+                    item.profile_pic===2?<Image source={require('../../assets/avatar3.png')} style={{height:30,width:30}}/>
                     :null
                 }
             </View>
@@ -59,7 +59,8 @@ const styles = StyleSheet.create({
         width:"80%"
     },
     img_container:{
-        width:"20%"
+        width:"20%",
+        marginLeft:10
     },
     txt_nom:{
         color:"white",
