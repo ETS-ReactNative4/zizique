@@ -10,9 +10,13 @@ const ClassementItem = (props) =>{
     const [color,setColor] = useState("")
     
     useEffect(() => {
-        let step
-        step = item.answers.asArtist ? step++ : step;
-        step = item.answers.asSong ? step++ : step;
+        let step = 0
+        if(item.answers.asArtist){
+            step++
+        }
+        if(item.answers.asSong){
+            step++
+        }
         setColor(step == 1 ? "#FFA900": step == 2 ? "#E43F6F" : "#5BC9D7")
     },[]);
 

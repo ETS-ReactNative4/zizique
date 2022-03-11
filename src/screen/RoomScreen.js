@@ -57,6 +57,7 @@ class RoomScreen extends React.Component {
         })
 
         this.sound.setOnPlaybackStatusUpdate(this.onPlaybackStatusUpdate);
+        this.sound.setVolumeAsync(10)
 
         listenSocket('blindTrack',(data)=>{
             this.setState({asArtist:false,asSong:false})
@@ -169,7 +170,6 @@ class RoomScreen extends React.Component {
                         style={[styles.ready,{backgroundColor:this.state.isReady?"#E43F6F":"#5BC9D7"}]}
                         onPress={()=>{
                             this.setState({isReady:!this.state.isReady})
-                            
                             emitSocket("ready",!this.state.isReady);
                         }}
                         disabled={this.state.isGameStarted?true:false}
