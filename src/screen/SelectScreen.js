@@ -32,7 +32,7 @@ class SelectScreen extends React.Component {
 
     _joinRoom = (genre) =>{
       try{
-        emitSocket("joinRoom",{genre:genre,user:{username:this.props.storeConnexion.getLogin(),profilPic:this.props.storeConnexion.getProfilPicture()}})
+        emitSocket("joinRoom",{genre:genre,user:{username:this.props.storeConnexion.getLogin(),profile_pic:this.props.storeConnexion.getProfilPicture()}})
         listenSocket("myLittleSocket",(socket)=>{
             this.props.storeConnexion.setIdSocket(socket)
         })

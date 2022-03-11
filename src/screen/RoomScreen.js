@@ -58,7 +58,7 @@ class RoomScreen extends React.Component {
         })
 
         this.sound.setOnPlaybackStatusUpdate(this.onPlaybackStatusUpdate);
-        this.sound.setVolumeAsync(10)
+        this.sound.setVolumeAsync(1.0)
 
         listenSocket('blindTrack',(data)=>{
             this.setState({asArtist:false,asSong:false})
