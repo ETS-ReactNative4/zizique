@@ -86,7 +86,7 @@ class RoomScreen extends React.Component {
         
         listenSocket("someoneLeaved",(id)=>{
             let newClassement = this.state.classement.filter((user) => {
-                user.id != id
+                return user.id != id
             })
             this.setState({classement:newClassement})
         })
@@ -116,7 +116,6 @@ class RoomScreen extends React.Component {
 
         return (
             <View style={styles.container}>
-
                 <View style={styles.room_container}>
                     <View style={styles.progress_container}>
                         <Progress percent={this.state.percent}/>
