@@ -11,6 +11,7 @@ import { Audio } from 'expo-av';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { AntDesign } from '@expo/vector-icons'; 
 import {observer,inject} from 'mobx-react'
+import ThemedListItem from 'react-native-elements/dist/list/ListItem';
 
 
 class RoomScreen extends React.Component {
@@ -32,7 +33,7 @@ class RoomScreen extends React.Component {
             isPlaying:false,
             isReady: false,
             isGameStarted:false,
-            place:0
+            place:0,
         }
     }
 
@@ -60,7 +61,7 @@ class RoomScreen extends React.Component {
         this.sound.setVolumeAsync(10)
 
         listenSocket('blindTrack',(data)=>{
-            this.setState({asArtist:false,asSong:false})
+            this.setState({asArtist:false,asSong:false,step:0})
             if(!this.state.isGameStarted){
                 this.setState({isGameStarted:true})
                 this.setState({modalVisibility:false})

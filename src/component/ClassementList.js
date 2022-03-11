@@ -4,7 +4,7 @@ import ClassementItem from './ClassementItem';
 
 const ClassementList = (props) =>{
     
-    const {classement} = props;
+    const {classement,step} = props;
 
     
     useEffect(() => {

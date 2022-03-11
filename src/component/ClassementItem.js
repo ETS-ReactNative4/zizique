@@ -18,7 +18,7 @@ const ClassementItem = (props) =>{
             step++
         }
         setColor(step == 1 ? "#FFA900": step == 2 ? "#E43F6F" : "#5BC9D7")
-    },[]);
+    },[item]);
 
     return (
         <View style={[styles.card,{backgroundColor:`${color}`}]}>
