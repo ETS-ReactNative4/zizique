@@ -133,6 +133,7 @@ class RoomScreen extends React.Component {
                                 emitSocket('sendAnswer',this.state.response)
                                 this.setState({response:""})
                             }}
+                            disabled={this.state.response!=""?false:true}
                         >
                             <MaterialCommunityIcons name="send" size={20} color="white" />
                         </TouchableOpacity>
