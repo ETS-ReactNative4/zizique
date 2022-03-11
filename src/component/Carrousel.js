@@ -5,9 +5,10 @@ import * as React from 'react'; import {
     TouchableOpacity
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
+import { observer, inject } from 'mobx-react'
 
 import Carousel from 'react-native-snap-carousel';
-export default class App extends React.Component {
+class Carou extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -31,7 +32,6 @@ export default class App extends React.Component {
         }
     }
     _slideLeft = () => {
-        console.log(this.state.activeIndex)
         if (this.state.activeIndex === 0) {
 
             this.setState({ activeIndex: this.state.carouselItems.length - 1 })
@@ -42,6 +42,7 @@ export default class App extends React.Component {
             this.carousel.snapToItem(this.state.activeIndex - 1)
 
         }
+        this.props.storeConnexion.setProfilPicture(this.state.activeIndex)
     };
 
     _slideRight = () => {
@@ -53,6 +54,7 @@ export default class App extends React.Component {
             this.setState({ activeIndex: this.state.activeIndex + 1 });
             this.carousel.snapToItem(this.state.activeIndex + 1)
         }
+        this.props.storeConnexion.setProfilPicture(this.state.activeIndex)
     };
     _renderItem({ item, index }) {
         return (
@@ -86,3 +88,4 @@ export default class App extends React.Component {
         );
     }
 }
+export default inject('storeConnexion')(observer(Carou))

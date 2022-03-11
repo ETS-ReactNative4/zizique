@@ -11,30 +11,12 @@ const HomeScreen = (props) => {
   const { navigation, storeConnexion } = props;
   const [userAno, onChangeUserAno] = React.useState();
   const [slides, setSlides] = React.useState();
-  const [IconIndex, setIconIndex] = React.useState(0);
   const [modalVisibility, setModalVisibility] = React.useState(false);
 
 
   useEffect(() => {
     connectSocket();
-    setSlides([
-      {
-        id: 1,
-        image: require('../../assets/avatar1.png')
-      },
-      {
-        id: 2,
-        image: require('../../assets/avatar2.png')
-      },
-      {
-        id: 3,
-        image: require('../../assets/avatar3.png')
-      },
-      {
-        id: 4,
-        image: require('../../assets/avatar4.png')
-      }
-    ])
+
 
   }, []);
 
@@ -123,7 +105,7 @@ const HomeScreen = (props) => {
           borderRadius: 50,
           width: '100%',
         }}><TouchableOpacity
-        style={{flex:1,alignItems:"center",justifyContent:"center"}}
+          style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
           onPress={() => {
             setModalVisibility(!modalVisibility)
           }}
@@ -133,20 +115,20 @@ const HomeScreen = (props) => {
         </View>}
         style={{ backgroundColor: 'white' }}
       >
-        <View style={{marginTop: -16, alignItems: "center", justifyContent: "space-between"}}>
+        <View style={{ marginTop: -16, alignItems: "center", justifyContent: "space-between" }}>
           <Text>Veuillez choisir une image</Text>
-          <View style={{height:200}}>
-            <Carrousel  slides={slides} setIcon={setIconIndex} />
+          <View style={{ height: 200 }}>
+            <Carrousel slides={slides} />
           </View>
           <View style={[styles.buttonHome]}>
             <TouchableOpacity
               style={{
-                backgroundColor:"#5BC9D7",
+                backgroundColor: "#5BC9D7",
                 alignItems: "center",
                 borderRadius: 18,
                 height: 40,
                 justifyContent: "center",
-                
+
               }}
 
               onPress={() => {

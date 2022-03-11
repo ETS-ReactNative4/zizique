@@ -17,9 +17,8 @@ const Api =
                     profil_pic: user.IconIndex
                 })
             if (response.status == 201) {
-                return true;
+                return response.data;
             } else {
-                console.log("un problème est survenue status code : ", response.status);
                 return false;
             }
         } catch (err) {

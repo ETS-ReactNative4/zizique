@@ -48,16 +48,16 @@ class StoreConnexion {
 
     //ProfilPicture
     getProfilPicture = () => {
-        return this.accessToken;
+        return this.profilPicture;
     }
 
     setProfilPicture = (profilPicture) => {
         this.profilPicture = profilPicture;
     }
-    setIdSocket =(id_socket)=>{
-        this.id_socket=id_socket;
+    setIdSocket = (id_socket) => {
+        this.id_socket = id_socket;
     }
-    getIdSocket=()=>{
+    getIdSocket = () => {
         return this.id_socket;
     }
     /*storeData = async (login,password,idSession) => {
@@ -102,8 +102,8 @@ class StoreConnexion {
             setLogin: action,
             setRefresh: action,
             setAccess: action,
-            setIdSocket:action,
-            getIdSocket:action
+            setIdSocket: action,
+            getIdSocket: action
 
         });
     }

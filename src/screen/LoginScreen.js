@@ -57,13 +57,13 @@ const LoginScreen = (props) => {
               email: mail,
               password: password
             }, "password").then((res) => {
-              console.log(res)
               storeConnexion.setAccess(res.access_token);
               storeConnexion.setRefresh(res.refresh_token);
-              storeConnexion.setLogin(res.username);
               storeConnexion.setPassword(password);
               storeConnexion.setProfilPicture(res.profile_pic);
-              storeConnexion.setMail(mail)
+              storeConnexion.setMail(mail);
+              storeConnexion.setLogin(res.username);;
+
             }).catch((err) => {
               console.log(err)
             })
