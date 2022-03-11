@@ -11,25 +11,24 @@ const ClassementItem = (props) =>{
     
     useEffect(() => {
         let step
-        step = item.asArtist ? step++ : step;
-        step = item.asSong ? step++ : step;
+        step = item.answers.asArtist ? step++ : step;
+        step = item.answers.asSong ? step++ : step;
         setColor(step == 1 ? "#FFA900": step == 2 ? "#E43F6F" : "#5BC9D7")
-        console.log(color)
-    },[item]);
+    },[]);
 
     return (
         <View style={[styles.card,{backgroundColor:`${color}`}]}>
             <View style={styles.img_container}>
                 {
-                    item.profile_pic===1?<Avatar1 height={30} width={30}/>
+                    item.profile_pic===0?<Image source={require('../../assets/avatar1.png')} height={30} width={30}/>
                     :null
                 }
                 {
-                    item.profile_pic===2?<Avatar2 height={30} width={30}/>
+                    item.profile_pic===1?<Image source={require('../../assets/avatar2.png')} height={30} width={30}/>
                     :null
                 }
                 {
-                    item.profile_pic===3?<Avatar3 height={30} width={30}/>
+                    item.profile_pic===2?<Image source={require('../../assets/avatar3.png')} height={30} width={30}/>
                     :null
                 }
             </View>

@@ -8,11 +8,11 @@ import {emitSocket, listenSocket} from '../service/Socket'
 import {observer,inject} from 'mobx-react'
 import ApiContext,{Api} from '../service/Axios'
 import Loading from '../component/Loading';
+
 class SelectScreen extends React.Component {
 
     static contextType = ApiContext
     
- 
     constructor(props) {
         super(props);  
         this.state = {
@@ -34,7 +34,7 @@ class SelectScreen extends React.Component {
       try{
         emitSocket("joinRoom",{genre:genre,user:{username:this.props.storeConnexion.getLogin(),profilPic:this.props.storeConnexion.getProfilPicture()}})
         listenSocket("myLittleSocket",(socket)=>{
-            this.props.setIdSocket(socket)
+            this.props.storeConnexion.setIdSocket(socket)
         })
         this.props.navigation.navigate('Room')
       }catch(e){
