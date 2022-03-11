@@ -79,7 +79,7 @@ class RoomScreen extends React.Component {
         listenSocket("asArtist",(asArtist)=>{this.setState({asArtist:asArtist})})
         listenSocket("asSong",(asSong)=>{this.setState({asSong:asSong})})
         listenSocket("endGame",(player)=>{
-            const meId = this.props.getIdSocket()
+            const meId = this.props.storeConnexion.getIdSocket()
             let place = this.state.classement.reverse().findIndex((user) => { return user.id === meId})
             this.setState({modalVisibility:true,isFinish:true,classement:player,place})
         })
