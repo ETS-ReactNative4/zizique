@@ -74,8 +74,8 @@ class RoomScreen extends React.Component {
             setTimeout(()=>{this.setState({historique:[...this.state.historique,data].reverse()})},30000)
         })
 
-        listenSocket("asArtist",(asArtist)=>{this.setState({'asArtist':asArtist})})
-        listenSocket("asSong",(asSong)=>{this.setState({'asSong':asSong})})
+        listenSocket("asArtist",(asArtist)=>{this.setState({asArtist:asArtist})})
+        listenSocket("asSong",(asSong)=>{this.setState({asSong:asSong})})
         listenSocket("endGame",(player)=>{
             const meId = this.props.getIdSocket()
             let place = this.state.classement.reverse().findIndex((user) => { return user.id === meId})
@@ -90,26 +90,8 @@ class RoomScreen extends React.Component {
         })
 
         listenSocket("scores",(player)=>{
-            // console.log("scores");
-            // console.log(player);
-            
-            // let newArray = this.state.classement.filter((user) => { return user.id !== player.id})
-            
-            // console.log("newArray");
-            // console.log(newArray);
-
-            // console.log("newArray w");
-            // newArray.push(player)
-            // console.log(newArray);
-
-            // this.setState({classement:newArray});
-
-            console.log("scores")
             const userIndex = this.state.classement.findIndex(user=>user.id === player.id)
             this.state.classement[userIndex] = player
-            console.log(this.state.classement)
-            //this.setState({classement:newClassement});
-
         })
         
         listenSocket("someoneJoined",(players)=>{
