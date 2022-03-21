@@ -9,53 +9,74 @@ import {observer,inject} from 'mobx-react'
 const ProfilScreen = (props) => {
     
     const {storeConnexion} = props; 
-    const [user,setUser] = useState("");
+    const [user,setUser] = useState({});
     const [profilPic,setProfilPic] = useState(0);
     const [isediting,setIsEditing] = useState(false);
     const [n_username,setN_username] = useState("")
     // const context = useContext(ApiContext)
 
     useEffect(() => {
-        setUser(storeConnexion.getLogin())
+        setUser({username:storeConnexion.getLogin(),picture:storeConnexion.getProfilPicture(),mail:storeConnexion.getMail()})
         setProfilPic(storeConnexion.setProfilPicture())
-        // setUser(context.GetProfil())
     },[]);
 
     return(
         <View style={styles.container}>
             <View style={styles.header}>
-                <Image style={styles.avatar} source={require('../../assets/avatar1.png')} />
-                {/* {
-                    user.picture===1?<Avatar1 height={50} width={50}/>
+                {
+                    user.picture===0? <Image style={styles.avatar} source={require('../../assets/avatar1.png')} />
                     :null
                 }
                 {
-                    user.picture===2?<Avatar2 height={50} width={50}/>
+                    user.picture===1?<Image style={styles.avatar} source={require('../../assets/avatar2.png')} />
                     :null
                 }
                 {
-                    user.picture===3?<Avatar3 height={50} width={50}/>
+                    user.picture===2?<Image style={styles.avatar} source={require('../../assets/avatar3.png')} />
                     :null
-                } */}
-                <View style={{flexDirection:"row"}}>
-                    <Text style={styles.username}>{user}</Text>
+                }
+                {
+                    user.picture===3?<Image style={styles.avatar} source={require('../../assets/avatar4.png')} />
+                    :null
+                }
+                {
+                    !user.picture?<Image style={styles.avatar} source={require('../../assets/avatar1.png')} />
+                    :null
+                }
+                <View style={{flexDirection:"row",alignItems:"baseline"}}>
+                    <Text style={styles.username}>{user.username}</Text>
                     <TouchableOpacity onPress={()=>{setIsEditing(!isediting)}}>
                         <Feather name="edit" size={24} color="white" />
                     </TouchableOpacity>
                 </View>
             </View>
-            <FancyAlert
-                visible={isediting}
-                icon={<Feather name="edit" size={24} color="white" />}
-                style={{ backgroundColor: 'white' }}
-            >
-                 <TextInput
-                    style={styles.input}
-                    onChangeText={(text)=>{setN_username(text)}}
-                    value={n_username}
-                />
-                <TouchableOpacity onPress={()=>{setIsEditing(!isediting)}} style={{padding:14,backgroundColor:"#E43F6F",width:"100%"}}>
+            <FancyAlert visible={isediting} style={{backgroundColor:'white',padding:5}}>
+                {
+                    user.picture===0?<Image style={{width:100,height:100,marginTop:-50,marginBottom:10}} source={require('../../assets/avatar1.png')} />
+                    :null
+                }
+                {
+                    user.picture===1?<Image style={{width:100,height:100,marginTop:-50,marginBottom:10}} source={require('../../assets/avatar2.png')} />
+                    :null
+                }
+                {
+                    user.picture===2?<Image style={{width:100,height:100,marginTop:-50,marginBottom:10}} source={require('../../assets/avatar3.png')} />
+                    :null
+                }
+                {
+                    user.picture===3?<Image style={{width:100,height:100,marginTop:-50,marginBottom:10}} source={require('../../assets/avatar3.png')} />
+                    :null
+                }
+                {
+                    !user.picture?<Image style={{width:100,height:100,marginTop:-50,marginBottom:10}} source={require('../../assets/avatar1.png')} />
+                    :null
+                }
+                <Text style={{color:"black",marginLeft:10,fontSize:20}}>{user.username}</Text>
+                <Text style={{color:"grey",marginTop:10}}>Nouvelle username</Text>
+                <TextInput style={styles.input} onChangeText={(text)=>{setN_username(text)}} value={n_username} placeholder={"Votre nouvelle username"}/>
+                <TouchableOpacity onPress={()=>{setIsEditing(!isediting)}} style={{padding:14,backgroundColor:"#E43F6F",width:"100%",flexDirection:"row",marginBottom:10}}>
                     <AntDesign name="checkcircleo" size={24} color="white" />
+                    <Text style={{color:"white",marginLeft:10}}>Valider mes modifications</Text>
                 </TouchableOpacity>
             </FancyAlert>
         </View>
@@ -72,17 +93,26 @@ const styles = StyleSheet.create({
     justifyContent:"center"
   },
   avatar:{
-    height:"100%",
-    width:100,
+    height:150,
+    width:150,
     resizeMode:'contain'
   },
   header:{
-    flex:.4
+    flex:.4,
+    justifyContent:'center',
+    alignItems:"center",
   },
   username:{
     color:"white",
     fontSize:20,
-    marginRight:10
+    marginRight:10,
+    marginTop:15
+  },
+  input:{
+      width:"100%",
+      marginTop:10,
+      marginBottom:20,
+      borderBottomWidth:1
   }
   
 });
