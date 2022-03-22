@@ -75,7 +75,19 @@ const ProfilScreen = (props) => {
                 <Text style={{color:"black",marginLeft:10,fontSize:20}}>{user.username}</Text>
                 <Text style={{color:"grey",marginTop:10}}>Nouvelle username</Text>
                 <TextInput style={styles.input} onChangeText={(text)=>{setN_username(text)}} value={n_username} placeholder={"Votre nouvelle username"}/>
-                <TouchableOpacity onPress={()=>{setIsEditing(!isediting)}} style={{padding:14,backgroundColor:"#E43F6F",width:"100%",flexDirection:"row",marginBottom:10}}>
+                <TouchableOpacity onPress={()=>{
+                    context.UpdateUser({
+                        username:n_username,
+                        email:storeConnexion.getMail(),
+                        AccessToken:storeConnexion.getAccess(),
+                        profil_pic:storeConnexion.getProfilPicture()
+                    }).then((res)=>{
+
+                    }).catch((err)=>{
+                        console.log(err)
+                    })
+                    setIsEditing(!isediting)
+                }} style={{padding:14,backgroundColor:"#E43F6F",width:"100%",flexDirection:"row",marginBottom:10}}>
                     <AntDesign name="checkcircleo" size={24} color="white" />
                     <Text style={{color:"white",marginLeft:10}}>Valider mes modifications</Text>
                 </TouchableOpacity>
