@@ -76,7 +76,7 @@ const ProfilScreen = (props) => {
                     :null
                 }
                 {
-                    !user.picture?<Image style={{width:100,height:100,marginTop:-50,marginBottom:10}} source={require('../../assets/avatar1.png')} />
+                    user.picture === undefined ?<Image style={styles.avatar} source={require('../../assets/avatar1.png')} />
                     :null
                 }
                 <Text style={{color:"black",marginLeft:10,fontSize:20}}>{user.username}</Text>

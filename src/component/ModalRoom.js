@@ -34,21 +34,26 @@ const ModalRoom = (props) => {
                                 <Victoire height={"100%"} width={100}/>
                                 <View style={{position:"absolute",bottom:-30,marginLeft:100,right:-30}}>
                                     {
-                                        storeConnexion.getProfilPicture()===1?<Avatar1 height={30} width={30} />
+                                        storeConnexion.getProfilPicture()===0?<Image style={styles.avatar} source={require('../../assets/avatar1.png')} />
                                         :null
                                     }
                                     {
-                                        storeConnexion.getProfilPicture()===2?<Avatar2 height={30} width={30}/>
+                                        storeConnexion.getProfilPicture()===1?<Image style={styles.avatar} source={require('../../assets/avatar2.png')} />
                                         :null
                                     }
                                     {
-                                        storeConnexion.getProfilPicture()===3?<Avatar3 height={30} width={30}/>
+                                        storeConnexion.getProfilPicture()===2?<Image style={styles.avatar} source={require('../../assets/avatar3.png')} />
+                                        :null
+                                    }
+                                    {
+                                        storeConnexion.getProfilPicture()===3?<Image style={styles.avatar} source={require('../../assets/avatar4.png')} />
+                                        :null
+                                    }
+                                    {
+                                        storeConnexion.getProfilPicture() === undefined ?<Image style={styles.avatar} source={require('../../assets/avatar1.png')} />
                                         :null
                                     }
                                 </View>
-                            </View>
-                            <View style={{flex:.3,marginTop:30}}>
-                                <Text style={styles.placeTxt}>{place}</Text>
                             </View>                              
                         </View>
                         :null
