@@ -6,9 +6,9 @@ import ApiContext,{Api} from '../service/Axios'
 import { FancyAlert } from 'react-native-expo-fancy-alerts';
 import {observer,inject} from 'mobx-react'
 import Carrousel from '../component/Carrousel'
-import Header from '../component/Header'
-const ProfilScreen = (props) => {
-    
+import {Header} from '../component/Header'
+
+const ProfilScreen = (props) => {    
     const {storeConnexion} = props; 
     const [user,setUser] = useState({});
     // const [user,setUser] = useState({});
@@ -46,7 +46,7 @@ const ProfilScreen = (props) => {
                         :null
                     }
                     {
-                        !user.picture?<Image style={styles.avatar} source={require('../../assets/avatar1.png')} />
+                        user.picture === undefined ?<Image style={styles.avatar} source={require('../../assets/avatar1.png')} />
                         :null
                     }
                 </TouchableOpacity>
