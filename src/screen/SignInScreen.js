@@ -11,7 +11,7 @@ const SignInScreen = (props) => {
 
   const { navigation, storeConnexion } = props;
   const [mail, setMail] = React.useState("coco1@gmail.com");
-  const [username, setUserName] = React.useState("leHi");
+  const [username, setUserName] = React.useState("nomuser");
   const [password, setPassword] = React.useState("123456789");
   const [visible, setVisible] = React.useState(false);
   const context = React.useContext(ApiContext);
