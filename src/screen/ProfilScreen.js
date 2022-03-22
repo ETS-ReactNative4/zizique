@@ -21,8 +21,9 @@ const ProfilScreen = (props) => {
     // const context = useContext(ApiContext)
 
     useEffect(() => {
-        setUser({username:storeConnexion.getLogin(),picture:storeConnexion.getProfilPicture(),mail:storeConnexion.getMail()})
-    },[storeConnexion.getProfilPicture(),n_username]);
+        setN_username(storeConnexion.getLogin())
+        setUser({picture:storeConnexion.getProfilPicture(),mail:storeConnexion.getMail()})
+    },[storeConnexion.getProfilPicture()]);
 
     return(
         <View style={styles.container}>
@@ -49,7 +50,7 @@ const ProfilScreen = (props) => {
                     }
                 </TouchableOpacity>
                 <View style={{flexDirection:"row",alignItems:"baseline"}}>
-                    <Text style={styles.username}>{user.username}</Text>
+                    <Text style={styles.username}>{n_username}</Text>
                     <TouchableOpacity onPress={()=>{setIsEditing(!isediting)}}>
                         <Feather name="edit" size={24} color="white" />
                     </TouchableOpacity>
@@ -85,8 +86,7 @@ const ProfilScreen = (props) => {
                             profil_pic:storeConnexion.getProfilPicture()
                         }).then((res)=>{
                             if (res) {
-                                storeConnexion.setLogin(n_username)
-    
+                                storeConnexion.setLogin(n_username)    
                             } 
                         }).catch((err)=>{
                             console.log(err)
