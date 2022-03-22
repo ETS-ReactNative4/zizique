@@ -5,46 +5,51 @@ import { AntDesign } from '@expo/vector-icons';
 import ApiContext,{Api} from '../service/Axios'
 import { FancyAlert } from 'react-native-expo-fancy-alerts';
 import {observer,inject} from 'mobx-react'
-
+import Carrousel from '../component/Carrousel'
+import Header from '../component/Header'
 const ProfilScreen = (props) => {
     
     const {storeConnexion} = props; 
     const [user,setUser] = useState({});
+    // const [user,setUser] = useState({});
+
     const [n_profilPic,setN_ProfilPic] = useState();
     const [isediting,setIsEditing] = useState(false);
     const [n_username,setN_username] = useState("")
-    const [isProfilEditing,setIsProfilediting] = useState(false);
+    const [isProfilEditing,setIsProfilEditing] = useState(false);
 
     // const context = useContext(ApiContext)
 
     useEffect(() => {
         setUser({username:storeConnexion.getLogin(),picture:storeConnexion.getProfilPicture(),mail:storeConnexion.getMail()})
-        setProfilPic(storeConnexion.setProfilPicture())
     },[]);
 
     return(
         <View style={styles.container}>
             <View style={styles.header}>
-                {
-                    user.picture===0? <Image style={styles.avatar} source={require('../../assets/avatar1.png')} />
-                    :null
-                }
-                {
-                    user.picture===1?<Image style={styles.avatar} source={require('../../assets/avatar2.png')} />
-                    :null
-                }
-                {
-                    user.picture===2?<Image style={styles.avatar} source={require('../../assets/avatar3.png')} />
-                    :null
-                }
-                {
-                    user.picture===3?<Image style={styles.avatar} source={require('../../assets/avatar4.png')} />
-                    :null
-                }
-                {
-                    !user.picture?<Image style={styles.avatar} source={require('../../assets/avatar1.png')} />
-                    :null
-                }
+                <Header />
+                <TouchableOpacity onPress={()=>{setIsProfilEditing(!isProfilEditing)}}>
+                    {
+                        user.picture===0?<Image style={styles.avatar} source={require('../../assets/avatar1.png')} />
+                        :null
+                    }
+                    {
+                        user.picture===1?<Image style={styles.avatar} source={require('../../assets/avatar2.png')} />
+                        :null
+                    }
+                    {
+                        user.picture===2?<Image style={styles.avatar} source={require('../../assets/avatar3.png')} />
+                        :null
+                    }
+                    {
+                        user.picture===3?<Image style={styles.avatar} source={require('../../assets/avatar4.png')} />
+                        :null
+                    }
+                    {
+                        !user.picture?<Image style={styles.avatar} source={require('../../assets/avatar1.png')} />
+                        :null
+                    }
+                </TouchableOpacity>
                 <View style={{flexDirection:"row",alignItems:"baseline"}}>
                     <Text style={styles.username}>{user.username}</Text>
                     <TouchableOpacity onPress={()=>{setIsEditing(!isediting)}}>
@@ -92,31 +97,32 @@ const ProfilScreen = (props) => {
                 borderRadius: 50,
                 width: '100%',
                 }}><TouchableOpacity
-                style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+                style={{ flex: 1, alignItems: "center", justifyContent: "center",
+            }}
                 onPress={() => {
-                    setModalVisibility(!modalVisibility)
+                    setIsProfilEditing(!isProfilEditing)
                 }}
                 >
                     <Text>X</Text>
                 </TouchableOpacity>
                 </View>}
-                style={{ backgroundColor: 'white' }}
+                style={{ backgroundColor: 'white'}}
             >
             <View style={{ marginTop: -16, alignItems: "center", justifyContent: "space-between" }}>
             <Text>Veuillez choisir une image</Text>
             <View style={{ height: 200 }}>
-                <Carrousel slides={slides} />
+                <Carrousel />
             </View>
-            <View style={[styles.buttonHome]}>
+            <View style={{marginBottom:30}}>
                 <TouchableOpacity
                 style={{
                     backgroundColor: "#5BC9D7",
                     alignItems: "center",
                     borderRadius: 18,
-                    height: 40,
                     justifyContent: "center",
-
+                    padding:10
                 }}
+                onPress={()=>{setIsProfilEditing(!isProfilEditing)}}
 
                 >
                 <Text style={{ color: "white" }}>Modifier son avatar</Text>

@@ -118,7 +118,7 @@ const HomeScreen = (props) => {
         <View style={{ marginTop: -16, alignItems: "center", justifyContent: "space-between" }}>
           <Text>Veuillez choisir une image</Text>
           <View style={{ height: 200 }}>
-            <Carrousel slides={slides} />
+            <Carrousel/>
           </View>
           <View style={[styles.buttonHome]}>
             <TouchableOpacity
