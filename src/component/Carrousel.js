@@ -11,6 +11,7 @@ import Carousel from 'react-native-snap-carousel';
 class Carou extends React.Component {
     constructor(props) {
         super(props);
+        this.props.storeConnexion.setProfilPicture(0)
         this.state = {
             activeIndex: 0, carouselItems: [
                 {
