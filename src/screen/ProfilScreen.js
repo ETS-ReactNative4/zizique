@@ -7,17 +7,16 @@ import { FancyAlert } from 'react-native-expo-fancy-alerts';
 import {observer,inject} from 'mobx-react'
 import Carrousel from '../component/Carrousel'
 import {Header} from '../component/Header'
+import StatList from '../component/StatList';
 
 const ProfilScreen = (props) => {    
     const {storeConnexion} = props; 
     const [user,setUser] = useState({});
-    // const [user,setUser] = useState({});
 
-    const [n_profilPic,setN_ProfilPic] = useState();
     const [isediting,setIsEditing] = useState(false);
     const [n_username,setN_username] = useState("")
     const [isProfilEditing,setIsProfilEditing] = useState(false);
-
+    const [stat,setStat] = useState()
     // const context = useContext(ApiContext)
 
     useEffect(() => {
@@ -26,8 +25,10 @@ const ProfilScreen = (props) => {
 
     return(
         <View style={styles.container}>
-            <View style={styles.header}>
+            <View style={{flex:0.1,marginTop:40}}>
                 <Header />
+            </View>
+            <View style={styles.header}>
                 <TouchableOpacity onPress={()=>{setIsProfilEditing(!isProfilEditing)}}>
                     {
                         user.picture===0?<Image style={styles.avatar} source={require('../../assets/avatar1.png')} />
@@ -129,7 +130,10 @@ const ProfilScreen = (props) => {
                 </TouchableOpacity>
             </View>
             </View>
-        </FancyAlert>
+            </FancyAlert>
+            <View style={{flex:0.6}}>
+                <StatList stat={stat}/>
+            </View>
         </View>
     )
 }
