@@ -46,10 +46,6 @@ const ProfilScreen = (props) => {
                         user.picture===3?<Image style={styles.avatar} source={require('../../assets/avatar4.png')} />
                         :null
                     }
-                    {
-                        user.picture === undefined ?<Image style={styles.avatar} source={require('../../assets/avatar1.png')} />
-                        :null
-                    }
                 </TouchableOpacity>
                 <View style={{flexDirection:"row",alignItems:"baseline"}}>
                     <Text style={styles.username}>{user.username}</Text>
@@ -75,10 +71,7 @@ const ProfilScreen = (props) => {
                     user.picture===3?<Image style={{width:100,height:100,marginTop:-50,marginBottom:10}} source={require('../../assets/avatar3.png')} />
                     :null
                 }
-                {
-                    user.picture === undefined ?<Image style={styles.avatar} source={require('../../assets/avatar1.png')} />
-                    :null
-                }
+                
                 <Text style={{color:"black",marginLeft:10,fontSize:20}}>{user.username}</Text>
                 <Text style={{color:"grey",marginTop:10}}>Nouvelle username</Text>
                 <TextInput style={styles.input} onChangeText={(text)=>{setN_username(text)}} value={n_username} placeholder={"Votre nouvelle username"}/>
