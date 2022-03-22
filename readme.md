@@ -11,7 +11,7 @@ Install zizique with npm
 ```bash
   git clone https://github.com/BeatlesBOB/zizique
   npm install
-  cd my-project
+  cd zizique
   expo start
 ```
     
