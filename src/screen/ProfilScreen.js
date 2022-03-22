@@ -21,7 +21,7 @@ const ProfilScreen = (props) => {
 
     useEffect(() => {
         setUser({username:storeConnexion.getLogin(),picture:storeConnexion.getProfilPicture(),mail:storeConnexion.getMail()})
-    },[]);
+    },[storeConnexion.getProfilPicture()]);
 
     return(
         <View style={styles.container}>
