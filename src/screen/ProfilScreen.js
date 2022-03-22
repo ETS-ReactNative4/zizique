@@ -10,9 +10,11 @@ const ProfilScreen = (props) => {
     
     const {storeConnexion} = props; 
     const [user,setUser] = useState({});
-    const [profilPic,setProfilPic] = useState(0);
+    const [n_profilPic,setN_ProfilPic] = useState();
     const [isediting,setIsEditing] = useState(false);
     const [n_username,setN_username] = useState("")
+    const [isProfilEditing,setIsProfilediting] = useState(false);
+
     // const context = useContext(ApiContext)
 
     useEffect(() => {
@@ -79,6 +81,49 @@ const ProfilScreen = (props) => {
                     <Text style={{color:"white",marginLeft:10}}>Valider mes modifications</Text>
                 </TouchableOpacity>
             </FancyAlert>
+            <FancyAlert
+                visible={isProfilEditing}
+                icon={<View style={{
+                flex: 1,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: 'white',
+                borderRadius: 50,
+                width: '100%',
+                }}><TouchableOpacity
+                style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+                onPress={() => {
+                    setModalVisibility(!modalVisibility)
+                }}
+                >
+                    <Text>X</Text>
+                </TouchableOpacity>
+                </View>}
+                style={{ backgroundColor: 'white' }}
+            >
+            <View style={{ marginTop: -16, alignItems: "center", justifyContent: "space-between" }}>
+            <Text>Veuillez choisir une image</Text>
+            <View style={{ height: 200 }}>
+                <Carrousel slides={slides} />
+            </View>
+            <View style={[styles.buttonHome]}>
+                <TouchableOpacity
+                style={{
+                    backgroundColor: "#5BC9D7",
+                    alignItems: "center",
+                    borderRadius: 18,
+                    height: 40,
+                    justifyContent: "center",
+
+                }}
+
+                >
+                <Text style={{ color: "white" }}>Modifier son avatar</Text>
+                </TouchableOpacity>
+            </View>
+            </View>
+        </FancyAlert>
         </View>
     )
 }
