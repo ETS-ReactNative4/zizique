@@ -42,7 +42,7 @@ class Carou extends React.Component {
             this.carousel.snapToItem(this.state.activeIndex - 1)
 
         }
-        this.props.storeConnexion.setProfilPicture(this.state.activeIndex)
+        this.props.storeConnexion.setProfilPicture(this.state.activeIndex-1)
     };
 
     _slideRight = () => {
@@ -54,7 +54,7 @@ class Carou extends React.Component {
             this.setState({ activeIndex: this.state.activeIndex + 1 });
             this.carousel.snapToItem(this.state.activeIndex + 1)
         }
-        this.props.storeConnexion.setProfilPicture(this.state.activeIndex)
+        this.props.storeConnexion.setProfilPicture(this.state.activeIndex+1)
     };
     _renderItem({ item, index }) {
         return (
