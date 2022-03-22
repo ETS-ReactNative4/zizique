@@ -9,13 +9,18 @@ const Api =
 {
     UpdateUser:async(user)=>{
         try {
-            const response = await AxiosAuth.put(`/users/${user.email}`,user)
+            const response = await AxiosAuth.put(`/users/${user.email}`,{
+                username:user.username,
+                profile_pic:user.profil_pic
+            },{headers:{"Authorization" : `Bearer ${user.AccessToken}`}})
             if (response.status===200) {
                 return true;
             } else {
                 return false;
             }
         } catch (error) {
+            console.log(error)
+
             return false;
         }
     },
@@ -37,7 +42,7 @@ const Api =
             return err;
         }
     },
-    GetGenre: async (token) => {
+    GetGenre: async () => {
         try {
             const response = await AxiosAuth.get("music/genres")
             return response.data;
@@ -79,7 +84,7 @@ const Api =
             return error
         }
     },
-    GetGenrePlaylist: async (genreID,token) => {
+    GetGenrePlaylist: async (genreID) => {
         try {
             const response = await AxiosAuth.get(`/music/genres/${genreID}/playlists`)
             return response;

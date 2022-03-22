@@ -7,8 +7,8 @@ import ApiContext, { Api } from '../service/Axios'
 
 const LoginScreen = (props) => {
   const { navigation, storeConnexion } = props;
-  const [mail, setMail] = React.useState("cocinelle@gmail.com");
-  const [password, setPassword] = React.useState("toto123456");
+  const [mail, setMail] = React.useState("coco1@gmail.com");
+  const [password, setPassword] = React.useState("123456789");
   const context = React.useContext(ApiContext);
 
   return (

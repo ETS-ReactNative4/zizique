@@ -12,7 +12,8 @@ import StatList from '../component/StatList';
 const ProfilScreen = (props) => {    
     const {storeConnexion} = props; 
     const [user,setUser] = useState({});
-
+    const context = React.useContext(ApiContext);
+     
     const [isediting,setIsEditing] = useState(false);
     const [n_username,setN_username] = useState("")
     const [isProfilEditing,setIsProfilEditing] = useState(false);
@@ -21,7 +22,7 @@ const ProfilScreen = (props) => {
 
     useEffect(() => {
         setUser({username:storeConnexion.getLogin(),picture:storeConnexion.getProfilPicture(),mail:storeConnexion.getMail()})
-    },[storeConnexion.getProfilPicture(),storeConnexion.getLogin()]);
+    },[storeConnexion.getProfilPicture(),n_username]);
 
     return(
         <View style={styles.container}>
@@ -76,16 +77,24 @@ const ProfilScreen = (props) => {
                 <Text style={{color:"grey",marginTop:10}}>Nouvelle username</Text>
                 <TextInput style={styles.input} onChangeText={(text)=>{setN_username(text)}} value={n_username} placeholder={"Votre nouvelle username"}/>
                 <TouchableOpacity onPress={()=>{
-                    context.UpdateUser({
-                        username:n_username,
-                        email:storeConnexion.getMail(),
-                        AccessToken:storeConnexion.getAccess(),
-                        profil_pic:storeConnexion.getProfilPicture()
-                    }).then((res)=>{
-
-                    }).catch((err)=>{
-                        console.log(err)
-                    })
+                    if (n_username) {
+                        context.UpdateUser({
+                            username:n_username,
+                            email:storeConnexion.getMail(),
+                            AccessToken:storeConnexion.getAccess(),
+                            profil_pic:storeConnexion.getProfilPicture()
+                        }).then((res)=>{
+                            if (res) {
+                                storeConnexion.setLogin(n_username)
+    
+                            } 
+                        }).catch((err)=>{
+                            console.log(err)
+                        })
+                    } else {
+                        console.log("Il veuillez saisir un nouveau nom")
+                    }
+                    
                     setIsEditing(!isediting)
                 }} style={{padding:14,backgroundColor:"#E43F6F",width:"100%",flexDirection:"row",marginBottom:10}}>
                     <AntDesign name="checkcircleo" size={24} color="white" />
