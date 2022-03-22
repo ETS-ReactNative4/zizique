@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useContext} from 'react'
-import { StyleSheet,Text,View,TouchableOpacity,TextInput,Image} from 'react-native';
+import { StyleSheet,Text,View,TouchableOpacity,TextInput,Image,Alert} from 'react-native';
 import { Feather } from '@expo/vector-icons'; 
 import { AntDesign } from '@expo/vector-icons'; 
 import ApiContext,{Api} from '../service/Axios'
@@ -78,7 +78,7 @@ const ProfilScreen = (props) => {
                 <Text style={{color:"grey",marginTop:10}}>Nouvelle username</Text>
                 <TextInput style={styles.input} onChangeText={(text)=>{setN_username(text)}} value={n_username} placeholder={"Votre nouvelle username"}/>
                 <TouchableOpacity onPress={()=>{
-                    if (n_username) {
+                    if (n_username != storeConnexion.getLogin()) {
                         context.UpdateUser({
                             username:n_username,
                             email:storeConnexion.getMail(),
@@ -89,12 +89,25 @@ const ProfilScreen = (props) => {
                                 storeConnexion.setLogin(n_username)    
                             } 
                         }).catch((err)=>{
-                            console.log(err)
+                            Alert.alert('Ooppps',err, [
+                                {
+                                  text: 'Cancel',
+                                  onPress: () => console.log('Cancel Pressed'),
+                                  style: 'cancel',
+                                },
+                                { text: 'OK', onPress: () => console.log('OK Pressed') },
+                            ]);
                         })
                     } else {
-                        console.log("Il veuillez saisir un nouveau nom")
+                        Alert.alert('Ooppps','Veuillez saisir un nouveau nom', [
+                            {
+                              text: 'Cancel',
+                              onPress: () => console.log('Cancel Pressed'),
+                              style: 'cancel',
+                            },
+                            { text: 'OK', onPress: () => console.log('OK Pressed') },
+                        ]);
                     }
-                    
                     setIsEditing(!isediting)
                 }} style={{padding:14,backgroundColor:"#E43F6F",width:"100%",flexDirection:"row",marginBottom:10}}>
                     <AntDesign name="checkcircleo" size={24} color="white" />

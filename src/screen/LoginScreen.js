@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput,Alert } from 'react-native';
 import Logo from "../../ImgSvg/Logo.svg";
 import LeftArrow from "../../ImgSvg/left-arrow.svg"
 import { observer, inject } from 'mobx-react'
@@ -65,7 +65,14 @@ const LoginScreen = (props) => {
               storeConnexion.setLogin(res.username);;
 
             }).catch((err) => {
-              console.log(err)
+              Alert.alert('Oooppps',err, [
+                {
+                  text: 'Cancel',
+                  onPress: () => console.log('Cancel Pressed'),
+                  style: 'cancel',
+                },
+                { text: 'OK', onPress: () => console.log('OK Pressed') },
+              ]);
             })
 
           }}

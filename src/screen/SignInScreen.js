@@ -124,7 +124,14 @@ const SignInScreen = (props) => {
               storeConnexion.setLogin(res.username);
 
             }).catch((err) => {
-              console.log("err");
+              Alert.alert('Oooppps',err, [
+                {
+                  text: 'Cancel',
+                  onPress: () => console.log('Cancel Pressed'),
+                  style: 'cancel',
+                },
+                { text: 'OK', onPress: () => console.log('OK Pressed') },
+              ]);
             })
 
 
